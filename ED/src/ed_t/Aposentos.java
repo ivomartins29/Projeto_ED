@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Implementation;
+package ed_t;
 
 import org.json.simple.JSONArray;
 
-
 /**
  *
- * @author jogui
+ * @author Ivo Martins
  */
 public class Aposentos {
 
@@ -43,5 +42,5 @@ public class Aposentos {
 
     public void setLigacoes(JSONArray ligacoes) {
         this.ligacoes = ligacoes;
-    }   
+    }
 }
