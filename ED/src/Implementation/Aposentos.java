@@ -7,11 +7,13 @@ package Implementation;
 
 import org.json.simple.JSONArray;
 
+
 /**
  *
  * @author jogui
  */
 public class Aposentos {
+
     private String nome;
     private long fantasma;
     private JSONArray ligacoes;
@@ -41,9 +43,5 @@ public class Aposentos {
 
     public void setLigacoes(JSONArray ligacoes) {
         this.ligacoes = ligacoes;
-    }
-   
-    
-    
-    
+    }   
 }
