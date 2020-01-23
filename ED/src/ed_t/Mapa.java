@@ -44,6 +44,7 @@ public class Mapa {
                 aposento[i] = new Aposentos();
                 aposento[i].setNome((String) mapa_obj.get("aposento"));
                 aposento[i].setFantasma((long) mapa_obj.get("fantasma"));
+                aposento[i].setLigacoes((JSONArray)mapa_obj.get("ligacoes"));
             }
 
         } catch (FileNotFoundException e) {
@@ -54,4 +55,46 @@ public class Mapa {
         // TODO Auto-generated catch block
 
     }
+
+    public int getTAM_MAPA() {
+        return TAM_MAPA;
+    }
+
+    public void setTAM_MAPA(int TAM_MAPA) {
+        this.TAM_MAPA = TAM_MAPA;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public long getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(long pontos) {
+        this.pontos = pontos;
+    }
+
+    public JSONArray getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(JSONArray mapa) {
+        this.mapa = mapa;
+    }
+
+    public Aposentos[] getAposento() {
+        return aposento;
+    }
+
+    public void setAposento(Aposentos[] aposento) {
+        this.aposento = aposento;
+    }
+    
+    
 }
