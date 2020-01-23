@@ -1,5 +1,6 @@
 package ed_t;
 
+import Graph.AdjMatrixDiGraph;
 import java.util.Scanner;
 
 public class Main {
@@ -105,7 +106,22 @@ public class Main {
         Menu.menu();*/
         
         Mapa mapa = new Mapa("mapa.json");
-        System.out.println(mapa.getAposento()[0].getLigacoes());
+        AdjMatrixDiGraph ap = new AdjMatrixDiGraph(mapa) {
+            @Override
+            public void addVertex(Aposentos vertex) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+            @Override
+            public void removeVertex(Aposentos vertex) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        
+        ap.addEdge(mapa.getAposento()[0], mapa.getAposento()[1]);
+        System.out.println(ap.getNumberOfEdges());
+        System.out.println(ap.getNeighbors(mapa.getAposento()[1])[0].getNome());
+        
     }
 
 }

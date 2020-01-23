@@ -6,15 +6,14 @@
 package Interface;
 
 import ed_t.Aposentos;
-import ficha9.ArrayList;
 /**
  *
  * @author jogui
  * @param <T>
  */
-public interface GraphADT<T> {
+public abstract interface GraphADT<T> {
 
-    public void adddVertex(Aposentos<T> vertex);
+    public void addVertex(Aposentos<T> vertex);
 
     public void addEdge(Aposentos<T> vertex1, Aposentos<T> vertex2);
 
@@ -22,7 +21,7 @@ public interface GraphADT<T> {
 
     public void removeEdge(Aposentos<T> vertex1, Aposentos<T> vertex2);
 
-    public ArrayList<T> getNeighbors(Aposentos<T> vertex);
+    public Aposentos[] getNeighbors(Aposentos<T> vertex);
 
     public int getNumberOfVertices();
 
