@@ -1,5 +1,6 @@
 package ed_t;
 
+import Graph.AdjMatrixDiGraph;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -46,7 +47,19 @@ public class Mapa {
                 aposento[i].setFantasma((long) mapa_obj.get("fantasma"));
                 aposento[i].setLigacoes((JSONArray)mapa_obj.get("ligacoes"));
             }
-
+            
+            AdjMatrixDiGraph matriz = new AdjMatrixDiGraph(aposento);
+            
+            for(int j = 0;  j < aposento.length; j++){
+                int m = aposento[j].getLigacoes().size();
+                for(int x = 0; x < m ; x++){
+                    for( int k = 0; k < aposento.length; k++){          
+                        if(aposento[k].getNome().equals(aposento[j].getLigacoes().get(x))){
+                            matriz.addEdge(aposento[j], aposento[k]);
+                        }
+                    }
+                }              
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException | ParseException e) {

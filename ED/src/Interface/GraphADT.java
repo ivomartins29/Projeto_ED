@@ -13,11 +13,7 @@ import ed_t.Aposentos;
  */
 public abstract interface GraphADT<T> {
 
-    public void addVertex(Aposentos<T> vertex);
-
     public void addEdge(Aposentos<T> vertex1, Aposentos<T> vertex2);
-
-    public void removeVertex(Aposentos<T> vertex);
 
     public void removeEdge(Aposentos<T> vertex1, Aposentos<T> vertex2);
 
