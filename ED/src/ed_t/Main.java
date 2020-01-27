@@ -85,13 +85,10 @@ public class Main {
         do {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
-            //ERRO AQUI
+
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                if (neighbor != null) {
-                    System.out.println(neighbor.getNome());
-                }
+                System.out.println(neighbor.getNome());
             }
-            //System.out.println(Arrays.toString(m.getMatriz().getNeighbors(m.getAposento()[pos_player])));
             resposta = myObj.nextLine();
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
                 if (neighbor != null) {
@@ -164,6 +161,8 @@ public class Main {
 
         Main Menu = new Main();
         Menu.menu();
+        // Mapa mapa = new Mapa("mapa.json");
+        //mapa.getMatriz().imprimir();
     }
 
 }

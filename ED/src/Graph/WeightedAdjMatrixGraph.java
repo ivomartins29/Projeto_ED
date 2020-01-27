@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Graph;
 
 import Interface.WeightedGraph;
 import ed_t.Aposentos;
 
-/**
- *
- * @author jogui
- */
 public class WeightedAdjMatrixGraph<T> extends AdjMatrixDiGraph<T> implements WeightedGraph<T> {
 
     public float DEFAULT_WEIGHT = (float) 0.0;
@@ -46,7 +37,7 @@ public class WeightedAdjMatrixGraph<T> extends AdjMatrixDiGraph<T> implements We
         int v2Pos = super.getAposentosIndexFor(v2);
 
         weights[v1Pos][v2Pos] = weight;
-       // weights[v2Pos][v1Pos] = weight;
+        // weights[v2Pos][v1Pos] = weight;
     }
 
     @Override

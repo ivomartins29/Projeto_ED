@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Graph;
 
 import Interface.GraphADT;
 import ed_t.Aposentos;
 
-/**
- *
- * @author jogui
- * @param <T>
- */
 public class AdjMatrixDiGraph<T> implements GraphADT<T> {
 
     protected int numberOfVertices;
@@ -78,7 +68,12 @@ public class AdjMatrixDiGraph<T> implements GraphADT<T> {
     @Override
     public Aposentos[] getNeighbors(Aposentos<T> vertex) {
         v1Pos = getAposentosIndexFor(vertex);
-        Aposentos[] aposento = new Aposentos[numberOfVertices];
+        Aposentos[] aposento;
+        if (vertex.hasEntry()) {
+            aposento = new Aposentos[vertex.getLigacoes().size() - 1];
+        } else {
+            aposento = new Aposentos[vertex.getLigacoes().size()];
+        }
         int j = 0;
         for (int i = 0; i < vertices.length; i++) {
             if (this.adjMatrix[v1Pos][i] == 1) {

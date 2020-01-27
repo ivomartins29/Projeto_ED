@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 
 public class Mapa {
 
-    private AdjMatrixDiGraph matriz;
     private WeightedAdjMatrixGraph matrizPeso;
     private int TAM_MAPA;
     private String nome;
@@ -39,7 +38,7 @@ public class Mapa {
             mapa = (JSONArray) jsonObject.get("mapa");
             TAM_MAPA = mapa.size();
 
-            aposento = new Aposentos[TAM_MAPA+1];
+            aposento = new Aposentos[TAM_MAPA + 1];
 
             JSONObject mapa_obj;
 
@@ -50,20 +49,20 @@ public class Mapa {
                 aposento[i].setFantasma((long) mapa_obj.get("fantasma"));
                 aposento[i].setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
             }
-            
-            JSONArray array = new JSONArray(); 
+
+            JSONArray array = new JSONArray();
             aposento[TAM_MAPA] = new Aposentos();
             aposento[TAM_MAPA].setNome("exterior");
             aposento[TAM_MAPA].setFantasma(0);
             aposento[TAM_MAPA].setLigacoes(array);
 
-            matriz = new AdjMatrixDiGraph(aposento);
+            matrizPeso = new WeightedAdjMatrixGraph(aposento);
             for (int j = 0; j < aposento.length; j++) {
                 int m = aposento[j].getLigacoes().size();
                 for (int x = 0; x < m; x++) {
                     for (int k = 0; k < aposento.length; k++) {
                         if (aposento[k].getNome().equals(aposento[j].getLigacoes().get(x))) {
-                            matriz.addEdge(aposento[k], aposento[j]);
+                            matrizPeso.addEdge(aposento[j], aposento[j].getFantasma(), aposento[k]);
                         }
                     }
                 }
@@ -117,12 +116,12 @@ public class Mapa {
         this.aposento = aposento;
     }
 
-    public AdjMatrixDiGraph getMatriz() {
-        return matriz;
+    public WeightedAdjMatrixGraph getMatriz() {
+        return matrizPeso;
     }
 
-    public void setMatriz(AdjMatrixDiGraph matriz) {
-        this.matriz = matriz;
+    public void setMatriz(WeightedAdjMatrixGraph matriz) {
+        this.matrizPeso = matriz;
     }
 
     public boolean hasExit(int indice) {
@@ -142,12 +141,5 @@ public class Mapa {
             }
         }
         return -1;
-    }
-
-    public boolean hasEntry(Aposentos ap) {
-        if (ap.getLigacoes().contains("entrada")) {
-            return true;
-        }
-        return false;
     }
 }
