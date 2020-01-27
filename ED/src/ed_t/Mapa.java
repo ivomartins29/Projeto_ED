@@ -1,6 +1,7 @@
 package ed_t;
 
 import Graph.AdjMatrixDiGraph;
+import Graph.WeightedAdjMatrixGraph;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import org.json.simple.JSONObject;
 public class Mapa {
 
     private AdjMatrixDiGraph matriz;
+    private WeightedAdjMatrixGraph matrizPeso;
     private int TAM_MAPA;
     private String nome;
     private long pontos;
@@ -37,7 +39,7 @@ public class Mapa {
             mapa = (JSONArray) jsonObject.get("mapa");
             TAM_MAPA = mapa.size();
 
-            aposento = new Aposentos[TAM_MAPA];
+            aposento = new Aposentos[TAM_MAPA+1];
 
             JSONObject mapa_obj;
 
@@ -48,15 +50,20 @@ public class Mapa {
                 aposento[i].setFantasma((long) mapa_obj.get("fantasma"));
                 aposento[i].setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
             }
+            
+            JSONArray array = new JSONArray(); 
+            aposento[TAM_MAPA] = new Aposentos();
+            aposento[TAM_MAPA].setNome("exterior");
+            aposento[TAM_MAPA].setFantasma(0);
+            aposento[TAM_MAPA].setLigacoes(array);
 
             matriz = new AdjMatrixDiGraph(aposento);
-
             for (int j = 0; j < aposento.length; j++) {
                 int m = aposento[j].getLigacoes().size();
                 for (int x = 0; x < m; x++) {
                     for (int k = 0; k < aposento.length; k++) {
                         if (aposento[k].getNome().equals(aposento[j].getLigacoes().get(x))) {
-                            matriz.addEdge(aposento[j], aposento[k]);
+                            matriz.addEdge(aposento[k], aposento[j]);
                         }
                     }
                 }

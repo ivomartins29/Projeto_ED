@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     private final String DEFAULT_MAP = "mapa.json";
+
     private String mapa;
 
     public void menu() {
@@ -86,18 +87,22 @@ public class Main {
             System.out.println("Escreva o nome da próxima divisão:");
             //ERRO AQUI
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                System.out.println(neighbor.getNome());
+                if (neighbor != null) {
+                    System.out.println(neighbor.getNome());
+                }
             }
-            System.out.println(Arrays.toString(m.getMatriz().getNeighbors(m.getAposento()[pos_player])));
+            //System.out.println(Arrays.toString(m.getMatriz().getNeighbors(m.getAposento()[pos_player])));
             resposta = myObj.nextLine();
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                if (resposta.equals(neighbor)) {
-                    m.setPontos(m.getPontos() - neighbor.getFantasma());
-                    System.out.println("Pontos: " + m.getPontos());
-                    System.out.println("Divisão: " + neighbor.getNome());
-                    pos_player = procurar_indice_aposentos(m, neighbor.getNome());
-                    if (neighbor.getNome().equals("exterior")) {
-                        exterior_reached = true;
+                if (neighbor != null) {
+                    if (resposta.equals(neighbor.getNome())) {
+                        m.setPontos(m.getPontos() - neighbor.getFantasma());
+                        System.out.println("Pontos: " + m.getPontos());
+                        System.out.println("Divisão: " + neighbor.getNome());
+                        pos_player = procurar_indice_aposentos(m, neighbor.getNome());
+                        if (neighbor.getNome().equals("exterior")) {
+                            exterior_reached = true;
+                        }
                     }
                 }
 
