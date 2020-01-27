@@ -10,8 +10,9 @@ import org.json.simple.JSONArray;
 /**
  *
  * @author Ivo Martins
+ * @param <T>
  */
-public class Aposentos {
+public class Aposentos<T> {
 
     private String nome;
     private long fantasma;

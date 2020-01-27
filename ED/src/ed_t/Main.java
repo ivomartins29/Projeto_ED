@@ -1,5 +1,6 @@
 package ed_t;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +8,6 @@ public class Main {
     private final String DEFAULT_MAP = "mapa.json";
     private String mapa;
 
-    /**
-     *
-     */
     public void menu() {
         int index = 0;
         Mapa leitura = null;
@@ -34,9 +32,11 @@ public class Main {
                             leitura = new Mapa(mapa);
                         }
                         //Menu escolher grau de dificuldade
-                        System.out.println("MODO\n1:Manual\n2:Simulação\n3:Voltar\n");
+                        System.out.println("DIFICULDADE\n1:Básico\n2:Normal\n3:Dificíl\n");
                         index = myObj.nextInt();
-                        dificuldade(index);
+                        dificuldade(index, leitura);
+
+                        manual_gameplay(leitura);
                         break;
                     //modo simulação    
                     case 2:
@@ -45,22 +45,21 @@ public class Main {
                             leitura = new Mapa(mapa);
                         }
                         //Menu escolher grau de dificuldade
-                        System.out.println("MODO\n1:Manual\n2:Simulação\n3:Voltar\n");
+                        System.out.println("DIFICULDADE\n1:Básico\n2:Normal\n3:Dificíl\n");
                         index = myObj.nextInt();
-                        dificuldade(index);
+                        dificuldade(index, leitura);
                         break;
                     //voltar atras    
                     case 3:
                         menu();
                         break;
                 }
-                System.out.println("1");
                 break;
             //Carregar outro mapa    
             case 2:
-
                 myObj = new Scanner(System.in);
-                System.out.println("Digite o nome do mapa:");
+                System.out.println("Digite o nome do ficheiro do mapa:");
+                System.out.println("EXAMPLE: mapa.json");
                 mapa = myObj.nextLine();
 
                 leitura = new Mapa(mapa);
@@ -69,9 +68,56 @@ public class Main {
                 break;
             //sair do jogo;    
             case 3:
-                System.out.println("3");
+                System.out.println("Hope you enjoyed!!!");
                 break;
         }
+    }
+
+    public void manual_gameplay(Mapa m) {
+        int pos_player = m.EntryIndex();
+        System.out.println("Pontos: " + m.getPontos());
+        System.out.println("Divisão: " + m.getAposento()[pos_player].getNome());
+        String resposta;
+        Scanner myObj;
+        boolean exterior_reached = false;
+
+        do {
+            myObj = new Scanner(System.in);
+            System.out.println("Escreva o nome da próxima divisão:");
+            //ERRO AQUI
+            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
+                System.out.println(neighbor.getNome());
+            }
+            System.out.println(Arrays.toString(m.getMatriz().getNeighbors(m.getAposento()[pos_player])));
+            resposta = myObj.nextLine();
+            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
+                if (resposta.equals(neighbor)) {
+                    m.setPontos(m.getPontos() - neighbor.getFantasma());
+                    System.out.println("Pontos: " + m.getPontos());
+                    System.out.println("Divisão: " + neighbor.getNome());
+                    pos_player = procurar_indice_aposentos(m, neighbor.getNome());
+                    if (neighbor.getNome().equals("exterior")) {
+                        exterior_reached = true;
+                    }
+                }
+
+            }
+        } while (m.getPontos() > 0 && !exterior_reached);
+
+        if (m.getPontos() <= 0) {
+            System.out.println("Tente outra vez!s");
+        } else {
+            System.out.println("Parabéns você concluiu este mapa!!");
+        }
+    }
+
+    public int procurar_indice_aposentos(Mapa m, String nome) {
+        for (int i = 0; i < m.getAposento().length; i++) {
+            if (m.getAposento()[i].getNome().equals(nome)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -79,13 +125,23 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-    public void dificuldade(int index) {
+    public void dificuldade(int index, Mapa mapa) {
+        int i = 0;
         switch (index) {
             case 1:
+                for (; i < mapa.getAposento().length; i++) {
+                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 1);
+                }
                 break;
             case 2:
+                for (; i < mapa.getAposento().length; i++) {
+                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 2);
+                }
                 break;
             case 3:
+                for (; i < mapa.getAposento().length; i++) {
+                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 3);
+                }
                 break;
         }
     }
