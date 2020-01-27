@@ -1,24 +1,14 @@
 package ed_t;
 
-<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.Scanner;
 
-=======
->>>>>>> 266685054a4056b1adb87ecf53dee4d9d54ae229
 public class Main {
 
     private final String DEFAULT_MAP = "mapa.json";
     private String mapa;
 
-<<<<<<< HEAD
     public void menu() {
-=======
-    /**
-     *
-     */
-   /* public void menu() {
->>>>>>> 266685054a4056b1adb87ecf53dee4d9d54ae229
         int index = 0;
         Mapa leitura = null;
 
@@ -135,12 +125,8 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-<<<<<<< HEAD
     public void dificuldade(int index, Mapa mapa) {
         int i = 0;
-=======
-   /* public void dificuldade(int index) {
->>>>>>> 266685054a4056b1adb87ecf53dee4d9d54ae229
         switch (index) {
             case 1:
                 for (; i < mapa.getAposento().length; i++) {
@@ -164,7 +150,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*System.out.println("Press enter to continue...");
+        System.out.println("Press enter to continue...");
         try {
             System.in.read();
         } catch (Exception e) {
@@ -172,9 +158,7 @@ public class Main {
         }
 
         Main Menu = new Main();
-        Menu.menu();*/
-        
-        Mapa mapa = new Mapa("mapa.json"); 
+        Menu.menu();
     }
 
 }

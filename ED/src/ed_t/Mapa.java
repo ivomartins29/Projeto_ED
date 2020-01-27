@@ -46,7 +46,6 @@ public class Mapa {
                 aposento[i] = new Aposentos();
                 aposento[i].setNome((String) mapa_obj.get("aposento"));
                 aposento[i].setFantasma((long) mapa_obj.get("fantasma"));
-<<<<<<< HEAD
                 aposento[i].setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
             }
 
@@ -62,23 +61,6 @@ public class Mapa {
                     }
                 }
             }
-=======
-                aposento[i].setLigacoes((JSONArray)mapa_obj.get("ligacoes"));
-            }
-            
-            AdjMatrixDiGraph matriz = new AdjMatrixDiGraph(aposento);
-            
-            for(int j = 0;  j < aposento.length; j++){
-                int m = aposento[j].getLigacoes().size();
-                for(int x = 0; x < m ; x++){
-                    for( int k = 0; k < aposento.length; k++){          
-                        if(aposento[k].getNome().equals(aposento[j].getLigacoes().get(x))){
-                            matriz.addEdge(aposento[j], aposento[k]);
-                        }
-                    }
-                }              
-            }
->>>>>>> 266685054a4056b1adb87ecf53dee4d9d54ae229
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException | ParseException e) {
@@ -127,7 +109,6 @@ public class Mapa {
     public void setAposento(Aposentos[] aposento) {
         this.aposento = aposento;
     }
-<<<<<<< HEAD
 
     public AdjMatrixDiGraph getMatriz() {
         return matriz;
@@ -162,8 +143,4 @@ public class Mapa {
         }
         return false;
     }
-=======
-    
-    
->>>>>>> 266685054a4056b1adb87ecf53dee4d9d54ae229
 }
