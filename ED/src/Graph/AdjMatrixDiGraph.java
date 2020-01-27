@@ -78,7 +78,7 @@ public class AdjMatrixDiGraph<T> implements GraphADT<T> {
     @Override
     public Aposentos[] getNeighbors(Aposentos<T> vertex) {
         v1Pos = getAposentosIndexFor(vertex);
-        Aposentos[] aposento = new Aposentos[numberOfVertices];
+        Aposentos[] aposento = new Aposentos[vertex.getLigacoes().size()];
         int j = 0;
         for (int i = 0; i < vertices.length; i++) {
             if (this.adjMatrix[v1Pos][i] == 1) {

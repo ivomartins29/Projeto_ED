@@ -44,4 +44,9 @@ public class Aposentos<T> {
     public void setLigacoes(JSONArray ligacoes) {
         this.ligacoes = ligacoes;
     }
+    
+    @Override
+    public String toString(){
+        return this.nome;
+    }
 }
