@@ -9,7 +9,7 @@ public class Main {
 
     private String mapa;
 
-   /* public void menu() {
+    public void menu() {
         int index = 0;
         Mapa leitura = null;
 
@@ -74,10 +74,10 @@ public class Main {
         }
     }
 
-   /* public void manual_gameplay(Mapa m) {
+    public void manual_gameplay(Mapa m) {
         int pos_player = m.EntryIndex();
         System.out.println("Pontos: " + m.getPontos());
-        System.out.println("Divisão: " + m.getAposento()[pos_player].getNome());
+        System.out.println("Divisão: " + m.getNetwork().getVertices()[pos_player].getNome());
         String resposta;
         Scanner myObj;
         boolean exterior_reached = false;
@@ -113,9 +113,10 @@ public class Main {
         }
     }
 
+    //VERIFICAR
     public int procurar_indice_aposentos(Mapa m, String nome) {
-        for (int i = 0; i < m.getAposento().length; i++) {
-            if (m.getAposento()[i].getNome().equals(nome)) {
+        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+            if (m.getNetwork().getVertices()[i].getNome().equals(nome)) {
                 return i;
             }
         }
@@ -127,22 +128,29 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-   /* public void dificuldade(int index, Mapa mapa) {
+    public void dificuldade(int index, Mapa mapa) {
         int i = 0;
+        int j = 0;
         switch (index) {
             case 1:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 1);
+                for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 1);
+                    }
                 }
                 break;
             case 2:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 2);
+                for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 2);
+                    }
                 }
                 break;
             case 3:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 3);
+                for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
+                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 3);
+                    }
                 }
                 break;
         }
@@ -161,8 +169,9 @@ public class Main {
 
         //Main Menu = new Main();
         //Menu.menu();
-         Mapa mapa = new Mapa("mapa.json");
-         //mapa
+        Mapa mapa = new Mapa("mapa.json");
+        mapa.getNetwork().imprimir();
+        //mapa
     }
 
 }

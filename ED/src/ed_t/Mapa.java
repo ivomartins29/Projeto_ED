@@ -18,13 +18,13 @@ public class Mapa<T> {
     private String nome;
     private long pontos;
     private JSONArray mapa;
-    private ArrayUnorderedList aposentos;
-    private Aposentos aposento;
-    private Aposentos aposento2;
 
     public Mapa(String Ficheiro_Json) {
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
+        ArrayUnorderedList aposentos;
+        Aposentos aposento;
+        Aposentos aposento2;
 
         try {
             jsonObject = (JSONObject) parser.parse(new FileReader(
@@ -65,10 +65,8 @@ public class Mapa<T> {
 
             while (itr.hasNext()) {
                 aposento = itr.next();
-                if (aposento.getLigacoes().size() != 0) {
-
+                if (!aposento.getLigacoes().isEmpty()) {
                     for (int j = 0; j < aposento.getLigacoes().size(); j++) {
-
                         for (int k = 0; k < aposentos.size(); k++) {
                             while (itr.hasNext()) {
                                 aposento2 = itr.next();
@@ -121,22 +119,20 @@ public class Mapa<T> {
         this.mapa = mapa;
     }
 
-    /* public boolean hasExit(int indice) {
+    public Network<Aposentos> getNetwork() {
+        return network;
+    }
 
-        for (Object ligacoes : aposento[indice].getLigacoes()) {
-            if (aposento[indice].getLigacoes().contains("exterior")) {
-                return true;
-            }
-        }
-        return false;
+    public void setNetwork(Network<Aposentos> network) {
+        this.network = network;
     }
 
     public int EntryIndex() {
-        for (int i = 0; i < aposento.length; i++) {
-            if (aposento[i].getLigacoes().contains("entrada")) {
+        for (int i = 0; i < network.getNumVertices(); i++) {
+            if (network.getVertices()[i].hasEntry()) {
                 return i;
             }
         }
         return -1;
-    }*/
+    }
 }

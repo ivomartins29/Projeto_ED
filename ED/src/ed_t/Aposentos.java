@@ -46,4 +46,11 @@ public class Aposentos<T> {
         }
         return false;
     }
+
+    public boolean hasExit() {
+        if (this.getLigacoes().contains("exterior")) {
+            return true;
+        }
+        return false;
+    }
 }
