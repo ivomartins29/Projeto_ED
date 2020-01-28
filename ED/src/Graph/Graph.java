@@ -1,7 +1,5 @@
 package Graph;
 
-
-
 import ed_t.ArrayUnorderedList;
 import java.util.Iterator;
 import java.util.EmptyStackException;
@@ -10,8 +8,9 @@ import linkedstack.LinkedStack;
 import queues.EmptyQueuedException;
 import queues.Queue;
 
-public class Graph<T> implements GraphADT<T>{
-    protected final int DEFAULT_CAPACITY = 10;
+public class Graph<T> implements GraphADT<T> {
+
+    protected int DEFAULT_CAPACITY = 10;
     protected int numVertices; // number of vertices in the graph
     protected boolean[][] adjMatrix; // adjacency matrix
     protected double[][] adjMatrixWeights;
@@ -29,6 +28,15 @@ public class Graph<T> implements GraphADT<T>{
         this.adjMatrixWeights = new double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
+    
+    public Graph(int numVertices){
+        DEFAULT_CAPACITY = numVertices;
+        this.adjMatrix = new boolean[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
+        this.adjMatrixWeights = new double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
+        this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
+    }
+    
+
 
     /**
      * Inserts an edge between two vertices of the graph.
@@ -38,8 +46,6 @@ public class Graph<T> implements GraphADT<T>{
      */
     @Override
     public void addEdge(T vertex1, T vertex2) {
-        if (numVertices == vertices.length)
-            expandCapacity();
         addEdge(getIndex(vertex1), getIndex(vertex2));
     }
 
@@ -48,11 +54,9 @@ public class Graph<T> implements GraphADT<T>{
      *
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
-     * @param weight  weight of the connection
+     * @param weight weight of the connection
      */
     public void addEdge(T vertex1, T vertex2, double weight) {
-        if (numVertices == vertices.length)
-            expandCapacity();
         addEdgeWeight(getIndex(vertex1), getIndex(vertex2), weight);
     }
 
@@ -63,8 +67,9 @@ public class Graph<T> implements GraphADT<T>{
      */
     protected int getIndex(T vertex1) {
         for (int i = 0; i < numVertices; i++) {
-            if (vertex1.equals(vertices[i]))
+            if (vertex1.equals(vertices[i])) {
                 return i;
+            }
         }
         return -1;
     }
@@ -77,17 +82,19 @@ public class Graph<T> implements GraphADT<T>{
     }
 
     @Override
-    public Iterator iteratorBFS(T startIndex) throws EmptyQueuedException{
+    public Iterator iteratorBFS(T startIndex) throws EmptyQueuedException {
 
         Integer x = null;
         int start = getIndex(startIndex);
         Queue<Integer> traversalQueue = new Queue<Integer>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
-        if (!indexIsValid(start))
+        if (!indexIsValid(start)) {
             return resultList.iterator();
+        }
         boolean[] visited = new boolean[numVertices];
-        for (int i = 0; i < numVertices; i++)
+        for (int i = 0; i < numVertices; i++) {
             visited[i] = false;
+        }
 
         traversalQueue.enqueue(new Integer(start));
         visited[start] = true;
@@ -117,10 +124,12 @@ public class Graph<T> implements GraphADT<T>{
         LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
         ArrayUnorderedList resultList = new ArrayUnorderedList<T>();
         boolean[] visited = new boolean[numVertices];
-        if (!indexIsValid(startIndex))
+        if (!indexIsValid(startIndex)) {
             return resultList.iterator();
-        for (int i = 0; i < numVertices; i++)
+        }
+        for (int i = 0; i < numVertices; i++) {
             visited[i] = false;
+        }
 
         traversalStack.push(new Integer(startIndex));
         resultList.addToRear(vertices[startIndex]);
@@ -164,8 +173,9 @@ public class Graph<T> implements GraphADT<T>{
         getAllPaths(getIndex(startVertex), getIndex(startVertex), getIndex(targetVertex), findPaths, count);
         int size = 0;
         for (int i = 0; i < countPath; i++) {
-            if (findPaths[i].size() > size)
+            if (findPaths[i].size() > size) {
                 size = findPaths[i].size();
+            }
         }
         int[][] pathsWeight = new int[countPath][size];
         double[] pathsSum = new double[countPath];
@@ -182,8 +192,9 @@ public class Graph<T> implements GraphADT<T>{
         int storePath = 0;
         for (int x = 0; x < countPath; x++) {
             for (int y = 0; y < findPaths[x].size(); y++) {
-                if (y + 1 != findPaths[x].size() && y + 1 != findPaths[x].size())
+                if (y + 1 != findPaths[x].size() && y + 1 != findPaths[x].size()) {
                     pathsSum[x] = pathsSum[x] + adjMatrixWeights[pathsWeight[x][y + 1]][pathsWeight[x][y]];
+                }
             }
             if (pathsSum[x] < shortestPath) {
                 shortestPath = pathsSum[x];
@@ -196,7 +207,9 @@ public class Graph<T> implements GraphADT<T>{
     }
 
     /**
-     * Recursively gets all the possible paths connecting two vertex of the graph;
+     * Recursively gets all the possible paths connecting two vertex of the
+     * graph;
+     *
      * @param aux the index of the first startVertex
      * @param startVertex the index of the startVertex in each recursive cicle
      * @param targetVertex the index of the targetVertex
@@ -231,20 +244,23 @@ public class Graph<T> implements GraphADT<T>{
 
     @Override
     public boolean isEmpty() {
-        if (numVertices == 0)
+        if (numVertices == 0) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     @Override
     public boolean isConnected() {
-        if (isEmpty())
+        if (isEmpty()) {
             return false;
+        }
         for (int i = 0; i < numVertices; i++) {
             for (int a = 0; a < numVertices; a++) {
-                if (!adjMatrix[i][a])
+                if (!adjMatrix[i][a]) {
                     return false;
+                }
             }
         }
         return true;
@@ -296,15 +312,16 @@ public class Graph<T> implements GraphADT<T>{
     }
 
     /**
-     * Adds a vertex to the graph, expanding the capacity of the graph
-     * if necessary. It also associates an object with the vertex.
+     * Adds a vertex to the graph, expanding the capacity of the graph if
+     * necessary. It also associates an object with the vertex.
      *
      * @param vertex the vertex to add to the graph
      */
     @Override
     public void addVertex(T vertex) {
-        if (numVertices == vertices.length)
+        if (numVertices == vertices.length) {
             expandCapacity();
+        }
         vertices[numVertices] = vertex;
         for (int i = 0; i <= numVertices; i++) {
             adjMatrix[numVertices][i] = false;
@@ -325,13 +342,80 @@ public class Graph<T> implements GraphADT<T>{
         vertices = (T[]) new Object[vertices.length * 2];
         adjMatrix = new boolean[vertices.length * 2][vertices.length * 2];
 
-        for (int i = 0; i < array_copy.length; i++)
+        for (int i = 0; i < array_copy.length; i++) {
             vertices[i] = array_copy[i];
+        }
 
         for (int i = 0; i < matrix_copy.length; i++) {
             for (int a = 0; i < matrix_copy.length; a++) {
                 adjMatrix[i][a] = matrix_copy[i][a];
             }
+        }
+    }
+
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    public void setNumVertices(int numVertices) {
+        this.numVertices = numVertices;
+    }
+
+    public boolean[][] getAdjMatrix() {
+        return adjMatrix;
+    }
+
+    public void setAdjMatrix(boolean[][] adjMatrix) {
+        this.adjMatrix = adjMatrix;
+    }
+
+    public double[][] getAdjMatrixWeights() {
+        return adjMatrixWeights;
+    }
+
+    public void setAdjMatrixWeights(double[][] adjMatrixWeights) {
+        this.adjMatrixWeights = adjMatrixWeights;
+    }
+
+    public T[] getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(T[] vertices) {
+        this.vertices = vertices;
+    }
+
+    public boolean isFound() {
+        return found;
+    }
+
+    public void setFound(boolean found) {
+        this.found = found;
+    }
+
+    public int getCountPath() {
+        return countPath;
+    }
+
+    public void setCountPath(int countPath) {
+        this.countPath = countPath;
+    }
+
+    public boolean[] getVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean[] visited) {
+        this.visited = visited;
+    }
+
+    
+    public void imprimir() {
+        for (int i = 0; i < vertices.length; i++) {
+            for (int j = 0; j < vertices.length; j++) {
+                System.out.printf("[" + adjMatrix[i][j] + "] ");
+            }
+            System.out.printf("\n");
         }
     }
 }

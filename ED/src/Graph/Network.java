@@ -11,6 +11,10 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     public Network() {
        super();
     }
+    
+    public Network(int numVertices){
+        super(numVertices);
+    }
 
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) {
