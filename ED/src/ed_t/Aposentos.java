@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_t;
 
 import org.json.simple.JSONArray;
 
-/**
- *
- * @author Ivo Martins
- * @param <T>
- */
 public class Aposentos<T> {
 
     private String nome;
@@ -44,9 +34,16 @@ public class Aposentos<T> {
     public void setLigacoes(JSONArray ligacoes) {
         this.ligacoes = ligacoes;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nome;
+    }
+
+    public boolean hasEntry() {
+        if (this.getLigacoes().contains("entrada")) {
+            return true;
+        }
+        return false;
     }
 }

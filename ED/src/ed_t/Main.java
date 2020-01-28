@@ -9,7 +9,7 @@ public class Main {
 
     private String mapa;
 
-    public void menu() {
+   /* public void menu() {
         int index = 0;
         Mapa leitura = null;
 
@@ -74,7 +74,7 @@ public class Main {
         }
     }
 
-    public void manual_gameplay(Mapa m) {
+   /* public void manual_gameplay(Mapa m) {
         int pos_player = m.EntryIndex();
         System.out.println("Pontos: " + m.getPontos());
         System.out.println("Divisão: " + m.getAposento()[pos_player].getNome());
@@ -85,11 +85,10 @@ public class Main {
         do {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
-            
+
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                    System.out.println(neighbor.getNome());
+                System.out.println(neighbor.getNome());
             }
-            
             resposta = myObj.nextLine();
             for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
                 if (neighbor != null) {
@@ -128,7 +127,7 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-    public void dificuldade(int index, Mapa mapa) {
+   /* public void dificuldade(int index, Mapa mapa) {
         int i = 0;
         switch (index) {
             case 1:
@@ -160,10 +159,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        Main Menu = new Main();
-        Menu.menu();
-       // Mapa mapa = new Mapa("mapa.json");
-        //mapa.getMatriz().imprimir();
+        //Main Menu = new Main();
+        //Menu.menu();
+         Mapa mapa = new Mapa("mapa.json");
+         //mapa
     }
 
 }
