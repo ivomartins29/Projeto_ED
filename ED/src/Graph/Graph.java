@@ -415,4 +415,27 @@ public class Graph<T> implements GraphADT<T> {
             System.out.printf("\n");
         }
     }
+
+    public T[] getNeightbors(int pos) {
+        int array_tam = num_Neighbors(pos);
+        T[] t = null;
+        int count = 0;
+
+        for (int i = 0; i < numVertices; i++) {
+            if (adjMatrix[pos][i]) {
+                t[count] = vertices[i];
+            }
+        }
+        return t;
+    }
+
+    private int num_Neighbors(int pos) {
+        int count = 0;
+        for (int i = 0; i < numVertices; i++) {
+            if (adjMatrix[pos][i]) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

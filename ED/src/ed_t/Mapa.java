@@ -40,19 +40,32 @@ public class Mapa<T> {
             mapa = (JSONArray) jsonObject.get("mapa");
             TAM_MAPA = mapa.size();
 
-            aposentos = new ArrayUnorderedList(mapa.size() + 1);
+            aposentos = new ArrayUnorderedList(mapa.size() + 2);
 
             JSONObject mapa_obj;
-            network = new Network<>(mapa.size() + 1);
+            network = new Network<>(mapa.size() + 2);
+
             for (; i < mapa.size(); i++) {
                 mapa_obj = (JSONObject) mapa.get(i);
                 aposento = new Aposentos();
                 aposento.setNome((String) mapa_obj.get("aposento"));
                 aposento.setFantasma((long) mapa_obj.get("fantasma"));
                 aposento.setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
+                if (aposento.getLigacoes().contains("entrada")) {
+                    aposento2 = aposento;
+                }
                 aposentos.addToFront(aposento);
                 network.addVertex(aposento);
             }
+
+            JSONArray array2 = new JSONArray();
+            array2.add(aposento2);
+            aposento = new Aposentos();
+            aposento.setNome("entrada");
+            aposento.setFantasma(0);
+            aposento.setLigacoes(array2);
+            aposentos.addToFront(aposento);
+            network.addVertex(aposento);
 
             JSONArray array = new JSONArray();
             aposento = new Aposentos();
@@ -119,9 +132,19 @@ public class Mapa<T> {
         this.mapa = mapa;
     }
 
-    public int EntryIndex() {
+    private int EntryIndex() {
         for (int i = 0; i < network.getNumVertices(); i++) {
-            if (network.getVertices()[i].hasEntry()) {
+            if (network.getVertices()[i].getNome().equals("entrada")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int ligEntry() {
+        int temp = EntryIndex();
+        for (int i = 0; i < network.getNumVertices(); i++) {
+            if (network.getAdjMatrix()[temp][i]) {
                 return i;
             }
         }

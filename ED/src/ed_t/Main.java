@@ -1,7 +1,5 @@
 package ed_t;
 
-import Graph.Graph;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +8,9 @@ public class Main {
 
     private String mapa;
 
-    /*
+    /**
+     *
+     */
     public void menu() {
         int index = 0;
         Mapa leitura = null;
@@ -77,9 +77,9 @@ public class Main {
     }
 
     public void manual_gameplay(Mapa m) {
-        int pos_player = m.EntryIndex();
+        int pos_player = m.ligEntry();
         System.out.println("Pontos: " + m.getPontos());
-        System.out.println("Divisão: " + m.getNetwork().getVertices()[pos_player].getNome());
+        System.out.println("Divisão: " + m.getNetwork().getVertices()[pos_player]);
         String resposta;
         Scanner myObj;
         boolean exterior_reached = false;
@@ -88,23 +88,20 @@ public class Main {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
 
-            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                System.out.println(neighbor.getNome());
+            for (Object neightbor : m.getNetwork().getNeightbors(pos_player)) {
+                System.out.println(neightbor);
             }
             resposta = myObj.nextLine();
-            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                if (neighbor != null) {
-                    if (resposta.equals(neighbor.getNome())) {
-                        m.setPontos(m.getPontos() - neighbor.getFantasma());
-                        System.out.println("Pontos: " + m.getPontos());
-                        System.out.println("Divisão: " + neighbor.getNome());
-                        pos_player = procurar_indice_aposentos(m, neighbor.getNome());
-                        if (neighbor.getNome().equals("exterior")) {
-                            exterior_reached = true;
-                        }
+            for (int i = 0; i < m.getNetwork().getNeightbors(pos_player).length; i++) {
+                if (resposta.equals(m.getNetwork().getNeightbors(pos_player)[i])) {
+                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[pos_player][i]);
+                    System.out.println("Pontos: " + m.getPontos());
+                    System.out.println("Divisão: " + resposta);
+                    pos_player = procurar_indice_aposentos(m, resposta);
+                    if (resposta.equals("exterior")) {
+                        exterior_reached = true;
                     }
                 }
-
             }
         } while (m.getPontos() > 0 && !exterior_reached);
 
@@ -115,10 +112,9 @@ public class Main {
         }
     }
 
-    //VERIFICAR
     public int procurar_indice_aposentos(Mapa m, String nome) {
         for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
-            if (m.getNetwork().getVertices()[i].getNome().equals(nome)) {
+            if (m.getNetwork().getVertices()[i].equals(nome)) {
                 return i;
             }
         }
@@ -169,11 +165,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        //Main Menu = new Main();
-        //Menu.menu();
-        Mapa mapa = new Mapa("mapa.json");
-        //
-        mapa.getNetwork().imprimir();
+        Main Menu = new Main();
+        Menu.menu();
     }
 
 }
