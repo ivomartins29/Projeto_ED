@@ -18,13 +18,13 @@ public class Mapa<T> {
     private String nome;
     private long pontos;
     private JSONArray mapa;
+    private ArrayUnorderedList<Aposentos> aposentos;
+    private Aposentos aposento;
+    private Aposentos aposento2;
 
     public Mapa(String Ficheiro_Json) {
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
-        ArrayUnorderedList aposentos;
-        Aposentos aposento;
-        Aposentos aposento2;
 
         try {
             jsonObject = (JSONObject) parser.parse(new FileReader(
@@ -43,7 +43,7 @@ public class Mapa<T> {
             aposentos = new ArrayUnorderedList(mapa.size() + 1);
 
             JSONObject mapa_obj;
-
+            network = new Network<>(mapa.size() + 1);
             for (; i < mapa.size(); i++) {
                 mapa_obj = (JSONObject) mapa.get(i);
                 aposento = new Aposentos();
@@ -51,6 +51,7 @@ public class Mapa<T> {
                 aposento.setFantasma((long) mapa_obj.get("fantasma"));
                 aposento.setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
                 aposentos.addToFront(aposento);
+                network.addVertex(aposento);
             }
 
             JSONArray array = new JSONArray();
@@ -59,19 +60,18 @@ public class Mapa<T> {
             aposento.setFantasma(0);
             aposento.setLigacoes(array);
             aposentos.addToFront(aposento);
+            network.addVertex(aposento);
 
-            network = new Network<>();
             Iterator<Aposentos> itr = aposentos.iterator();
 
             while (itr.hasNext()) {
                 aposento = itr.next();
-                if (!aposento.getLigacoes().isEmpty()) {
+                if (aposento.getLigacoes().size() != 0) {
                     for (int j = 0; j < aposento.getLigacoes().size(); j++) {
                         for (int k = 0; k < aposentos.size(); k++) {
-                            while (itr.hasNext()) {
-                                aposento2 = itr.next();
-                                if (aposento.getNome().equals(aposento2.getLigacoes().get(j))) {
-                                    network.addEdge(aposento, aposento2, (double) aposento2.getFantasma());
+                            for (Aposentos ap : aposentos) {
+                                if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
+                                    network.addEdge(aposento, ap, (double) ap.getFantasma());
                                 }
                             }
                         }
@@ -119,6 +119,15 @@ public class Mapa<T> {
         this.mapa = mapa;
     }
 
+    public int EntryIndex() {
+        for (int i = 0; i < network.getNumVertices(); i++) {
+            if (network.getVertices()[i].hasEntry()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public Network<Aposentos> getNetwork() {
         return network;
     }
@@ -127,12 +136,27 @@ public class Mapa<T> {
         this.network = network;
     }
 
-    public int EntryIndex() {
-        for (int i = 0; i < network.getNumVertices(); i++) {
-            if (network.getVertices()[i].hasEntry()) {
-                return i;
-            }
-        }
-        return -1;
+    public ArrayUnorderedList getAposentos() {
+        return aposentos;
+    }
+
+    public void setAposentos(ArrayUnorderedList aposentos) {
+        this.aposentos = aposentos;
+    }
+
+    public Aposentos getAposento() {
+        return aposento;
+    }
+
+    public void setAposento(Aposentos aposento) {
+        this.aposento = aposento;
+    }
+
+    public Aposentos getAposento2() {
+        return aposento2;
+    }
+
+    public void setAposento2(Aposentos aposento2) {
+        this.aposento2 = aposento2;
     }
 }

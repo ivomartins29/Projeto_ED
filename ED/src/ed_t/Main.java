@@ -1,5 +1,6 @@
 package ed_t;
 
+import Graph.Graph;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Main {
 
     private String mapa;
 
+    /*
     public void menu() {
         int index = 0;
         Mapa leitura = null;
@@ -170,8 +172,8 @@ public class Main {
         //Main Menu = new Main();
         //Menu.menu();
         Mapa mapa = new Mapa("mapa.json");
+        //
         mapa.getNetwork().imprimir();
-        //mapa
     }
 
 }

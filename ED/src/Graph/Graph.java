@@ -29,11 +29,11 @@ public class Graph<T> implements GraphADT<T> {
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
 
-    public Graph(int num_verices) {
-        num_verices = num_verices;
-        this.adjMatrix = new boolean[num_verices][num_verices];
-        this.adjMatrixWeights = new double[num_verices][num_verices];
-        this.vertices = (T[]) (new Object[num_verices]);
+    public Graph(int numVertices) {
+        this.numVertices = 0;
+        this.adjMatrix = new boolean[numVertices][numVertices];
+        this.adjMatrixWeights = new double[numVertices][numVertices];
+        this.vertices = (T[]) (new Object[numVertices]);
     }
 
     /**
@@ -44,9 +44,6 @@ public class Graph<T> implements GraphADT<T> {
      */
     @Override
     public void addEdge(T vertex1, T vertex2) {
-        if (numVertices == vertices.length) {
-            expandCapacity();
-        }
         addEdge(getIndex(vertex1), getIndex(vertex2));
     }
 
@@ -58,9 +55,6 @@ public class Graph<T> implements GraphADT<T> {
      * @param weight weight of the connection
      */
     public void addEdge(T vertex1, T vertex2, double weight) {
-        if (numVertices == vertices.length) {
-            expandCapacity();
-        }
         addEdgeWeight(getIndex(vertex1), getIndex(vertex2), weight);
     }
 
@@ -299,10 +293,8 @@ public class Graph<T> implements GraphADT<T> {
      */
     private void addEdgeWeight(int index1, int index2, double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
+            adjMatrix[index1][index2] = true;
             adjMatrixWeights[index1][index2] = (1 / weight);
-            if (adjMatrixWeights[index1][index2] > (double) 0) {
-                adjMatrix[index1][index2] = true;
-            }
         }
 
     }
@@ -423,5 +415,4 @@ public class Graph<T> implements GraphADT<T> {
             System.out.printf("\n");
         }
     }
-
 }
