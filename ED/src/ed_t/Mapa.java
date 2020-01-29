@@ -79,17 +79,15 @@ public class Mapa<T> {
 
             while (itr.hasNext()) {
                 aposento = itr.next();
-                if (aposento.getLigacoes().size() != 0) {
                     for (int j = 0; j < aposento.getLigacoes().size(); j++) {
                         for (int k = 0; k < aposentos.size(); k++) {
                             for (Aposentos ap : aposentos) {
                                 if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
-                                    network.addEdge(ap, aposento, (double) ap.getFantasma());
+                                    network.addEdge(aposento, ap, ap.getFantasma());
                                 }
                             }
                         }
                     }
-                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

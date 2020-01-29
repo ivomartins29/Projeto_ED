@@ -105,13 +105,11 @@ public class Main {
             while (itr2.hasNext()) {
                 lig = itr2.next();
                 if (resposta.equals(lig.getNome())) {
-                    //Erro aqui
-                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(player)][count]);
+                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(lig)][count]);
 
                     System.out.println("Pontos: " + m.getPontos());
                     System.out.println("Divisão: " + resposta);
-                    //Erro aqui
-                    player = (Aposentos) m.getNetwork().getVertices()[procurar_indice_aposentos(m, resposta)];
+                    player = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getIndex(lig)];
                     if (resposta.equals("exterior")) {
                         exterior_reached = true;
                     }
@@ -152,6 +150,7 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
+    //Erro Aqui
     public void dificuldade(int index, Mapa mapa) {
         int i = 0;
         int j = 0;
@@ -191,8 +190,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        Main Menu = new Main();
-        Menu.menu();
+        Mapa map = new Mapa("mapa.json");
+        map.getNetwork().imprimir();
+        //Main Menu = new Main();
+        //Menu.menu();
     }
 
 }

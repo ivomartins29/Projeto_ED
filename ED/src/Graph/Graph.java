@@ -295,7 +295,7 @@ public class Graph<T> implements GraphADT<T> {
     private void addEdgeWeight(int index1, int index2, double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = true;
-            adjMatrixWeights[index1][index2] = (1 / weight);
+            adjMatrixWeights[index1][index2] = (weight);
         }
 
     }
@@ -412,6 +412,15 @@ public class Graph<T> implements GraphADT<T> {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
                 System.out.printf("[" + adjMatrix[i][j] + "] ");
+            }
+            System.out.printf("\n");
+        }
+    }
+
+    public void imprimirMatrizWeight() {
+        for (int i = 0; i < vertices.length; i++) {
+            for (int j = 0; j < vertices.length; j++) {
+                System.out.printf("[" + adjMatrixWeights[i][j] + "] ");
             }
             System.out.printf("\n");
         }
