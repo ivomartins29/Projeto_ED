@@ -1,5 +1,6 @@
 package Graph;
 
+import ed_t.ArrayList;
 import ed_t.ArrayUnorderedList;
 import java.util.Iterator;
 import java.util.EmptyStackException;
@@ -63,7 +64,7 @@ public class Graph<T> implements GraphADT<T> {
      *
      * @param vertex1 the vertex
      */
-    protected int getIndex(T vertex1) {
+    public int getIndex(T vertex1) {
         for (int i = 0; i < numVertices; i++) {
             if (vertex1.equals(vertices[i])) {
                 return i;
@@ -416,23 +417,25 @@ public class Graph<T> implements GraphADT<T> {
         }
     }
 
-    public T[] getNeightbors(int pos) {
+    public ArrayUnorderedList<T> getNeightbors(T vertex) {
+        int pos = getIndex(vertex);
         int array_tam = num_Neighbors(pos);
-        T[] t = null;
+        ArrayUnorderedList<T> array = new ArrayUnorderedList<>(array_tam);
         int count = 0;
 
         for (int i = 0; i < numVertices; i++) {
             if (adjMatrix[pos][i]) {
-                t[count] = vertices[i];
+                array.addToFront(vertices[i]);
+                count++;
             }
         }
-        return t;
+        return array;
     }
 
-    private int num_Neighbors(int pos) {
+    public int num_Neighbors(int pos) {
         int count = 0;
         for (int i = 0; i < numVertices; i++) {
-            if (adjMatrix[pos][i]) {
+            if (adjMatrix[pos][i] == true) {
                 count++;
             }
         }

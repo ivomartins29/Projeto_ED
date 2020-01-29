@@ -84,7 +84,7 @@ public class Mapa<T> {
                         for (int k = 0; k < aposentos.size(); k++) {
                             for (Aposentos ap : aposentos) {
                                 if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
-                                    network.addEdge(aposento, ap, (double) ap.getFantasma());
+                                    network.addEdge(ap, aposento, (double) ap.getFantasma());
                                 }
                             }
                         }
@@ -130,25 +130,6 @@ public class Mapa<T> {
 
     public void setMapa(JSONArray mapa) {
         this.mapa = mapa;
-    }
-
-    private int EntryIndex() {
-        for (int i = 0; i < network.getNumVertices(); i++) {
-            if (network.getVertices()[i].getNome().equals("entrada")) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public int ligEntry() {
-        int temp = EntryIndex();
-        for (int i = 0; i < network.getNumVertices(); i++) {
-            if (network.getAdjMatrix()[temp][i]) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public Network<Aposentos> getNetwork() {

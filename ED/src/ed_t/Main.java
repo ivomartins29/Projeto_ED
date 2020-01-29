@@ -1,5 +1,7 @@
 package ed_t;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -77,9 +79,9 @@ public class Main {
     }
 
     public void manual_gameplay(Mapa m) {
-        int pos_player = m.ligEntry();
+        Aposentos player = isEntry(m);
         System.out.println("Pontos: " + m.getPontos());
-        System.out.println("Divisão: " + m.getNetwork().getVertices()[pos_player]);
+        System.out.println("Divisão: " + player.getNome());
         String resposta;
         Scanner myObj;
         boolean exterior_reached = false;
@@ -88,19 +90,32 @@ public class Main {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
 
-            for (Object neightbor : m.getNetwork().getNeightbors(pos_player)) {
-                System.out.println(neightbor);
+            ArrayUnorderedList list = m.getNetwork().getNeightbors(player);
+            Iterator<Aposentos> itr = list.iterator();
+            Aposentos lig = null;
+            while (itr.hasNext()) {
+                lig = itr.next();
+                System.out.println(lig.getNome());
             }
+
             resposta = myObj.nextLine();
-            for (int i = 0; i < m.getNetwork().getNeightbors(pos_player).length; i++) {
-                if (resposta.equals(m.getNetwork().getNeightbors(pos_player)[i])) {
-                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[pos_player][i]);
+
+            Iterator<Aposentos> itr2 = list.iterator();
+            int count = 0;
+            while (itr2.hasNext()) {
+                lig = itr2.next();
+                if (resposta.equals(lig.getNome())) {
+                    //Erro aqui
+                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(player)][count]);
+
                     System.out.println("Pontos: " + m.getPontos());
                     System.out.println("Divisão: " + resposta);
-                    pos_player = procurar_indice_aposentos(m, resposta);
+                    //Erro aqui
+                    player = (Aposentos) m.getNetwork().getVertices()[procurar_indice_aposentos(m, resposta)];
                     if (resposta.equals("exterior")) {
                         exterior_reached = true;
                     }
+                    count++;
                 }
             }
         } while (m.getPontos() > 0 && !exterior_reached);
@@ -119,6 +134,17 @@ public class Main {
             }
         }
         return -1;
+    }
+
+    public Aposentos isEntry(Mapa m) {
+        Aposentos ap = null;
+        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+            ap = (Aposentos) m.getNetwork().getVertices()[i];
+            if (ap.getNome().equals("entrada")) {
+                return ap;
+            }
+        }
+        return ap;
     }
 
     /**
