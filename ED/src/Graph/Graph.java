@@ -426,6 +426,14 @@ public class Graph<T> implements GraphADT<T> {
         }
     }
 
+    public void multiplicar_adjmatrizweight(int multiplicador) {
+        for (int i = 0; i < adjMatrixWeights.length; i++) {
+            for (int j = 0; j < adjMatrixWeights.length; j++) {
+                adjMatrixWeights[i][j] = adjMatrixWeights[i][j] * multiplicador;
+            }
+        }
+    }
+
     public ArrayUnorderedList<T> getNeightbors(T vertex) {
         int pos = getIndex(vertex);
         int array_tam = num_Neighbors(pos);

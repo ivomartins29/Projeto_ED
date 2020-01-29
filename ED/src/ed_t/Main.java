@@ -1,6 +1,5 @@
 package ed_t;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -101,11 +100,11 @@ public class Main {
             resposta = myObj.nextLine();
 
             Iterator<Aposentos> itr2 = list.iterator();
-            int count = 0;
+
             while (itr2.hasNext()) {
                 lig = itr2.next();
                 if (resposta.equals(lig.getNome())) {
-                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(lig)][count]);
+                    m.setPontos(m.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(player)][m.getNetwork().getIndex(lig)]);
 
                     System.out.println("Pontos: " + m.getPontos());
                     System.out.println("Divisão: " + resposta);
@@ -113,15 +112,14 @@ public class Main {
                     if (resposta.equals("exterior")) {
                         exterior_reached = true;
                     }
-                    count++;
                 }
             }
         } while (m.getPontos() > 0 && !exterior_reached);
 
         if (m.getPontos() <= 0) {
-            System.out.println("Tente outra vez!s");
+            System.out.println("Tente outra vez!");
         } else {
-            System.out.println("Parabéns você concluiu este mapa!!");
+            System.out.println("Parabéns você concluiu este mapa com " + m.getPontos() + "!!!");
         }
     }
 
@@ -150,31 +148,16 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-    //Erro Aqui
-    public void dificuldade(int index, Mapa mapa) {
-        int i = 0;
-        int j = 0;
+    public void dificuldade(int index, Mapa m) {
         switch (index) {
             case 1:
-                for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 1);
-                    }
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
             case 2:
-                for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 2);
-                    }
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
             case 3:
-                for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                    for (; i < mapa.getNetwork().getNumVertices(); i++) {
-                        mapa.getNetwork().addEdge(i, j, mapa.getNetwork().getAdjMatrixWeights()[i][j] * 3);
-                    }
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
         }
     }
@@ -190,10 +173,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        Mapa map = new Mapa("mapa.json");
-        map.getNetwork().imprimir();
-        //Main Menu = new Main();
-        //Menu.menu();
+        //Mapa map = new Mapa("mapa.json");
+        //map.getNetwork().imprimirMatrizWeight();
+        Main Menu = new Main();
+        Menu.menu();
     }
 
 }

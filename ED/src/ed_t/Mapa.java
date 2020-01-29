@@ -58,15 +58,6 @@ public class Mapa<T> {
                 network.addVertex(aposento);
             }
 
-            JSONArray array2 = new JSONArray();
-            array2.add(aposento2);
-            aposento = new Aposentos();
-            aposento.setNome("entrada");
-            aposento.setFantasma(0);
-            aposento.setLigacoes(array2);
-            aposentos.addToFront(aposento);
-            network.addVertex(aposento);
-
             JSONArray array = new JSONArray();
             aposento = new Aposentos();
             aposento.setNome("exterior");
@@ -79,15 +70,36 @@ public class Mapa<T> {
 
             while (itr.hasNext()) {
                 aposento = itr.next();
-                    for (int j = 0; j < aposento.getLigacoes().size(); j++) {
-                        for (int k = 0; k < aposentos.size(); k++) {
-                            for (Aposentos ap : aposentos) {
-                                if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
-                                    network.addEdge(aposento, ap, ap.getFantasma());
-                                }
+                for (int j = 0; j < aposento.getLigacoes().size(); j++) {
+                    for (int k = 0; k < aposentos.size(); k++) {
+                        for (Aposentos ap : aposentos) {
+                            if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
+                                network.addEdge(aposento, ap, ap.getFantasma());
                             }
                         }
                     }
+                }
+            }
+
+            JSONArray array2 = new JSONArray();
+            array2.add(aposento2);
+            aposento = new Aposentos();
+            aposento.setNome("entrada");
+            aposento.setFantasma(0);
+            aposento.setLigacoes(array2);
+            aposentos.addToFront(aposento);
+            network.addVertex(aposento);
+
+            Iterator<Aposentos> itr_entrada = aposentos.iterator();
+            while (itr.hasNext()) {
+                aposento = itr.next();
+                for (i = 0; i < aposento.getLigacoes().size(); i++) {
+                    for (Aposentos ap : aposentos) {
+                        if (ap.getNome().equals("entrada")) {
+                            network.addEdge(ap, aposento, ap.getFantasma());
+                        }
+                    }
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
