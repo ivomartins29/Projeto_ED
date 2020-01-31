@@ -9,7 +9,12 @@ public class Main {
 
     private String mapa;
 
+    /**
+     *
+     * @throws java.lang.Exception
+     */
     public void menu() throws Exception {
+
         int index = 0;
         Mapa leitura = null;
 
@@ -106,6 +111,7 @@ public class Main {
             while (itr2.hasNext()) {
                 lig = itr2.next();
                 if (resposta.equals(lig.getNome())) {
+
                     uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(divisao)][m.getNetwork().getIndex(lig)]);
                     System.out.println("Jogador: " + uti.getNome());
                     System.out.println("Pontos: " + uti.getPontos());
@@ -131,13 +137,6 @@ public class Main {
         } else {
             System.out.println("Parabéns você concluiu este mapa com " + uti.getPontos() + " Pontos !!!");
 
-            System.out.println("Press enter to play again...");
-            try {
-                System.in.read();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            menu();
         }
     }
 
@@ -157,7 +156,14 @@ public class Main {
             System.out.print(lig.getNome() + "  ");
         }
         System.out.println("\n");
-
+        
+        System.out.println("Press enter to play again...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        menu();
     }
 
     public int procurar_indice_aposentos(Mapa m, String nome) {
@@ -179,7 +185,7 @@ public class Main {
         }
         return ap;
     }
-    
+
     public Aposentos isExterior(Mapa m) {
         Aposentos ap = null;
         for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
