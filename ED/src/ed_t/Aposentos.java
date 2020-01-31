@@ -40,8 +40,9 @@ public class Aposentos<T> {
         return this.nome;
     }
 
-    public boolean hasEntry() {
-        if (this.getLigacoes().contains("entrada")) {
+
+    public boolean hasExit() {
+        if (this.getLigacoes().contains("exterior")) {
             return true;
         }
         return false;

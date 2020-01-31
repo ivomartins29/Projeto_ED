@@ -1,7 +1,6 @@
 package ed_t;
 
-import Graph.Graph;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
 
     private String mapa;
 
-   /* public void menu() {
+    public void menu() throws Exception {
         int index = 0;
         Mapa leitura = null;
 
@@ -37,7 +36,6 @@ public class Main {
                         System.out.println("DIFICULDADE\n1:Básico\n2:Normal\n3:Dificíl\n");
                         index = myObj.nextInt();
                         dificuldade(index, leitura);
-
                         manual_gameplay(leitura);
                         break;
                     //modo simulação    
@@ -50,6 +48,7 @@ public class Main {
                         System.out.println("DIFICULDADE\n1:Básico\n2:Normal\n3:Dificíl\n");
                         index = myObj.nextInt();
                         dificuldade(index, leitura);
+                        simulation_gameplay(leitura);
                         break;
                     //voltar atras    
                     case 3:
@@ -75,10 +74,14 @@ public class Main {
         }
     }
 
-   /* public void manual_gameplay(Mapa m) {
-        int pos_player = m.EntryIndex();
-        System.out.println("Pontos: " + m.getPontos());
-        System.out.println("Divisão: " + m.getAposento()[pos_player].getNome());
+    public void manual_gameplay(Mapa m) throws Exception {
+        Aposentos divisao = isEntry(m);
+        Utilizadores uti = new Utilizadores();
+        uti.setNome("joao");
+        uti.setPontos(m.getPontos());
+        System.out.println("Jogador: " + uti.getNome());
+        System.out.println("Pontos: " + uti.getPontos());
+        System.out.println("Divisão: " + divisao.getNome());
         String resposta;
         Scanner myObj;
         boolean exterior_reached = false;
@@ -87,40 +90,105 @@ public class Main {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
 
-            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                System.out.println(neighbor.getNome());
+            ArrayUnorderedList list = m.getNetwork().getNeightbors(divisao);
+            Iterator<Aposentos> itr = list.iterator();
+            Aposentos lig = null;
+            while (itr.hasNext()) {
+                lig = itr.next();
+                System.out.print(lig.getNome() + "  ");
             }
+            System.out.println("\n");
+
             resposta = myObj.nextLine();
-            for (Aposentos neighbor : m.getMatriz().getNeighbors(m.getAposento()[pos_player])) {
-                if (neighbor != null) {
-                    if (resposta.equals(neighbor.getNome())) {
-                        m.setPontos(m.getPontos() - neighbor.getFantasma());
-                        System.out.println("Pontos: " + m.getPontos());
-                        System.out.println("Divisão: " + neighbor.getNome());
-                        pos_player = procurar_indice_aposentos(m, neighbor.getNome());
-                        if (neighbor.getNome().equals("exterior")) {
-                            exterior_reached = true;
-                        }
+
+            Iterator<Aposentos> itr2 = list.iterator();
+
+            while (itr2.hasNext()) {
+                lig = itr2.next();
+                if (resposta.equals(lig.getNome())) {
+                    uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(divisao)][m.getNetwork().getIndex(lig)]);
+                    System.out.println("Jogador: " + uti.getNome());
+                    System.out.println("Pontos: " + uti.getPontos());
+                    System.out.println("Divisão: " + resposta);
+                    divisao = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getIndex(lig)];
+                    if (resposta.equals("exterior")) {
+                        exterior_reached = true;
                     }
                 }
-
             }
-        } while (m.getPontos() > 0 && !exterior_reached);
+        } while (uti.getPontos() > 0 && !exterior_reached);
 
-        if (m.getPontos() <= 0) {
-            System.out.println("Tente outra vez!s");
+        if (uti.getPontos() <= 0) {
+            System.out.println("Tente outra vez!");
+
+            System.out.println("Press enter to play again...");
+            try {
+                System.in.read();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            menu();
         } else {
-            System.out.println("Parabéns você concluiu este mapa!!");
+            System.out.println("Parabéns você concluiu este mapa com " + uti.getPontos() + " Pontos !!!");
+
+            System.out.println("Press enter to play again...");
+            try {
+                System.in.read();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            menu();
         }
     }
 
+    public void simulation_gameplay(Mapa m) throws Exception {
+        Aposentos divisao = isEntry(m);
+        Aposentos saida = isExterior(m);
+        Utilizadores uti = new Utilizadores();
+        uti.setNome("joao");
+        uti.setPontos(m.getPontos());
+        System.out.println("Jogador: " + uti.getNome());
+        System.out.println("Pontos: " + uti.getPontos());
+        System.out.println("Divisão: " + divisao.getNome());
+        Iterator<Aposentos> itr = m.getNetwork().iteratorShortestPaths(divisao, saida);
+        Aposentos lig = null;
+        while (itr.hasNext()) {
+            lig = itr.next();
+            System.out.print(lig.getNome() + "  ");
+        }
+        System.out.println("\n");
+
+    }
+
     public int procurar_indice_aposentos(Mapa m, String nome) {
-        for (int i = 0; i < m.getAposento().length; i++) {
-            if (m.getAposento()[i].getNome().equals(nome)) {
+        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+            if (m.getNetwork().getVertices()[i].equals(nome)) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public Aposentos isEntry(Mapa m) {
+        Aposentos ap = null;
+        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+            ap = (Aposentos) m.getNetwork().getVertices()[i];
+            if (ap.getNome().equals("entrada")) {
+                return ap;
+            }
+        }
+        return ap;
+    }
+    
+    public Aposentos isExterior(Mapa m) {
+        Aposentos ap = null;
+        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+            ap = (Aposentos) m.getNetwork().getVertices()[i];
+            if (ap.getNome().equals("exterior")) {
+                return ap;
+            }
+        }
+        return ap;
     }
 
     /**
@@ -128,23 +196,16 @@ public class Main {
      *
      * @param index inteiro usado para selicionar uma opcção
      */
-   /* public void dificuldade(int index, Mapa mapa) {
-        int i = 0;
+    public void dificuldade(int index, Mapa m) {
         switch (index) {
             case 1:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 1);
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
             case 2:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 2);
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
             case 3:
-                for (; i < mapa.getAposento().length; i++) {
-                    mapa.getAposento()[i].setFantasma(mapa.getAposento()[i].getFantasma() * 3);
-                }
+                m.getNetwork().multiplicar_adjmatrizweight(index);
                 break;
         }
     }
@@ -152,7 +213,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Press enter to continue...");
         try {
             System.in.read();
@@ -160,11 +221,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        //Main Menu = new Main();
-        //Menu.menu();
-         Mapa mapa = new Mapa("mapa.json");
-         //
-         mapa.getNetwork().imprimir();
+        //Mapa map = new Mapa("mapa.json");
+        //map.getNetwork().imprimirMatrizWeight();
+        Main Menu = new Main();
+        Menu.menu();
     }
 
 }

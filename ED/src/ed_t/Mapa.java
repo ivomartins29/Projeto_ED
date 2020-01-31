@@ -40,16 +40,20 @@ public class Mapa<T> {
             mapa = (JSONArray) jsonObject.get("mapa");
             TAM_MAPA = mapa.size();
 
-            aposentos = new ArrayUnorderedList(mapa.size() + 1);
+            aposentos = new ArrayUnorderedList(mapa.size() + 2);
 
             JSONObject mapa_obj;
-            network = new Network<>(mapa.size() + 1);
+            network = new Network<>(mapa.size() + 2);
+
             for (; i < mapa.size(); i++) {
                 mapa_obj = (JSONObject) mapa.get(i);
                 aposento = new Aposentos();
                 aposento.setNome((String) mapa_obj.get("aposento"));
                 aposento.setFantasma((long) mapa_obj.get("fantasma"));
                 aposento.setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
+                if (aposento.getLigacoes().contains("entrada")) {
+                    aposento2 = aposento;
+                }
                 aposentos.addToFront(aposento);
                 network.addVertex(aposento);
             }
@@ -66,14 +70,33 @@ public class Mapa<T> {
 
             while (itr.hasNext()) {
                 aposento = itr.next();
-                if (aposento.getLigacoes().size() != 0) {
-                    for (int j = 0; j < aposento.getLigacoes().size(); j++) {
-                        for (int k = 0; k < aposentos.size(); k++) {
-                            for (Aposentos ap : aposentos) {
-                                if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
-                                    network.addEdge(aposento, ap, (double) ap.getFantasma());
-                                }
+                for (int j = 0; j < aposento.getLigacoes().size(); j++) {
+                    for (int k = 0; k < aposentos.size(); k++) {
+                        for (Aposentos ap : aposentos) {
+                            if (ap.getNome().equals(aposento.getLigacoes().get(j))) {
+                                network.addEdge(aposento, ap, ap.getFantasma());
                             }
+                        }
+                    }
+                }
+            }
+
+            JSONArray array2 = new JSONArray();
+            array2.add(aposento2);
+            aposento = new Aposentos();
+            aposento.setNome("entrada");
+            aposento.setFantasma(0);
+            aposento.setLigacoes(array2);
+            aposentos.addToFront(aposento);
+            network.addVertex(aposento);
+
+            Iterator<Aposentos> itr_entrada = aposentos.iterator();
+            while (itr.hasNext()) {
+                aposento = itr.next();
+                for (i = 0; i < aposento.getLigacoes().size(); i++) {
+                    for (Aposentos ap : aposentos) {
+                        if (ap.getNome().equals("entrada")) {
+                            network.addEdge(ap, aposento, ap.getFantasma());
                         }
                     }
                 }
@@ -119,24 +142,6 @@ public class Mapa<T> {
         this.mapa = mapa;
     }
 
-    /* public boolean hasExit(int indice) {
-
-        for (Object ligacoes : aposento[indice].getLigacoes()) {
-            if (aposento[indice].getLigacoes().contains("exterior")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int EntryIndex() {
-        for (int i = 0; i < aposento.length; i++) {
-            if (aposento[i].getLigacoes().contains("entrada")) {
-                return i;
-            }
-        }
-        return -1;
-    }*/
     public Network<Aposentos> getNetwork() {
         return network;
     }

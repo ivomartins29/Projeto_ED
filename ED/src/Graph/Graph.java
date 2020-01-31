@@ -1,5 +1,6 @@
 package Graph;
 
+import LinkedQueue.LinkedQueue;
 import ed_t.ArrayUnorderedList;
 import java.util.Iterator;
 import java.util.EmptyStackException;
@@ -10,7 +11,7 @@ import queues.Queue;
 
 public class Graph<T> implements GraphADT<T> {
 
-    protected int DEFAULT_CAPACITY = 10;
+    protected final int DEFAULT_CAPACITY = 10;
     protected int numVertices; // number of vertices in the graph
     protected boolean[][] adjMatrix; // adjacency matrix
     protected double[][] adjMatrixWeights;
@@ -28,15 +29,13 @@ public class Graph<T> implements GraphADT<T> {
         this.adjMatrixWeights = new double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
-    
-    public Graph(int numVertices){
-        DEFAULT_CAPACITY = numVertices;
-        this.adjMatrix = new boolean[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
-        this.adjMatrixWeights = new double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
-        this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
-    }
-    
 
+    public Graph(int numVertices) {
+        this.numVertices = 0;
+        this.adjMatrix = new boolean[numVertices][numVertices];
+        this.adjMatrixWeights = new double[numVertices][numVertices];
+        this.vertices = (T[]) (new Object[numVertices]);
+    }
 
     /**
      * Inserts an edge between two vertices of the graph.
@@ -65,7 +64,7 @@ public class Graph<T> implements GraphADT<T> {
      *
      * @param vertex1 the vertex
      */
-    protected int getIndex(T vertex1) {
+    public int getIndex(T vertex1) {
         for (int i = 0; i < numVertices; i++) {
             if (vertex1.equals(vertices[i])) {
                 return i;
@@ -117,12 +116,12 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     @Override
-    public Iterator iteratorDFS(T startVertex) {
+    public Iterator iteratorDFS(T startVertex) throws EmptyCollectionException {
         Integer x = null;
         boolean found;
         int startIndex = getIndex(startVertex);
-        LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
-        ArrayUnorderedList resultList = new ArrayUnorderedList<T>();
+        LinkedStack<Integer> traversalStack = new LinkedStack<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         boolean[] visited = new boolean[numVertices];
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
@@ -135,31 +134,94 @@ public class Graph<T> implements GraphADT<T> {
         resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
         while (!traversalStack.isEmpty()) {
-            try {
-                x = traversalStack.peek();
-            } catch (EmptyCollectionException e) {
-                e.printStackTrace();
-            }
+            x = traversalStack.peek();
             found = false;
 
             for (int i = 0; (i < numVertices) && !found; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
-                    traversalStack.push(new Integer(i));
+                    traversalStack.push(i);
                     resultList.addToRear(vertices[i]);
                     visited[i] = true;
                     found = true;
                 }
             }
             if (!found && !traversalStack.isEmpty()) {
-                try {
-                    traversalStack.pop();
-                } catch (EmptyCollectionException e) {
-                    e.printStackTrace();
-                }
+                traversalStack.pop();
             }
         }
         return resultList.iterator();
 
+    }
+
+    public Iterator<T> iteratorShortestPaths(T startVertex, T targetVertex) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("empty");
+        }
+        return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
+    }
+
+    protected Iterator<T> iteratorShortestPath(int startIndex, int targetIndex)
+            throws Exception {
+
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
+            return resultList.iterator();
+        }
+
+        Iterator<Integer> it = (Iterator<Integer>) iteratorShortestPathIndex(startIndex, targetIndex);
+        while (it.hasNext()) {
+            Integer i = it.next();
+            if(i != null){
+               resultList.addToRear(vertices[i]);
+            }
+        }
+        return resultList.iterator();
+    }
+
+    protected Iterator<T> iteratorShortestPathIndex(int startIndex, int targetIndex) throws Exception {
+        int index = startIndex;
+        int[] pathLength = new int[numVertices];
+        int[] predecessor = new int[numVertices];
+        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex) || (startIndex == targetIndex)) {
+            return resultList.iterator();
+        }
+        boolean[] visited = new boolean[numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            visited[i] = false;
+        }
+        traversalQueue.enqueue(startIndex);
+        visited[startIndex] = true;
+        pathLength[startIndex] = 0;
+        predecessor[startIndex] = -1;
+        while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+            index = (traversalQueue.dequeue());
+            for (int i = 0; i < numVertices; i++) {
+                if (adjMatrix[index][i] && !visited[i]) {
+                    pathLength[i] = pathLength[index] + 1;
+                    predecessor[i] = index;
+                    traversalQueue.enqueue(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        if (index != targetIndex) {
+            return resultList.iterator();
+        }
+        LinkedStack<Integer> stack = new LinkedStack<>();
+        index = targetIndex;
+        stack.push(index);
+        while (index != startIndex) {
+            index = predecessor[index];
+            stack.push(index);
+        }
+        
+        
+        while (!stack.isEmpty()) {
+            resultList.addToRear((stack.pop()));
+        }
+        return resultList.iterator();
     }
 
     @Override
@@ -296,7 +358,7 @@ public class Graph<T> implements GraphADT<T> {
     private void addEdgeWeight(int index1, int index2, double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = true;
-            adjMatrixWeights[index1][index2] = (1 / weight);
+            adjMatrixWeights[index1][index2] = (weight);
         }
 
     }
@@ -409,7 +471,6 @@ public class Graph<T> implements GraphADT<T> {
         this.visited = visited;
     }
 
-    
     public void imprimir() {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
@@ -417,5 +478,47 @@ public class Graph<T> implements GraphADT<T> {
             }
             System.out.printf("\n");
         }
+    }
+
+    public void imprimirMatrizWeight() {
+        for (int i = 0; i < vertices.length; i++) {
+            for (int j = 0; j < vertices.length; j++) {
+                System.out.printf("[" + adjMatrixWeights[i][j] + "] ");
+            }
+            System.out.printf("\n");
+        }
+    }
+
+    public void multiplicar_adjmatrizweight(int multiplicador) {
+        for (int i = 0; i < adjMatrixWeights.length; i++) {
+            for (int j = 0; j < adjMatrixWeights.length; j++) {
+                adjMatrixWeights[i][j] = adjMatrixWeights[i][j] * multiplicador;
+            }
+        }
+    }
+
+    public ArrayUnorderedList<T> getNeightbors(T vertex) {
+        int pos = getIndex(vertex);
+        int array_tam = num_Neighbors(pos);
+        ArrayUnorderedList<T> array = new ArrayUnorderedList<>(array_tam);
+        int count = 0;
+
+        for (int i = 0; i < numVertices; i++) {
+            if (adjMatrix[pos][i]) {
+                array.addToFront(vertices[i]);
+                count++;
+            }
+        }
+        return array;
+    }
+
+    public int num_Neighbors(int pos) {
+        int count = 0;
+        for (int i = 0; i < numVertices; i++) {
+            if (adjMatrix[pos][i] == true) {
+                count++;
+            }
+        }
+        return count;
     }
 }
