@@ -6,9 +6,9 @@
 package ed_t;
 
 import Interface.ListADT;
-import Exceptions.NaoEncontradoException;
+import Exceptions.NotFoundException;
 
-import Exceptions.VazioException;
+import Exceptions.EmptyElementException;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
@@ -38,9 +38,9 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
     }
 
     @Override
-    public T removeFirst() throws VazioException {
+    public T removeFirst() throws EmptyElementException {
         if (isEmpty()) {
-            throw new VazioException("Nao ha nada para remover");
+            throw new EmptyElementException("Nao ha nada para remover");
         }
         T removido = list[0];
         for (int i = 0; i < rear - 1; i++) {
@@ -53,9 +53,9 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
     }
 
     @Override
-    public T removeLast() throws VazioException {
+    public T removeLast() throws EmptyElementException {
         if (isEmpty()) {
-            throw new VazioException("Nao ha nada para remover");
+            throw new EmptyElementException("Nao ha nada para remover");
         }
         rear--;
         T removido = list[rear];
@@ -66,9 +66,9 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
     }
 
     @Override
-    public T remove(T element) throws VazioException, NaoEncontradoException {
+    public T remove(T element) throws EmptyElementException, NotFoundException {
         if (isEmpty()) {
-            throw new VazioException("Nao ha nada para remover");
+            throw new EmptyElementException("Nao ha nada para remover");
         }
         int posicao = -1;
         int i = 0;
@@ -81,7 +81,7 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
             i++;
         }
         if (found == false) {
-            throw new NaoEncontradoException();
+            throw new NotFoundException();
         }
         T removido = list[posicao];
         for (int j = posicao; j < rear - 1; j++) {

@@ -7,24 +7,24 @@ package Exceptions;
 
 /**
  *
- * @author fabio
+ * @author jogui
  */
-public class NaoEncontradoException extends Exception {
+public class EmptyElementException extends Exception {
 
     /**
-     * Creates a new instance of <code>NaoEncontradoException</code> without
-     * detail message.
+     * Creates a new instance of <code>NodeVazioException</code> without detail
+     * message.
      */
-    public NaoEncontradoException() {
+    public EmptyElementException() {
     }
 
     /**
-     * Constructs an instance of <code>NaoEncontradoException</code> with the
+     * Constructs an instance of <code>NodeVazioException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public NaoEncontradoException(String msg) {
+    public EmptyElementException(String msg) {
         super(msg);
     }
 }

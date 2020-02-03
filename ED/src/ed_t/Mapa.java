@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 
 public class Mapa<T> {
 
+    private String nome_ficheiro;
     private Network<Aposentos> network;
     private int TAM_MAPA;
     private String nome;
@@ -23,6 +24,7 @@ public class Mapa<T> {
     private Aposentos aposento2;
 
     public Mapa(String Ficheiro_Json) {
+        nome_ficheiro = Ficheiro_Json;
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
 
@@ -108,6 +110,14 @@ public class Mapa<T> {
         }
         // TODO Auto-generated catch block
 
+    }
+
+    public String getNome_ficheiro() {
+        return nome_ficheiro;
+    }
+
+    public void setNome_ficheiro(String nome_ficheiro) {
+        this.nome_ficheiro = nome_ficheiro;
     }
 
     public int getTAM_MAPA() {

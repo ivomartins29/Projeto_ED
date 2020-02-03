@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package Interface;
-import Exceptions.NaoEncontradoException;
-import Exceptions.VazioException;
+import Exceptions.NotFoundException;
+import Exceptions.EmptyElementException;
 import java.util.Iterator;
 
 public interface ListADT <T> extends Iterable<T>{
@@ -13,25 +13,25 @@ public interface ListADT <T> extends Iterable<T>{
  * Removes and returns the first element from this list.
  *
  * @return the first element from this list
-     * @throws Exceptions.VazioException
+     * @throws Exceptions.EmptyElementException
  */
- public T removeFirst ()throws VazioException;
+ public T removeFirst ()throws EmptyElementException;
  /**
  * Removes and returns the last element from this list.
  *
  * @return the last element from this list
-     * @throws Exceptions.VazioException
+     * @throws Exceptions.EmptyElementException
  */
- public T removeLast () throws VazioException;
+ public T removeLast () throws EmptyElementException;
  /**
  * Removes and returns the specified element from this list.
  *
  * @param element the element to be removed from the list
      * @return 
-     * @throws Exceptions.VazioException
-     * @throws Exceptions.NaoEncontradoException
+     * @throws Exceptions.EmptyElementException
+     * @throws Exceptions.NotFoundException
  */
- public T remove (T element) throws VazioException,NaoEncontradoException;
+ public T remove (T element) throws EmptyElementException,NotFoundException;
  /**
  * Returns a reference to the first element in this list.
  * @return a reference to the first element in this list

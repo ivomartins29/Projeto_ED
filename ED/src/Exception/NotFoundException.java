@@ -7,24 +7,24 @@ package Exceptions;
 
 /**
  *
- * @author jogui
+ * @author fabio
  */
-public class VazioException extends Exception {
+public class NotFoundException extends Exception {
 
     /**
-     * Creates a new instance of <code>NodeVazioException</code> without detail
-     * message.
+     * Creates a new instance of <code>NaoEncontradoException</code> without
+     * detail message.
      */
-    public VazioException() {
+    public NotFoundException() {
     }
 
     /**
-     * Constructs an instance of <code>NodeVazioException</code> with the
+     * Constructs an instance of <code>NaoEncontradoException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public VazioException(String msg) {
+    public NotFoundException(String msg) {
         super(msg);
     }
 }

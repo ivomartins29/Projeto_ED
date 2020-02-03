@@ -99,6 +99,7 @@ public class LinkedStack<T> extends LinearNode<T> implements StackADT<T> {
 		return count;
 	}
 
+        @Override
 	public String toString() {
 		LinearNode<T> countingElement = currentElement;
 		if (isEmpty() == true) {

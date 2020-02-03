@@ -6,8 +6,8 @@
 package ed_t;
 
 import Interface.UnorderedListADT;
-import Exceptions.NaoEncontradoException;
-import Exceptions.VazioException;
+import Exceptions.NotFoundException;
+import Exceptions.EmptyElementException;
 
 /**
  *
@@ -47,7 +47,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
     }
 
     @Override
-    public void addAfter(T element, T target) throws VazioException, NaoEncontradoException {
+    public void addAfter(T element, T target) throws EmptyElementException, NotFoundException {
         int posicao = 0;
         boolean found = false;
 
@@ -63,7 +63,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         }
 
         if (!found) {
-            throw new NaoEncontradoException("Esse elemento não existe");
+            throw new NotFoundException("Esse elemento não existe");
         }
         
         if (posicao == this.rear - 1) {

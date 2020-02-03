@@ -1,6 +1,6 @@
 package Graph;
 
-import ed_t.ArrayList;
+import LinkedQueue.LinkedQueue;
 import ed_t.ArrayUnorderedList;
 import java.util.Iterator;
 import java.util.EmptyStackException;
@@ -116,12 +116,12 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     @Override
-    public Iterator iteratorDFS(T startVertex) {
+    public Iterator iteratorDFS(T startVertex) throws EmptyCollectionException {
         Integer x = null;
         boolean found;
         int startIndex = getIndex(startVertex);
-        LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
-        ArrayUnorderedList resultList = new ArrayUnorderedList<T>();
+        LinkedStack<Integer> traversalStack = new LinkedStack<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         boolean[] visited = new boolean[numVertices];
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
@@ -134,31 +134,94 @@ public class Graph<T> implements GraphADT<T> {
         resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
         while (!traversalStack.isEmpty()) {
-            try {
-                x = traversalStack.peek();
-            } catch (EmptyCollectionException e) {
-                e.printStackTrace();
-            }
+            x = traversalStack.peek();
             found = false;
 
             for (int i = 0; (i < numVertices) && !found; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
-                    traversalStack.push(new Integer(i));
+                    traversalStack.push(i);
                     resultList.addToRear(vertices[i]);
                     visited[i] = true;
                     found = true;
                 }
             }
             if (!found && !traversalStack.isEmpty()) {
-                try {
-                    traversalStack.pop();
-                } catch (EmptyCollectionException e) {
-                    e.printStackTrace();
-                }
+                traversalStack.pop();
             }
         }
         return resultList.iterator();
 
+    }
+
+    public Iterator<T> iteratorShortestPaths(T startVertex, T targetVertex) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("empty");
+        }
+        return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
+    }
+
+    protected Iterator<T> iteratorShortestPath(int startIndex, int targetIndex)
+            throws Exception {
+
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
+            return resultList.iterator();
+        }
+
+        Iterator<Integer> it = (Iterator<Integer>) iteratorShortestPathIndex(startIndex, targetIndex);
+        while (it.hasNext()) {
+            Integer i = it.next();
+            if(i != null){
+               resultList.addToRear(vertices[i]);
+            }
+        }
+        return resultList.iterator();
+    }
+
+    protected Iterator<T> iteratorShortestPathIndex(int startIndex, int targetIndex) throws Exception {
+        int index = startIndex;
+        int[] pathLength = new int[numVertices];
+        int[] predecessor = new int[numVertices];
+        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex) || (startIndex == targetIndex)) {
+            return resultList.iterator();
+        }
+        boolean[] visited = new boolean[numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            visited[i] = false;
+        }
+        traversalQueue.enqueue(startIndex);
+        visited[startIndex] = true;
+        pathLength[startIndex] = 0;
+        predecessor[startIndex] = -1;
+        while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+            index = (traversalQueue.dequeue());
+            for (int i = 0; i < numVertices; i++) {
+                if (adjMatrix[index][i] && !visited[i]) {
+                    pathLength[i] = pathLength[index] + 1;
+                    predecessor[i] = index;
+                    traversalQueue.enqueue(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        if (index != targetIndex) {
+            return resultList.iterator();
+        }
+        LinkedStack<Integer> stack = new LinkedStack<>();
+        index = targetIndex;
+        stack.push(index);
+        while (index != startIndex) {
+            index = predecessor[index];
+            stack.push(index);
+        }
+        
+        
+        while (!stack.isEmpty()) {
+            resultList.addToRear((stack.pop()));
+        }
+        return resultList.iterator();
     }
 
     @Override

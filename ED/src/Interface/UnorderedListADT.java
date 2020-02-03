@@ -5,8 +5,8 @@
  */
 package Interface;
 
-import Exceptions.NaoEncontradoException;
-import Exceptions.VazioException;
+import Exceptions.NotFoundException;
+import Exceptions.EmptyElementException;
 
 /**
  *
@@ -15,6 +15,6 @@ import Exceptions.VazioException;
 public interface UnorderedListADT <T> extends ListADT<T>{
     public void addToFront(T element);
     public void addToRear(T element);
-    public void addAfter(T element,T target) throws VazioException,NaoEncontradoException;
+    public void addAfter(T element,T target) throws EmptyElementException,NotFoundException;
     
 }

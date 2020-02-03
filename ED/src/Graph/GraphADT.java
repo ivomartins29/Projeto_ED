@@ -1,10 +1,12 @@
 package Graph;
 
 import java.util.Iterator;
+import linkedstack.EmptyCollectionException;
 import queues.EmptyQueuedException;
 
 /**
  * GraphADT defines the interface to a graph data structure.
+ * @param <T>
  */
 public interface GraphADT<T> {
     /**
@@ -43,6 +45,7 @@ public interface GraphADT<T> {
      * @param startVertex the starting vertex
      * @return a breadth first iterator beginning at
      * the given vertex
+     * @throws queues.EmptyQueuedException
      */
     public Iterator iteratorBFS(T startVertex) throws EmptyQueuedException;
 
@@ -52,8 +55,9 @@ public interface GraphADT<T> {
      * @param startVertex the starting vertex
      * @return a depth first iterator starting at the
      * given vertex
+     * @throws linkedstack.EmptyCollectionException
      */
-    public Iterator iteratorDFS(T startVertex);
+    public Iterator iteratorDFS(T startVertex)throws EmptyCollectionException;
 
     /**
      * Returns an iterator that contains the shortest path between
