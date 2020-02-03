@@ -6,8 +6,12 @@ package ArrayList;
  * and open the template in the editor.
  */
 
+<<<<<<< HEAD:ED/src/ArrayList/ArrayUnorderedList.java
 
 import Interfaces.UnorderedListADT;
+=======
+import Interface.UnorderedListADT;
+>>>>>>> 7c787e34aef72037979f2bfaeb12c363751373d7:ED/src/ed_t/ArrayUnorderedList.java
 import Exceptions.NotFoundException;
 import Exceptions.EmptyElementException;
 

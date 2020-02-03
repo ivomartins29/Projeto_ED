@@ -6,9 +6,15 @@ package ArrayList;
  * and open the template in the editor.
  */
 
+<<<<<<< HEAD:ED/src/ArrayList/ArrayList.java
 
 import Interfaces.ListADT;
 import Exceptions.NotFoundException;
+=======
+import Interface.ListADT;
+import Exceptions.NotFoundException;
+
+>>>>>>> 7c787e34aef72037979f2bfaeb12c363751373d7:ED/src/ed_t/ArrayList.java
 import Exceptions.EmptyElementException;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;

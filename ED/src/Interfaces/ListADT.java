@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD:ED/src/Interfaces/ListADT.java
 package Interfaces;
+=======
+package Interface;
+>>>>>>> 7c787e34aef72037979f2bfaeb12c363751373d7:ED/src/Interface/ListADT.java
 import Exceptions.NotFoundException;
 import Exceptions.EmptyElementException;
 import java.util.Iterator;
