@@ -1,122 +1,116 @@
 package linkedstack;
 
-public class LinkedStack<T> extends LinearNode<T> implements StackADT<T> {
+import Exceptions.EmptyStackException;
+import Interfaces.LinkedStackADT;
+import LinkedQueue.LinearNode;
 
-	private LinearNode<T> currentElement = null;
 
-	public LinkedStack() {
-		// Construtor vazio de LinkedStack
-	}
 
-	/*
-	 * Construtor de LinkedStack
-	 * 
-	 * @param element - primeiro elemento da stack
-	 */
-	public LinkedStack(T element) {
-		super(element);
-		currentElement = (LinearNode<T>) element;
-	}
 
-	/*
-	 * Metodo para retornar o ultimo objeto inserido. ATENC�O - este metodo retorna
-	 * mesmo o objeto em si e n�o os dados contidos dentro dele Para retornar o
-	 * elemento dentro do objeto existe o metodo peek!
-	 */
-	public LinearNode<T> top() {
-		if (currentElement != null) {
-			return currentElement;
-		} else {
-			return null;
-		}
-	}
 
-	@Override
-	public void push(T element) {
-		LinearNode<T> newNode = new LinearNode<>();
-		newNode.setElement(element);
-		newNode.setNext(top());
-		currentElement = newNode;
-	}
+/**
+ * @author Luis Pereira
+ */
+public class LinkedStack<T> implements LinkedStackADT<T> {
 
-	@Override
-	public T pop() throws EmptyCollectionException {
-		if (isEmpty() == true) {
-			throw new EmptyCollectionException();
-		}
-		if (currentElement.getNext() != null) {
-			currentElement = currentElement.getNext();
-			return currentElement.getElement();
-		} else if (currentElement.getNext() == null) {
-			currentElement = null;
-			return null;
-		}
-		return (T) currentElement;
-	}
+    private int count;
+    private LinearNode<T> first;
+    private LinearNode<T> rear;
 
-	@Override
-	public T peek() throws EmptyCollectionException {
-		if (isEmpty() == true) {
-			throw new EmptyCollectionException();
-		}
-		if (currentElement != null) {
-			return currentElement.getElement();
-		} else {
-			return null;
-		}
-	}
+    public LinkedStack() {
+        this.count = 0;
+        this.first = null;
+        this.rear = null;
+    }
 
-	@Override
-	public boolean isEmpty() {
-		if (currentElement == null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public void push(LinearNode<T> node) {
 
-	/*
-	 * Retorna o tamanho da stack
-	 */
-	@Override
-	public int size() throws EmptyCollectionException {
-		if (isEmpty() == true) {
-			throw new EmptyCollectionException();
-		}
-		int count = 0;
-		LinearNode<T> countingElement = currentElement;
-		if (countingElement.getNext() == null) {
-			count++;
-		} else {
-			while (countingElement.getNext() != null) {
-				count++;
-				countingElement = countingElement.getNext();
-				if (countingElement.getNext() == null) {
-					count++;
-				}
-			}
-		}
-		return count;
-	}
+        if (isEmpty()) {
+            this.setFirst(node);
+            this.setRear(node);
+        } else {
+            LinearNode<T> temp;
+            temp = this.getFirst();
+            first = node;
+            rear.setNext(temp);
+        }
+        count++;
+    }
 
-        @Override
-	public String toString() {
-		LinearNode<T> countingElement = currentElement;
-		if (isEmpty() == true) {
-			System.out.println("FUCK YOU! STACK IS EMPTY!");
-		}
-		if (countingElement.getNext() == null && countingElement.getElement() != null) {
-			System.out.println(countingElement.getElement());
-		} else {
-			while (countingElement.getNext() != null) {
-				System.out.println(countingElement.getElement());
-				countingElement = countingElement.getNext();
-				if (countingElement.getNext()==null) {
-					System.out.println(countingElement.getElement());
-				}
-			}
-		}
-		return "|Bottom|";
-	}
+    @Override
+    public T pop() throws EmptyStackException {
 
+        LinearNode<T> temp = new LinearNode();
+        temp = first;
+        first = first.getNext();
+        count--;
+        return temp.getElement();
+
+    }
+
+    @Override
+    public T peek() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException(EmptyStackException.EMPTY_STACK);
+        }
+        return first.getElement();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if (size() == 0) {
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
+    public int size() {
+        return this.getCount();
+    }
+
+    /**
+     * @return the count
+     */
+    public int getCount() {
+        return count;
+    }
+
+    /**
+     * @param count the count to set
+     */
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    /**
+     * @return the first
+     */
+    public LinearNode<T> getFirst() {
+        return first;
+    }
+
+    /**
+     * @param first the first to set
+     */
+    public void setFirst(LinearNode<T> first) {
+        this.first = first;
+    }
+
+    /**
+     * @return the rear
+     */
+    public LinearNode<T> getRear() {
+        return rear;
+    }
+
+    /**
+     * @param rear the rear to set
+     */
+    public void setRear(LinearNode<T> rear) {
+        this.rear = rear;
+    }
+
+ 
 }

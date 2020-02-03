@@ -1,51 +1,71 @@
-package linkedstack;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Collection;
 
-public class LinearNode<T>{
-	/** reference to next node in list */
-	private LinearNode<T> next;
-	/** element stored at this node */
-	private T element;
+/**
+ *
+ * @author 8150121 e 8150133
+ * @param <T>
+ */
+public class LinearNode<T> {
 
-	/** Creates an empty node. */
-	public LinearNode() {
-		next = null;
-		element = null;
-	}
-	/**
-	 * Creates a node storing the specified element.
-	 * @param elem element to be stored
-	 */
-	public LinearNode(T elem) {
-		next = null;
-		element = elem;
-	}
-	/**
-	 * Returns the node that follows this one.
-	 * @return LinearNode<T> reference to next node
-	 */
-	public LinearNode<T> getNext() {
-		return next;
-	}
-	/**
-	 * Sets the node that follows this one.
-	 * 	 * @param node node to follow this one
-	 */
-	public void setNext(LinearNode<T> node) {
-		next = node;
-	}
-	/**
-	 * Returns the element stored in this node.
-	 * @return T element stored at this node
-	 */
-	public T getElement() {
-		return element;
-	}
+    private LinearNode<T> next;
+    private T element;
 
-	/**
-	 * Sets the element stored in this node.
-	 * @param elem element to be stored at this node
-	 */
-	public void setElement(T elem) {
-		element = elem;
-	}
+    /**
+     * Permite criar um LinearNode vazio
+     */
+    public LinearNode() {
+        this.element = null;
+        this.next = null;
+    }
+
+    /**
+     * Permite criar um LinearNode com informação
+     *
+     * @param element
+     */
+    public LinearNode(T element) {
+        this.next = null;
+        this.element = element;
+    }
+
+    /**
+     * retorna o próximo LinearNode
+     *
+     * @return o próximo LinearNode
+     */
+    public LinearNode<T> getNext() {
+        return next;
+    }
+
+    /**
+     * Permite alterar o próximo LinearNode
+     *
+     * @param node alterado
+     */
+    public void setNext(LinearNode<T> node) {
+        this.next = node;
+    }
+
+    /**
+     * Permite obter o elemento do LinearNode
+     *
+     * @return elemento do LinearNode
+     */
+    public T getElement() {
+        return element;
+    }
+
+    /**
+     * Permite alterar o elemento do LinearNode
+     *
+     * @param elemento alterado do LinearNode
+     */
+    public void getElement(T elemento) {
+        this.element = elemento;
+    }
 }

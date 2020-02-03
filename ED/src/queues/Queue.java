@@ -1,5 +1,8 @@
 package queues;
 
+import Exceptions.EmptyQueuedException;
+import Interfaces.QueueADT;
+
 public class Queue<T> extends Queued<T> implements QueueADT<T> {
 
 	private Queued<T> first = null;

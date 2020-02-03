@@ -1,6 +1,7 @@
 package Graph;
 
 public class GraphVertex<T> {
+
     private T element;
     private float weight;
 

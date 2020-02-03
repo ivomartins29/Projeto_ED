@@ -1,0 +1,20 @@
+Jogador: joao
+Mapa jogado: sexta-feira 13
+Pontos: 80
+Acabou o mapa em: 7.665 segundos
+
+Jogador: 1
+Mapa jogado: sexta-feira 13
+Pontos: 0
+Acabou o mapa em: 3.351 segundos
+
+Jogador: lk
+Mapa jogado: sexta-feira 13
+Pontos: 0
+Acabou o mapa em: 10.552 segundos
+
+Jogador: 1
+Mapa jogado: sexta-feira 13
+Pontos: 0
+Acabou o mapa em: 6.933 segundos
+

@@ -1,12 +1,17 @@
 package Graph;
 
+import Interfaces.GraphADT;
 import LinkedQueue.LinkedQueue;
-import ed_t.ArrayUnorderedList;
+import ArrayList.ArrayUnorderedList;
 import java.util.Iterator;
 import java.util.EmptyStackException;
-import linkedstack.EmptyCollectionException;
+import Exceptions.EmptyCollectionException;
+import Exceptions.EmptyException;
+import LinkedHeap.LinkedHeap;
+import LinkedQueue.LinearNode;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import linkedstack.LinkedStack;
-import queues.EmptyQueuedException;
 import queues.Queue;
 
 public class Graph<T> implements GraphADT<T> {
@@ -81,11 +86,11 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     @Override
-    public Iterator iteratorBFS(T startIndex) throws EmptyQueuedException {
+    public Iterator iteratorBFS(T startIndex) {
 
         Integer x = null;
         int start = getIndex(startIndex);
-        Queue<Integer> traversalQueue = new Queue<Integer>();
+        LinkedQueue<Integer> traversalQueue = new LinkedQueue<Integer>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
         if (!indexIsValid(start)) {
             return resultList.iterator();
@@ -130,23 +135,31 @@ public class Graph<T> implements GraphADT<T> {
             visited[i] = false;
         }
 
-        traversalStack.push(new Integer(startIndex));
+        traversalStack.push(new LinearNode<Integer>(new Integer(startIndex)));
         resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
         while (!traversalStack.isEmpty()) {
-            x = traversalStack.peek();
+            try {
+                x = traversalStack.peek();
+            } catch (Exceptions.EmptyStackException ex) {
+                Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+            }
             found = false;
 
             for (int i = 0; (i < numVertices) && !found; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
-                    traversalStack.push(i);
+                    traversalStack.push(new LinearNode<Integer>(new Integer(i)));
                     resultList.addToRear(vertices[i]);
                     visited[i] = true;
                     found = true;
                 }
             }
             if (!found && !traversalStack.isEmpty()) {
-                traversalStack.pop();
+                try {
+                    traversalStack.pop();
+                } catch (Exceptions.EmptyStackException ex) {
+                    Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return resultList.iterator();
@@ -168,11 +181,11 @@ public class Graph<T> implements GraphADT<T> {
             return resultList.iterator();
         }
 
-        Iterator<Integer> it = (Iterator<Integer>) iteratorShortestPathIndex(startIndex, targetIndex);
+        Iterator<Integer> it = (Iterator<Integer>) iteratorShortestPathIndices(startIndex, targetIndex);
         while (it.hasNext()) {
             Integer i = it.next();
-            if(i != null){
-               resultList.addToRear(vertices[i]);
+            if (i != null) {
+                resultList.addToRear(vertices[i]);
             }
         }
         return resultList.iterator();
@@ -195,33 +208,119 @@ public class Graph<T> implements GraphADT<T> {
         visited[startIndex] = true;
         pathLength[startIndex] = 0;
         predecessor[startIndex] = -1;
+
         while (!traversalQueue.isEmpty() && (index != targetIndex)) {
             index = (traversalQueue.dequeue());
             for (int i = 0; i < numVertices; i++) {
                 if (adjMatrix[index][i] && !visited[i]) {
-                    pathLength[i] = pathLength[index] + 1;
+                    pathLength[i] = index;
                     predecessor[i] = index;
                     traversalQueue.enqueue(i);
                     visited[i] = true;
                 }
             }
         }
+
         if (index != targetIndex) {
             return resultList.iterator();
         }
         LinkedStack<Integer> stack = new LinkedStack<>();
         index = targetIndex;
-        stack.push(index);
+        stack.push(new LinearNode<Integer>(new Integer(index)));
         while (index != startIndex) {
             index = predecessor[index];
-            stack.push(index);
+            stack.push(new LinearNode<Integer>(new Integer(index)));
         }
-        
-        
+
         while (!stack.isEmpty()) {
             resultList.addToRear((stack.pop()));
         }
         return resultList.iterator();
+    }
+
+    public Iterator<Integer> iteratorShortestPathIndices(int startIndex, int targetIndex) throws EmptyException, EmptyCollectionException, Exceptions.EmptyStackException {
+        int index;
+        double weight;
+        int[] predecessor = new int[numVertices];
+        LinkedHeap<Double> traversalMinHeap = new LinkedHeap<>();
+        ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
+
+        double[] pathWeight = new double[numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            pathWeight[i] = Double.POSITIVE_INFINITY;
+        }
+
+        boolean[] visited = new boolean[numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            visited[i] = false;
+        }
+
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex) || (startIndex == targetIndex) || isEmpty()) {
+            return resultList.iterator();
+        }
+
+        pathWeight[startIndex] = 0;
+        predecessor[startIndex] = -1;
+        visited[startIndex] = true;
+        
+
+        //atualiza o pathWeight de cada vertice
+       for (int i = 0; i < numVertices; i++) {
+            if (!visited[i]) {
+                pathWeight[i] = pathWeight[startIndex] + adjMatrixWeights[startIndex][i];
+                predecessor[i] = startIndex;
+                traversalMinHeap.addElement(pathWeight[i]);
+            }
+        }
+
+        do {
+            weight = traversalMinHeap.removeMin();
+            //traversalMinHeap.removeAllElements();
+            if (weight == Double.POSITIVE_INFINITY) // sem caminho possivel
+            {
+                return resultList.iterator();
+            } else {
+                index = getIndexOfAdjVertexWithWeightOf(visited, pathWeight, weight);
+                visited[index] = true;
+            }
+
+            //atualiza o pathWeight de cada vertice
+            for (int i = 0; i < numVertices; i++) {
+                if (adjMatrix[index][i] && !visited[i]) {
+                    if ((adjMatrixWeights[index][i] < Double.POSITIVE_INFINITY) && (pathWeight[index] + adjMatrixWeights[index][i]) <= pathWeight[i]) {
+                        pathWeight[i] = pathWeight[index] + adjMatrixWeights[index][i];
+                        predecessor[i] = index;
+                        System.out.println(index);
+                        visited[i] = true;
+                    }
+                    traversalMinHeap.addElement(pathWeight[i]);
+                }
+            }
+        } while (!traversalMinHeap.isEmpty() && !visited[targetIndex]);
+
+        
+        LinkedStack<Integer> stack = new LinkedStack<>();
+        index = targetIndex;
+        stack.push(new LinearNode<Integer>(new Integer(index)));
+        while (index != startIndex) {
+            index = predecessor[index];
+            stack.push(new LinearNode<Integer>(new Integer(index)));
+        }
+
+        while (!stack.isEmpty()) {
+            resultList.addToRear((stack.pop()));
+        }
+        return resultList.iterator();
+    }
+
+    private int getIndexOfAdjVertexWithWeightOf(boolean[] visited, double[] pathWeight, double weight) {
+        for (int i = 0; i < numVertices; i++) {
+            if ((pathWeight[i] == weight) && !visited[i]) {
+                return i;
+            }
+        }
+        System.out.println("erro");
+        return -1;
     }
 
     @Override

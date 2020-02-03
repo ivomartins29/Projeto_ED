@@ -1,6 +1,7 @@
 package LinkedQueue;
 
-import linkedstack.LinearNode;
+import Interfaces.QueueADT;
+
 
 
 /**
