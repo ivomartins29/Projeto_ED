@@ -7,7 +7,7 @@ package Collection;
 
 /**
  *
- * @author Sandra Fonseca
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class HeapNode<T> extends BinaryTreeNode<T> {
@@ -15,19 +15,26 @@ public class HeapNode<T> extends BinaryTreeNode<T> {
     private HeapNode<T> parent;
 
     /**
-     * Criar um o heap node
      *
-     * @param element elemento a ser armazenado no nó
+     * @param element
      */
     public HeapNode(T element) {
         super(element);
         this.parent = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public HeapNode<T> getParent() {
         return parent;
     }
 
+    /**
+     *
+     * @param parent
+     */
     public void setParent(HeapNode<T> parent) {
         this.parent = parent;
     }

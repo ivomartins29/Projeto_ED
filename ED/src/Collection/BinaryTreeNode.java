@@ -7,16 +7,27 @@ package Collection;
 
 /**
  *
- * @author 8150121 e 8150133
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class BinaryTreeNode<T> {
 
+    /**
+     *
+     */
     protected T element;
-    protected BinaryTreeNode<T> left, right;
 
     /**
-     * Cria um construtor para um novo Node
+     *
+     */
+    protected BinaryTreeNode<T> left,
+
+    /**
+     *
+     */
+    right;
+
+    /**
      *
      * @param element
      */
@@ -27,9 +38,8 @@ public class BinaryTreeNode<T> {
     }
 
     /**
-     * Permite descobrir o número de filhos que o Node possui
      *
-     * @return o numero de filhos do Node
+     * @return
      */
     public int numChildren() {
         int children = 0;
@@ -46,16 +56,14 @@ public class BinaryTreeNode<T> {
     }
 
     /**
-     * Permite obter o elemnto
      *
-     * @return do elemento
+     * @return
      */
     public T getElement() {
         return element;
     }
 
     /**
-     * permite alterar o elemento
      *
      * @param element
      */
@@ -64,36 +72,32 @@ public class BinaryTreeNode<T> {
     }
 
     /**
-     * Permite retornar o filho esquerdo do Node
      *
-     * @return filho esquerdo
+     * @return
      */
     public BinaryTreeNode<T> getLeft() {
         return left;
     }
 
     /**
-     * Permite alterar o filho esquerdo do Node
      *
-     * @param left filho a ser alterado
+     * @param left
      */
     public void setLeft(BinaryTreeNode<T> left) {
         this.left = left;
     }
 
     /**
-     * Permite retornar o filho direito do Node
      *
-     * @return filho direito
+     * @return
      */
     public BinaryTreeNode<T> getRight() {
         return right;
     }
 
     /**
-     * Permite alterar o filho direito do Node
      *
-     * @param right filho a ser alterado
+     * @param right
      */
     public void setRight(BinaryTreeNode<T> right) {
         this.right = right;

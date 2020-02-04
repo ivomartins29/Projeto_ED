@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Hugo Ferreira
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public interface ListADT<T extends Object> extends Iterable<T> {

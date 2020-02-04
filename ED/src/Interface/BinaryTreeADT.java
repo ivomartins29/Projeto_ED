@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Hugo Ferreira
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public interface BinaryTreeADT<T extends Object> {
@@ -95,7 +95,7 @@ public interface BinaryTreeADT<T extends Object> {
      * Performs a levelorder traversal on the binary tree, using a queue.
      *
      * @return an iterator over the elements of this binary tree
-     * @throws Exceptions.EmptyCollectionException
+     * @throws Exception.EmptyCollectionException
      */
     public Iterator<T> iteratorLevelOrder()throws EmptyCollectionException;
 }

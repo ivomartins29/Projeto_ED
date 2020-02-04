@@ -10,16 +10,11 @@ import Interface.UnorderedListADT;
 
 /**
  *
- * @author 8150121 e 8150133
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedListADT<T> {
 
-    /**
-     * Adiciona um elemento especifico à front da LinkedUnorderedList
-     *
-     * @param t elemento a ser adicionado
-     */
     @Override
     public void addToFront(T t) {
         LinearNode<T> temp = new LinearNode<>(t);
@@ -34,11 +29,6 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         }
     }
 
-    /**
-     * Adiciona um elemento especifico à rear da LinkedUnorderedList
-     *
-     * @param t elemento a ser adicionado
-     */
     @Override
     public void addToRear(T t) {
         LinearNode<T> temp = new LinearNode<>(t);
@@ -54,13 +44,6 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
 
     }
 
-    /**
-     * Adiciona um elemento especifico a seguir a um elemento especifico
-     *
-     * @param t o elemento a ser adiconado
-     * @param t1 o elemento t (em cima) vai ser adicionado depois do elemento t1
-     * @throws ElementNotFoundException se a LinkedUnorderedList estiver vazia
-     */
     @Override
     public void addAfter(T t, T t1) throws ElementNotFoundException {
         LinearNode<T> tmp = this.head;
@@ -92,5 +75,4 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         }
 
     }
-
 }

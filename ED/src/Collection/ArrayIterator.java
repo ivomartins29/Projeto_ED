@@ -9,7 +9,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * @author 8150121 e 8150133
+ *
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class ArrayIterator<T> implements Iterator<T> {
@@ -18,27 +19,22 @@ public class ArrayIterator<T> implements Iterator<T> {
     private int current;
     private final T[] items;
 
+    /**
+     *
+     * @param items
+     * @param count
+     */
     public ArrayIterator(T[] items, int count) {
         this.items = items;
         this.count = count;
         this.current = 0;
     }
 
-    /**
-     * Retorna true se existe mais que um elemento do array para retornar
-     *
-     * @return true se existe mais que um elemento do array para retornar
-     */
     @Override
     public boolean hasNext() {
         return (this.current < this.count);
     }
 
-    /**
-     * Retorna o atual elemento do array, e move o cursor para o próximo
-     *
-     * @return o atual elemento do array
-     */
     @Override
     public T next() {
         if (!hasNext()) {
