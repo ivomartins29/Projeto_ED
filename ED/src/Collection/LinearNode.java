@@ -7,7 +7,7 @@ package Collection;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class LinearNode<T> {
@@ -16,7 +16,7 @@ public class LinearNode<T> {
     private T element;
 
     /**
-     *
+     * Permite criar um LinearNode vazio
      */
     public LinearNode() {
         this.element = null;
@@ -24,6 +24,7 @@ public class LinearNode<T> {
     }
 
     /**
+     * Permite criar um LinearNode com informação
      *
      * @param element
      */
@@ -33,32 +34,36 @@ public class LinearNode<T> {
     }
 
     /**
+     * retorna o próximo LinearNode
      *
-     * @return
+     * @return o próximo LinearNode
      */
     public LinearNode<T> getNext() {
         return next;
     }
 
     /**
+     * Permite alterar o próximo LinearNode
      *
-     * @param node
+     * @param node alterado
      */
     public void setNext(LinearNode<T> node) {
         this.next = node;
     }
 
     /**
+     * Permite obter o elemento do LinearNode
      *
-     * @return
+     * @return elemento do LinearNode
      */
     public T getElement() {
         return element;
     }
 
     /**
+     * Permite alterar o elemento do LinearNode
      *
-     * @param elemento
+     * @param elemento alterado do LinearNode
      */
     public void getElement(T elemento) {
         this.element = elemento;

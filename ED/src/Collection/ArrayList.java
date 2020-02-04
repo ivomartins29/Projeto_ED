@@ -12,30 +12,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class ArrayList<T> implements ListADT<T> {
 
-    /**
-     *
-     */
     protected final int DEFAULT_CAPACITY = 100;
     private final int NOT_FOUND = -1;
-
-    /**
-     *
-     */
     protected int rear;
-
-    /**
-     *
-     */
     protected T[] list;
 
     /**
-     *
+     * Método Construtor vazio
      */
     public ArrayList() {
         this.rear = 0;
@@ -43,8 +31,9 @@ public class ArrayList<T> implements ListADT<T> {
     }
 
     /**
+     * Método Construtor com tamanho definido
      *
-     * @param initialCapacity
+     * @param initialCapacity tamanho inicial
      */
     public ArrayList(int initialCapacity) {
         this.rear = 0;
@@ -176,9 +165,6 @@ public class ArrayList<T> implements ListADT<T> {
         return new ArrayIterator<>(this.list, this.rear);
     }
 
-    /**
-     *
-     */
     protected void expandCapacity() {
         T[] larger = (T[]) (new Object[this.list.length * 2]);
 

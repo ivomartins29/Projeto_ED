@@ -1,100 +1,15 @@
-Jogador: joao
-Mapa jogado: sexta-feira 13
-Pontos: 80
-Acabou o mapa em: 7.665 segundos
+Jogador: ivo
+Mapa jogado: null
+Pontos: 70
+Acabou o mapa em: 22.22 segundos
 
-Jogador: 1
+Jogador: ivo
+Mapa jogado: sexta-feira 13
+Pontos: 70
+Acabou o mapa em: 23.409 segundos
+
+Jogador: ivo
 Mapa jogado: sexta-feira 13
 Pontos: 0
-Acabou o mapa em: 3.351 segundos
-
-Jogador: lk
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 10.552 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 6.933 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 2.657 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 2.249 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 3.166 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 11.401 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 5.551 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 3.349 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 3.953 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 1.801 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 2.519 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 2.192 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 15.972 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 100
-Acabou o mapa em: 0.0 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 11.028 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 0
-Acabou o mapa em: 9.43 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 80
-Acabou o mapa em: 12.78 segundos
-
-Jogador: 1
-Mapa jogado: sexta-feira 13
-Pontos: 80
-Acabou o mapa em: 21.65 segundos
+Acabou o mapa em: 9.292 segundos
 

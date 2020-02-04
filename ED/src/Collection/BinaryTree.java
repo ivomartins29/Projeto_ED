@@ -5,6 +5,8 @@
  */
 package Collection;
 
+
+
 import Exception.EmptyCollectionException;
 import Interface.BinaryTreeADT;
 import java.util.Iterator;
@@ -13,23 +15,16 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class BinaryTree<T> implements BinaryTreeADT<T> {
 
-    /**
-     *
-     */
     protected int count;
-
-    /**
-     *
-     */
     protected BinaryTreeNode<T> root;
 
     /**
-     *
+     * Cria uma BinaryTree vazia
      */
     public BinaryTree() {
         this.count = 0;
@@ -37,14 +32,20 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     /**
+     * Cria uma BinaryTree com um elemento específico
      *
-     * @param element
+     * @param element elemento a ser adicionado à BinaryTree
      */
     public BinaryTree(T element) {
         this.count = 1;
         root = new BinaryTreeNode<>(element);
     }
 
+    /**
+     * Devolve a referência para o elemento root
+     *
+     * @return referência para o elemento root
+     */
     @Override
     public T getRoot() {
         if (isEmpty()) {
@@ -55,16 +56,32 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
     }
 
+    /**
+     * Verifica se a BinaryTree está vazia
+     *
+     * @return true se a BinaryTree estiver fazia, false caso contrário
+     */
     @Override
     public boolean isEmpty() {
         return this.count == 0;
     }
 
+    /**
+     * Devolve o número de elementos que a BinaryTree possui
+     *
+     * @return o numero de elementos da BinaryTree
+     */
     @Override
     public int size() {
         return this.count;
     }
 
+    /**
+     * Verifica se certo elemento existe na BinaryTree
+     *
+     * @param t elemento a ser verificado
+     * @return true se o elemento existir na BinaryTree, false caso contrário
+     */
     @Override
     public boolean contains(T t) {
         boolean contains;
@@ -79,6 +96,12 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
         return contains;
     }
 
+    /**
+     * Permite encontrar na BinaryTree algum elemento dado
+     *
+     * @param t elemento a procurar na BinaryTree
+     * @return referencia para o elemento procurado, se este existir
+     */
     @Override
     public T find(T t) {
         BinaryTreeNode<T> current = findAgain(t, this.root);
@@ -94,6 +117,13 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
         return (current.element);
     }
 
+    /**
+     * Metodo para auxiliar na procura do elemento na BinaryTree
+     *
+     * @param target elemento a procurar na BinaryTree
+     * @param next geralmente é o root element da BinaryTree
+     * @return referencia para o elemento procurado
+     */
     private BinaryTreeNode<T> findAgain(T target, BinaryTreeNode<T> next) {
         if (next == null) {
             return null;
@@ -112,6 +142,11 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
         return temp;
     }
 
+    /**
+     * Executa uma travessia inorder na BinaryTree que começa no elemento root
+     *
+     * @return iterator dos elementos da BinaryTree
+     */
     @Override
     public Iterator<T> iteratorInOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -120,9 +155,10 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     /**
+     * Método auxilar do iteratorInOrder
      *
-     * @param node
-     * @param tempList
+     * @param node geralmente é o elemento root da BinaryTree
+     * @param tempList recebe uma UnorderedArrayList
      */
     protected void inorder(BinaryTreeNode<T> node, ArrayUnorderedList<T> tempList) {
 
@@ -134,6 +170,11 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
     }
 
+    /**
+     * Executa uma travessia preorder na BinaryTree que começa no elemento root
+     *
+     * @return iterator dos elementos da BinaryTree
+     */
     @Override
     public Iterator<T> iteratorPreOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -142,9 +183,10 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     /**
+     * Método auxilar do iteratorPreOrder
      *
-     * @param node
-     * @param tempList
+     * @param node geralmente é o elemento root da BinaryTree
+     * @param tempList recebe uma UnorderedArrayList
      */
     protected void preOrder(BinaryTreeNode<T> node, ArrayUnorderedList<T> tempList) {
         if (node != null) {
@@ -155,6 +197,11 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
     }
 
+    /**
+     * Executa uma travessia preorder na BinaryTree que começa no elemento root
+     *
+     * @return iterator dos elementos da BinaryTree
+     */
     @Override
     public Iterator<T> iteratorPostOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -164,9 +211,10 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     /**
+     * Método auxilar do iteratorPostOrder
      *
-     * @param node
-     * @param tempList
+     * @param node geralmente é o elemento root da BinaryTree
+     * @param tempList recebe uma UnorderedArrayList
      */
     protected void postOrder(BinaryTreeNode<T> node, ArrayUnorderedList<T> tempList) {
         if (node != null) {
@@ -177,6 +225,11 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
     }
 
+    /**
+     * Executa uma travessia levelorder na BinaryTree usando uma queue
+     *
+     * @return iterator com os elementos da BinaryTree
+     */
     @Override
     public Iterator<T> iteratorLevelOrder() throws EmptyCollectionException {
         LinkedQueue<BinaryTreeNode> nodes = new LinkedQueue<>();
@@ -196,4 +249,5 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
         return templist.iterator();
     }
+
 }

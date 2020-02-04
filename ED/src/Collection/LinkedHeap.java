@@ -8,25 +8,28 @@ package Collection;
 import Exception.EmptyException;
 import Interface.HeapADT;
 
-/**
- *
- * @author 8180546 && 8180159
- * @param <T>
- */
+
+
+
+
 public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
 
+    /**
+     * Último nó inserido na árvore
+     */
     private HeapNode<T> lastNodeInserted;
 
     /**
-     *
+     * Criar uma árvore heap vazia
      */
     public LinkedHeap() {
         super();
     }
 
     /**
+     * Criar uma árvore com um elemento na raiz
      *
-     * @param element
+     * @param element elemento a ser armazenado
      */
     public LinkedHeap(T element) {
         super(element);
@@ -108,6 +111,12 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         return minElement;
     }
 
+    /**
+     * Encontrar o menor elemento da árvore. O menor elemento da árvore encontra
+     * se na raiz Rever Metodo
+     *
+     * @return o menor elemento
+     */
     @Override
     public T findMin() {
         return root.getElement();
@@ -117,6 +126,10 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
 
         HeapNode<T> result = lastNodeInserted;
 
+        /**
+         * Enquanto o nó resultante não for a raiz e não for igual ao nó
+         * esquerdo do nó pai
+         */
         while ((result != root) && (result.getParent().getLeft() != result)) {
             result = result.getParent();
         }
@@ -148,6 +161,9 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         return result;
     }
 
+    /**
+     * Reordenar a heap após a adição de um elemento
+     */
     private void heapifyAdd() {
 
         T temp; // Elemento temporário
@@ -165,6 +181,11 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         next.setElement(temp);
     }
 
+    /**
+     * Obter o nó que irá ser o último nó após a remoção
+     *
+     * @return o próximo último nó
+     */
     private HeapNode<T> getNewLastNode() {
 
         HeapNode<T> result = lastNodeInserted;
@@ -184,6 +205,9 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         return result;
     }
 
+    /**
+     * Reordenar a árvore após a remoção de um elemento
+     */
     private void heapifyRemove() {
 
         T temp; // Elemento temporário
@@ -231,13 +255,10 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         node.setElement(temp);
     }
 
-    /**
-     *
-     * @throws EmptyException
-     */
     public void removeAllElements() throws EmptyException {
         while (!isEmpty()) {
             removeMin();
         }
     }
+
 }

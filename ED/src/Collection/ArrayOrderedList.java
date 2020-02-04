@@ -9,39 +9,28 @@ import java.util.Iterator;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class ArrayOrderedList<T> extends ArrayList<T> {
 
-    /**
-     *
-     */
     protected int count;
-
-    /**
-     *
-     */
     protected T[] array;
     private final int TAM_MAX = 20;
 
-    /**
-     *
-     */
     public ArrayOrderedList() {
         this.array = (T[]) new Object[this.TAM_MAX];
         this.count = 0;
     }
 
-    /**
-     *
-     * @param size
-     */
     public ArrayOrderedList(int size) {
         this.array = (T[]) new Object[size];
         this.count = 0;
     }
 
+    /*
+     Cria um novo array para armazenar um contúdo da coleção com o dobro da capacidade do array antigo.
+     */
     @Override
     protected synchronized void expandCapacity() {
         T[] larger = (T[]) (new Object[this.array.length * 2]);
@@ -52,8 +41,10 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
     }
 
     /**
+     * Acrescenta um elemento comparável específico à lista, mantendo os
+     * elementos pela devida ordem.
      *
-     * @param element
+     * @param element elemento a ser adicionado
      */
     public synchronized void add(T element) {
         if (!contains(element)) {
@@ -81,7 +72,7 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
     }
 
     /**
-     *
+     * Imprime todos os elementos da lista
      */
     public synchronized void printAll() {
         String result = "";
@@ -93,6 +84,12 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
         System.out.println(result);
     }
 
+    /**
+     *
+     * Remove o primeiro elemento do ArrayList
+     *
+     * @return o elemento removido do ArrayList
+     */
     @Override
     public T removeFirst() {
         T tmp;
@@ -107,6 +104,11 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
         return tmp;
     }
 
+    /**
+     * Remove o último elemento do ArrayList
+     *
+     * @return o elemento removido do ArrayList
+     */
     @Override
     public T removeLast() {
         T tmp;
@@ -116,6 +118,13 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
         return tmp;
     }
 
+    /**
+     *
+     * Remove um elemento numa posição específica do ArrayList.
+     *
+     * @param element elemento a ser removido
+     * @return elemento removido do ArrayList
+     */
     @Override
     public T remove(T element) {
         T tmp = null;
@@ -136,21 +145,44 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
         return tmp;
     }
 
+    /**
+     *
+     * Retorna o índice da primeira ocorrência do argumento no ArrayList Returns
+     * exceção quando não for encontrado.
+     *
+     * @return índice da primeira ocorrência
+     */
     @Override
     public T first() {
         return this.array[0];
     }
 
+    /**
+     *
+     * Retorna o índice da última ocorrência do argumento no ArrayList Returns
+     * exceção quando não for encontrado.
+     *
+     * @return índice da última ocurrência
+     */
     @Override
     public T last() {
         return this.array[this.count - 1];
     }
 
+    /**
+     * Retorna true se o ArrayList contém o elemento específico.
+     *
+     * @param target elemento a ser verifica a existência
+     * @return true se encontrar
+     */
     @Override
     public synchronized boolean contains(T target) {
         return (find(target) != -1);
     }
 
+    /**
+     * Pesquisa por um certo elemento no array
+     */
     private synchronized int find(T target) {
         int i = 0;
         int result = -1;
@@ -175,9 +207,10 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
     }
 
     /**
+     * Pesquisa por um certo Object no array
      *
-     * @param target
-     * @return
+     * @param target elemento a ser procurado
+     * @return o elemento encontrado
      */
     public synchronized T findObject(T target) {
         int i = 0;
@@ -196,7 +229,7 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
     }
 
     /**
-     *
+     * Remove todos os elementos do array
      */
     public synchronized void clear() {
 
@@ -208,44 +241,50 @@ public class ArrayOrderedList<T> extends ArrayList<T> {
     }
 
     /**
+     * Retorna o elemento com determinado índice no array
      *
-     * @param index
-     * @return
+     * @param index índice do elemento
+     * @return elemento
      */
     public synchronized T get(int index) {
         return this.array[index];
     }
 
+    /**
+     * Verifica se o array está vazio
+     *
+     * @return true se estiver vazio
+     */
     @Override
     public synchronized boolean isEmpty() {
         return (this.count == 0);
     }
 
+    /**
+     * Retorna o número de elementos no ArrayList.
+     *
+     * @return número de elementos no ArrayList
+     */
     @Override
     public synchronized int size() {
         return this.count;
     }
 
+    /**
+     * Retorna um Iterator dos elementos desta lista na sequência apropriada.
+     * @return Iterador de elementos
+     */
     @Override
     public synchronized Iterator<T> iterator() {
         return new ArrayIterator<>(this.array, this.count);
     }
 
-    /**
-     *
-     * @param <T>
-     */
     public class ArrayIterator<T> implements Iterator<T> {
 
         private int modCount;
         private final int size;
         private final T[] array;
 
-        /**
-         *
-         * @param array
-         * @param tamanho
-         */
         public ArrayIterator(T[] array, int tamanho) {
             this.modCount = 0;
             this.array = array;

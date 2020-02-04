@@ -9,7 +9,7 @@ import Exception.ElementNotFoundException;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author Hugo Ferreira
  * @param <T>
  */
 public interface UnorderedListADT<T extends Object> extends ListADT<T> {
