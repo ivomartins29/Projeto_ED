@@ -45,7 +45,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
         for (int i = 0; i < numVertices; i++) {
             for (int u = 0; u < numVertices; u++) {
-                this.adjMatrixConnectionCost[i][u] = -1.0;
+                this.adjMatrixConnectionCost[i][u] = Double.POSITIVE_INFINITY;
             }
         }
     }
@@ -95,7 +95,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         int startIndex = getVertexIndex(startVertex);
         int targetIndex = getVertexIndex(targetVertex);
         int index;
-        double weight = 0.0;
+        double weight;
         int[] predecessor = new int[super.count];
         LinkedHeap<Double> traversalMinHeap = new LinkedHeap<>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
@@ -124,40 +124,28 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             if (!visited[i]) {
                 pathWeight[i] = pathWeight[startIndex] + adjMatrixConnectionCost[startIndex][i];
                 predecessor[i] = startIndex;
-                //System.out.println(pathWeight[i]);
                 traversalMinHeap.addElement(pathWeight[i]);
             }
         }
-        double peso;
 
         do {
-            do {
-                //System.out.println(traversalMinHeap.size());
-                peso = traversalMinHeap.removeMin();
-                ///System.out.println(peso);
-
-            } while (peso == -1.0);
-
+            weight = traversalMinHeap.removeMin();
             traversalMinHeap.removeAllElements();
-            weight = peso;
             if (weight == Double.POSITIVE_INFINITY) // sem caminho possivel
             {
                 return resultList.iterator();
             } else {
                 index = getIndexOfAdjVertexWithWeightOf(visited, pathWeight, weight);
-                //System.out.println(index);
                 visited[index] = true;
             }
 
             //atualiza o pathWeight de cada vertice
             for (int i = 0; i < super.count; i++) {
                 if (!visited[i]) {
-                    if ((adjMatrixConnectionCost[index][i] < Double.POSITIVE_INFINITY) && (pathWeight[index] + adjMatrixConnectionCost[index][i]) >= pathWeight[i]) {
-                        //System.out.println("ola");
+                    if ((adjMatrixConnectionCost[index][i] < Double.POSITIVE_INFINITY) && (pathWeight[index] + adjMatrixConnectionCost[index][i]) < pathWeight[i]) {
                         pathWeight[i] = pathWeight[index] + adjMatrixConnectionCost[index][i];
                         predecessor[i] = index;
                     }
-                    
                     traversalMinHeap.addElement(pathWeight[i]);
                 }
             }
@@ -176,6 +164,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
+    
     private int getIndexOfAdjVertexWithWeightOf(boolean[] visited, double[] pathWeight, double weight) {
         for (int i = 0; i < super.count; i++) {
             if ((pathWeight[i] == weight) && !visited[i]) {
@@ -253,10 +242,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
         try {
             it = this.iteratorShortestPathConnectionCost(startVertex, targetVertex);
+
         } catch (EmptyCollectionException ex) {
-            Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Network.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (EmptyException ex) {
-            Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Network.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         if (it.hasNext()) {

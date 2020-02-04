@@ -9,6 +9,6 @@
 {"aposento": "sala de jantar", "fantasma": 0, "ligacoes": ["cozinha", "sala de estar"]},
 {"aposento": "sala de estar", "fantasma": 15, "ligacoes": ["exterior", "sala de jantar", "corredor"]},
 {"aposento": "corredor", "fantasma": 0, "ligacoes": ["exterior", "sala de estar", "quarto"]},
-{"aposento": "quarto", "fantasma": 20, "ligacoes": ["exterior", "escritorio", "corredor"]}
+{"aposento": "quarto", "fantasma": 100, "ligacoes": ["exterior", "escritorio", "corredor"]}
 ]
 } 

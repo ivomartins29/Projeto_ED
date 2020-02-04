@@ -153,7 +153,7 @@ public class MenuConsole {
             ArrayUnorderedList<Aposentos> list = m.getNetwork().getNeightbors(divisao);
             Iterator<Aposentos> itr = list.iterator();
             Aposentos lig = null;
-            
+
             while (itr.hasNext()) {
                 lig = itr.next();
                 if (lig.getFantasma() > 0) {
@@ -262,22 +262,18 @@ public class MenuConsole {
 
             Iterator<Aposentos> itr = m.getNetwork().iteratorShortestPathConnectionCost(divisao, saida);
             Aposentos lig = null;
-            while(itr.hasNext()){
-                System.out.println(itr.next().getNome());
-            }
-            
-           /*while (itr3.hasNext()) {
+/*
+            while (itr3.hasNext()) {
                 lig1 = itr3.next();
                 System.out.print("  '" + lig1.getNome() + "'");
-                while (itr.hasNext()) {
-                    lig = itr.next();
-                    // System.out.println(lig.getNome());
-                    if (lig == lig1) {
-                        //resposta = lig.getNome();
-                    }
-                }
             }
-*/
+            */
+            while (itr.hasNext()) {
+                lig = itr.next();
+                 System.out.println(lig.getNome());
+                    //resposta = lig.getNome();
+            }
+
             System.out.println("\n");
 
             System.out.println("Divisão escolhida: " + resposta);
