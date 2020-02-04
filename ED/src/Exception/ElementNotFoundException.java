@@ -7,7 +7,7 @@ package Exception;
 
 /**
  *
- * @author Hugo Ferreira
+ * @author 8180546 && 8180159
  */
 public class ElementNotFoundException extends Exception {
 

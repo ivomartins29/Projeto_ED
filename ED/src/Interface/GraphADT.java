@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Hugo Ferreira
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public interface GraphADT<T extends Object> {
@@ -96,6 +96,10 @@ public interface GraphADT<T extends Object> {
      */
     public int size();
 
+    /**
+     *
+     * @return
+     */
     public T[] getVertices();
 
     /**

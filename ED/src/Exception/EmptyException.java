@@ -7,7 +7,7 @@ package Exception;
 
 /**
  *
- * @author jogui
+ * @author 8180546 && 8180159
  */
 public class EmptyException extends Exception {
 

@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 /**
  *
- * @author 8150121 e 8150133
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
@@ -22,7 +22,7 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
     private int count;
 
     /**
-     * Criar uma LinkedQueue vazia
+     *
      */
     public LinkedQueue() {
         this.first = null;
@@ -30,11 +30,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
         this.count = 0;
     }
 
-    /**
-     * inicializa a LinkedQueue com um elemento
-     *
-     * @param element
-     */
     private void initialize(T element) {
         LinearNode<T> aux = new LinearNode<>(element);
         this.last = aux;
@@ -42,11 +37,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
         this.count++;
     }
 
-    /**
-     * Metodo responsavel adicionar elemento à fila
-     *
-     * @param element elemento a inserir na fila
-     */
     @Override
     public void enqueue(T element) {
         if (this.count == 0) {
@@ -59,12 +49,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
         }
     }
 
-    /**
-     * Metodo responsavel adicionar elemento à fila
-     *
-     * @return elemento removido
-     * @throws EmptyCollectionException caso a fila esteja vazia
-     */
     @Override
     public T dequeue() throws EmptyCollectionException {
         if (this.count == 0) {
@@ -83,12 +67,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
         }
     }
 
-    /**
-     * Metodo responsavel devolver primeiro elemento da fila
-     *
-     * @return primeiro elemento da lista
-     * @throws EmptyCollectionException caso a fila esteja vazia
-     */
     @Override
     public T first() throws EmptyCollectionException {
         if (this.isEmpty()) {
@@ -99,21 +77,11 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
 
     }
 
-    /**
-     * Metodo responsavel por verificar se a fila esta vazia
-     *
-     * @return true se a fila estiver vazia, false caso contrário
-     */
     @Override
     public boolean isEmpty() {
         return count == 0;
     }
 
-    /**
-     * Método responsável por devolver o tamanho da fila
-     *
-     * @return do tamanho da fila
-     */
     @Override
     public int size() {
         return this.count;
@@ -142,11 +110,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
         return string;
     }
 
-    /**
-     * Retorna um iterator para os elementos da LinkedQueue
-     *
-     * @return um iterator para os elementos da LinkedQueue
-     */
     @Override
     public Iterator<T> iterator() {
         QueueIterador it = new QueueIterador();
@@ -154,7 +117,7 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
     }
 
     /**
-     * Classe auxiliar para o iterator (inner class)
+     *
      */
     public class QueueIterador implements Iterator<T> {
 
@@ -176,5 +139,4 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
             return item;
         }
     }
-
 }

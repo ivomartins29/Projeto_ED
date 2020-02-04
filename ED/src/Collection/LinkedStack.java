@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 /**
  *
- * @author 8150121 e 8150133
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
@@ -21,18 +21,13 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
     private int size;
 
     /**
-     * Cria uma LinkedStack vazia
+     *
      */
     public LinkedStack() {
         this.size = 0;
         this.top = null;
     }
 
-    /**
-     * Adiciona um elemento ao topo da LinkedStack
-     *
-     * @param t elemento a ser adicionado a LinkedStack
-     */
     @Override
     public void push(T t) {
         LinearNode<T> tempNode = new LinearNode<>(t);
@@ -42,12 +37,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
         this.size++;
     }
 
-    /**
-     * Remove e retorna o elemento que esta no topo da LinkedStack
-     *
-     * @return elemento que esta no topo da LinkedStack
-     * @throws EmptyCollectionException se a LinkedStack estiver vazia
-     */
     @Override
     public T pop() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -59,12 +48,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
         return tempNode;
     }
 
-    /**
-     * Retorna sem remover o elemento que esta no topo da LinkedStack
-     *
-     * @returno elemento que esta no topo da LinkedStack
-     * @throws EmptyCollectionException se a LinkedStack estiver vazia
-     */
     @Override
     public T peek() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -73,31 +56,16 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
         return this.top.getElement();
     }
 
-    /**
-     * Permite descobrir se a LinkedStack tem elementos
-     *
-     * @return true se a LinkedStack não tiver elementos, false caso contrario
-     */
     @Override
     public boolean isEmpty() {
         return this.size == 0;
     }
 
-    /**
-     * Permite descobrir o numero de elementos presentes na LinkedStack
-     *
-     * @return o numero de elementos presentes na LinkedStack
-     */
     @Override
     public int size() {
         return this.size;
     }
 
-    /**
-     * Retorna uma representação em string da LinkedStack
-     *
-     * @return uma representação em string da LinkedStack
-     */
     @Override
     public String toString() {
         String result = "";
@@ -111,11 +79,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
         return result;
     }
 
-    /**
-     * Retorna um iterator para os elementos da LinkedStack
-     *
-     * @return um iterator para os elementos da LinkedStack
-     */
     @Override
     public Iterator<T> iterator() {
         StackIterador it = new StackIterador();
@@ -123,15 +86,12 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
     }
 
     /**
-     * Classe auxiliar para o metodo iterator (inner class)
+     *
      */
     public class StackIterador implements Iterator<T> {
 
         private LinearNode<T> current = top;
 
-        /*
-        
-         */
         @Override
         public boolean hasNext() {
             return current != null;
@@ -148,5 +108,4 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
             return item;
         }
     }
-
 }

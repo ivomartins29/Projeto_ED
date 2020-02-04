@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  *
- * @author jogui
+ * @author 8180546 && 8180159
  */
 public class Jogador {
     
@@ -20,6 +20,9 @@ public class Jogador {
     private String mapa;
     private double timeDuration;
 
+    /**
+     *
+     */
     public Jogador() {
         this.nome = null;
         this.pontos = 0;
@@ -27,39 +30,74 @@ public class Jogador {
         this.timeDuration = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getPontos() {
         return pontos;
     }
 
+    /**
+     *
+     * @param pontos
+     */
     public void setPontos(long pontos) {
         this.pontos = pontos;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMapa() {
         return mapa;
     }
 
+    /**
+     *
+     * @param mapa
+     */
     public void setMapa(String mapa) {
         this.mapa = mapa;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTimeDuration() {
         return timeDuration;
     }
 
+    /**
+     *
+     * @param timeDuration
+     */
     public void setTimeDuration(double timeDuration) {
         this.timeDuration = timeDuration;
     }
     
-
+    /**
+     *
+     * @throws IOException
+     */
     public void guardarUtilizadores() throws IOException {
         FileWriter x = new FileWriter("Classificações.txt", true);
         try {

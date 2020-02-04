@@ -13,6 +13,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONObject;
 
+/**
+ *
+ * @author 8180546 && 8180159
+ * @param <T>
+ */
 public class Mapa<T> {
 
     private String nome_ficheiro;
@@ -25,16 +30,18 @@ public class Mapa<T> {
     private Aposentos aposento;
     private Aposentos aposento2;
 
+    /**
+     *
+     * @param Ficheiro_Json
+     * @throws ElementNotFoundException
+     */
     public Mapa(String Ficheiro_Json) throws ElementNotFoundException {
         nome_ficheiro = Ficheiro_Json;
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
 
         try {
-            jsonObject = (JSONObject) parser.parse(new FileReader(
-                    Ficheiro_Json));
-
-            //falta por condição para verificar se o ficheiro está vazio
+            jsonObject = (JSONObject) parser.parse(new FileReader(Ficheiro_Json));
             mapa = new JSONArray();
             int i = 0;
 
@@ -100,78 +107,148 @@ public class Mapa<T> {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        // TODO Auto-generated catch block
-
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome_ficheiro() {
         return nome_ficheiro;
     }
 
+    /**
+     *
+     * @param nome_ficheiro
+     */
     public void setNome_ficheiro(String nome_ficheiro) {
         this.nome_ficheiro = nome_ficheiro;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTAM_MAPA() {
         return TAM_MAPA;
     }
 
+    /**
+     *
+     * @param TAM_MAPA
+     */
     public void setTAM_MAPA(int TAM_MAPA) {
         this.TAM_MAPA = TAM_MAPA;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getPontos() {
         return pontos;
     }
 
+    /**
+     *
+     * @param pontos
+     */
     public void setPontos(long pontos) {
         this.pontos = pontos;
     }
 
+    /**
+     *
+     * @return
+     */
     public JSONArray getMapa() {
         return mapa;
     }
 
+    /**
+     *
+     * @param mapa
+     */
     public void setMapa(JSONArray mapa) {
         this.mapa = mapa;
     }
 
+    /**
+     *
+     * @return
+     */
     public Network<Aposentos> getNetwork() {
         return network;
     }
 
+    /**
+     *
+     * @param network
+     */
     public void setNetwork(Network<Aposentos> network) {
         this.network = network;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayUnorderedList getAposentos() {
         return aposentos;
     }
 
+    /**
+     *
+     * @param aposentos
+     */
     public void setAposentos(ArrayUnorderedList aposentos) {
         this.aposentos = aposentos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Aposentos getAposento() {
         return aposento;
     }
 
+    /**
+     *
+     * @param aposento
+     */
     public void setAposento(Aposentos aposento) {
         this.aposento = aposento;
     }
 
+    /**
+     *
+     * @return
+     */
     public Aposentos getAposento2() {
         return aposento2;
     }
 
+    /**
+     *
+     * @param aposento2
+     */
     public void setAposento2(Aposentos aposento2) {
         this.aposento2 = aposento2;
     }

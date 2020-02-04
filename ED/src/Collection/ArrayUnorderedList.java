@@ -8,33 +8,26 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 8150121 e 8150133
+ * @author 8180546 && 8180159
  * @param <T>
  */
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T> {
 
     /**
-     * Construtor vazio
+     *
      */
-
     public ArrayUnorderedList() {
         super();
     }
 
     /**
-     * Construtor com tamanho definido
      *
-     * @param initialCapacity tamanho inicial
+     * @param initialCapacity
      */
     public ArrayUnorderedList(int initialCapacity) {
         super(initialCapacity);
     }
 
-    /**
-     * Adiciona um elemento específico na início da lista.
-     *
-     * @param t elemento a ser adicionado
-     */
     @Override
     public void addToFront(T t) {
         if (size() == list.length) {
@@ -49,11 +42,6 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         rear++;
     }
 
-    /**
-     * Adiciona um elemento específico na fim da lista.
-     *
-     * @param t elemento a ser adicionado
-     */
     @Override
     public void addToRear(T t) {
         if (size() == list.length) {
@@ -64,13 +52,6 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         rear++;
     }
 
-    /**
-     * Adiciona um elemento específico depois de um elemento target específico.
-     * Lança a exceção ElementNotFoundException se o target não for encontrado.
-     *
-     * @param t elemento a ser adicionado
-     * @param t1 elemento específico de referência para a adição
-     */
     @Override
     public void addAfter(T t, T t1) {
         if (size() == list.length) {
@@ -98,5 +79,4 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         list[i] = t;
         rear++;
     }
-
 }

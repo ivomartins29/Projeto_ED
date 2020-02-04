@@ -1,16 +1,14 @@
 package Jogo;
 
-import Mapa.Jogador;
-import Mapa.Mapa;
-import java.awt.Color;
-import java.util.Iterator;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author 8180546 && 8180159
+ */
 public class Main {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
         
