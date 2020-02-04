@@ -5,10 +5,10 @@
  */
 package Jogo;
 
+import Collection.ArrayUnorderedList;
 import Mapa.Aposentos;
 import Mapa.Mapa;
 import Mapa.Jogador;
-import ArrayList.ArrayUnorderedList;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -124,16 +124,16 @@ public class MenuConsole {
     }
 
     public void manual_gameplay(Mapa m) throws Exception {
-        
+
         Aposentos divisao = isEntry(m);
         Jogador uti = new Jogador();
         Scanner player = new Scanner(System.in);
         String jogador;
         limparSaida();
-        do{
-        System.out.println("Introduza o nome do jogador: ");
-        jogador = player.nextLine();
-        }while("".equals(jogador));
+        do {
+            System.out.println("Introduza o nome do jogador: ");
+            jogador = player.nextLine();
+        } while ("".equals(jogador));
         uti.setNome(jogador);
         uti.setPontos(m.getPontos());
         uti.setMapa(m.getNome());
@@ -146,20 +146,21 @@ public class MenuConsole {
         Scanner myObj;
         boolean exterior_reached = false;
         double tempoInicial = System.currentTimeMillis();
-        
+
         do {
             myObj = new Scanner(System.in);
             System.out.println("Escreva o nome da próxima divisão:");
-
-            ArrayUnorderedList list = m.getNetwork().getNeightbors(divisao);
+            ArrayUnorderedList<Aposentos> list = m.getNetwork().getNeightbors(divisao);
             Iterator<Aposentos> itr = list.iterator();
             Aposentos lig = null;
+            
             while (itr.hasNext()) {
                 lig = itr.next();
-                if(lig.getFantasma()>0){
-                  System.out.print("  '" + lig.getNome() + "'" + "(ATENÇÃO, existe um famtasma nesta divisão)");  
-                }else
-                System.out.print("  '" + lig.getNome() + "'");
+                if (lig.getFantasma() > 0) {
+                    System.out.print("  '" + lig.getNome() + "'" + "(ATENÇÃO, existe um famtasma nesta divisão)");
+                } else {
+                    System.out.print("  '" + lig.getNome() + "'");
+                }
             }
             System.out.println("\n");
 
@@ -171,13 +172,13 @@ public class MenuConsole {
                 lig = itr2.next();
                 if (resposta.equals(lig.getNome())) {
                     limparSaida();
-                    uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(divisao)][m.getNetwork().getIndex(lig)]);
+                    uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixConnectionCost()[m.getNetwork().getVertexIndex(divisao)][m.getNetwork().getVertexIndex(lig)]);
                     System.out.println("Mapa: " + m.getNome());
                     System.out.println("Jogador: " + uti.getNome());
                     System.out.println("Pontos: " + uti.getPontos());
                     System.out.println("Divisão: " + resposta);
-                    divisao = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getIndex(lig)];
-                    if(divisao.getFantasma() > 0){
+                    divisao = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getVertexIndex(lig)];
+                    if (divisao.getFantasma() > 0) {
                         System.out.println("                  ''''''     ");
                         System.out.println("              '''       ''' ");
                         System.out.println("            '''            '''");
@@ -198,12 +199,12 @@ public class MenuConsole {
                 }
             }
         } while (uti.getPontos() > 0 && !exterior_reached);
-        
+
         double tempoFinal = System.currentTimeMillis();
         double i = 1000.0;
         uti.setTimeDuration(((tempoFinal - tempoInicial) / i));
         uti.guardarUtilizadores();
-        
+
         if (uti.getPontos() <= 0) {
             limparSaida();
             System.out.println("Tente outra vez!");
@@ -248,7 +249,7 @@ public class MenuConsole {
         System.out.println("Jogador: " + uti.getNome());
         System.out.println("Pontos: " + uti.getPontos());
         System.out.println("Divisão: " + divisao.getNome());
-        
+
         double tempoInicial = System.currentTimeMillis();
 
         do {
@@ -259,20 +260,24 @@ public class MenuConsole {
             Iterator<Aposentos> itr3 = list.iterator();
             Aposentos lig1 = null;
 
-            Iterator<Aposentos> itr = m.getNetwork().iteratorShortestPaths(divisao, saida);
+            Iterator<Aposentos> itr = m.getNetwork().iteratorShortestPathConnectionCost(divisao, saida);
             Aposentos lig = null;
-
-            while (itr3.hasNext()) {
+            while(itr.hasNext()){
+                System.out.println(itr.next().getNome());
+            }
+            
+           /*while (itr3.hasNext()) {
                 lig1 = itr3.next();
                 System.out.print("  '" + lig1.getNome() + "'");
                 while (itr.hasNext()) {
                     lig = itr.next();
+                    // System.out.println(lig.getNome());
                     if (lig == lig1) {
-                        resposta = lig.getNome();
+                        //resposta = lig.getNome();
                     }
                 }
             }
-
+*/
             System.out.println("\n");
 
             System.out.println("Divisão escolhida: " + resposta);
@@ -290,12 +295,12 @@ public class MenuConsole {
             while (itr2.hasNext()) {
                 lig = itr2.next();
                 if (resposta.equals(lig.getNome())) {
-                    uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixWeights()[m.getNetwork().getIndex(divisao)][m.getNetwork().getIndex(lig)]);
+                    uti.setPontos(uti.getPontos() - (long) m.getNetwork().getAdjMatrixConnectionCost()[m.getNetwork().getVertexIndex(divisao)][m.getNetwork().getVertexIndex(lig)]);
                     System.out.println("Mapa: " + m.getNome());
                     System.out.println("Jogador: " + uti.getNome());
                     System.out.println("Pontos: " + uti.getPontos());
                     System.out.println("Divisão: " + resposta);
-                    divisao = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getIndex(lig)];
+                    divisao = (Aposentos) m.getNetwork().getVertices()[m.getNetwork().getVertexIndex(lig)];
                     if (resposta.equals("exterior")) {
                         exterior_reached = true;
                     }
@@ -334,7 +339,7 @@ public class MenuConsole {
     }
 
     public int procurar_indice_aposentos(Mapa m, String nome) {
-        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+        for (int i = 0; i < m.getNetwork().size(); i++) {
             if (m.getNetwork().getVertices()[i].equals(nome)) {
                 return i;
             }
@@ -344,7 +349,7 @@ public class MenuConsole {
 
     public Aposentos isEntry(Mapa m) {
         Aposentos ap = null;
-        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+        for (int i = 0; i < m.getNetwork().size(); i++) {
             ap = (Aposentos) m.getNetwork().getVertices()[i];
             if (ap.getNome().equals("entrada")) {
                 return ap;
@@ -355,7 +360,7 @@ public class MenuConsole {
 
     public Aposentos isExterior(Mapa m) {
         Aposentos ap = null;
-        for (int i = 0; i < m.getNetwork().getNumVertices(); i++) {
+        for (int i = 0; i < m.getNetwork().size(); i++) {
             ap = (Aposentos) m.getNetwork().getVertices()[i];
             if (ap.getNome().equals("exterior")) {
                 return ap;

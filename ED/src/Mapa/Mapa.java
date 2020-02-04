@@ -1,8 +1,8 @@
 package Mapa;
 
-import Mapa.Aposentos;
-import ArrayList.ArrayUnorderedList;
-import Graph.Network;
+import Collection.ArrayUnorderedList;
+import Collection.Network;
+import Exception.ElementNotFoundException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class Mapa<T> {
     private Aposentos aposento;
     private Aposentos aposento2;
 
-    public Mapa(String Ficheiro_Json) {
+    public Mapa(String Ficheiro_Json) throws ElementNotFoundException {
         nome_ficheiro = Ficheiro_Json;
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
@@ -57,11 +57,21 @@ public class Mapa<T> {
                 aposento.setLigacoes((JSONArray) mapa_obj.get("ligacoes"));
                 if (aposento.getLigacoes().contains("entrada")) {
                     aposento2 = aposento;
+                    aposento.getLigacoes().remove("entrada");
                 }
                 aposentos.addToFront(aposento);
                 network.addVertex(aposento);
             }
-
+            
+            JSONArray array2 = new JSONArray();
+            array2.add(aposento2.getNome());
+            aposento = new Aposentos();
+            aposento.setNome("entrada");
+            aposento.setFantasma(0);
+            aposento.setLigacoes(array2);
+            aposentos.addToFront(aposento);
+            network.addVertex(aposento);
+            
             JSONArray array = new JSONArray();
             aposento = new Aposentos();
             aposento.setNome("exterior");
@@ -69,7 +79,7 @@ public class Mapa<T> {
             aposento.setLigacoes(array);
             aposentos.addToFront(aposento);
             network.addVertex(aposento);
-
+            
             Iterator<Aposentos> itr = aposentos.iterator();
 
             while (itr.hasNext()) {
@@ -85,26 +95,6 @@ public class Mapa<T> {
                 }
             }
 
-            JSONArray array2 = new JSONArray();
-            array2.add(aposento2);
-            aposento = new Aposentos();
-            aposento.setNome("entrada");
-            aposento.setFantasma(0);
-            aposento.setLigacoes(array2);
-            aposentos.addToFront(aposento);
-            network.addVertex(aposento);
-
-            Iterator<Aposentos> itr_entrada = aposentos.iterator();
-            while (itr.hasNext()) {
-                aposento = itr.next();
-                for (i = 0; i < aposento.getLigacoes().size(); i++) {
-                    for (Aposentos ap : aposentos) {
-                        if (ap.getNome().equals("entrada")) {
-                            network.addEdge(ap, aposento, ap.getFantasma());
-                        }
-                    }
-                }
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException | ParseException e) {

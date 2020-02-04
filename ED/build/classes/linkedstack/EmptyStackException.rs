@@ -1,1 +1,0 @@
-Ficha_12.Ex_4.LinkedStack.EmptyStackException

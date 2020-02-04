@@ -21,5 +21,7 @@ public class Main {
        // Menu_Inicial menu_Inicial = new Menu_Inicial(map, util);
        MenuConsole menu= new MenuConsole();
        menu.menu();
+       //Mapa mapa = new Mapa("mapa.json");
+       //mapa.getNetwork().imprimirMatrizWeight();
     }
 }
