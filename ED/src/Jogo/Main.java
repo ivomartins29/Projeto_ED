@@ -15,18 +15,16 @@ public class Main {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-
         Music music = new Music();
         music.playMusic("Megalovania.wav");
-        
+        music.getClip().stop();
+        music.setVolume(10);
         Mapa map = new Mapa("mapa.json");
-        Jogador util = new Jogador();
-        String nome = (String) JOptionPane.showInputDialog("Digite o seu nome de usuário:");
-        if (nome == null) {
-            util.setNome("No Name");
-        } else {
-            util.setNome(nome);
+
+        Menu_Inicial menu_Inicial = new Menu_Inicial(map);
+        if (menu_Inicial.isVisible()) {
+            music.getClip().setMicrosecondPosition(0);
+            music.getClip().start();
         }
-        Menu_Inicial menu_Inicial = new Menu_Inicial(map, util);
     }
 }

@@ -22,21 +22,13 @@ public class Menu_Inicial extends javax.swing.JFrame {
      * @param m
      * @param util
      */
-<<<<<<< HEAD:27/src/Jogo/Menu_Inicial.java
     public Menu_Inicial(Mapa m) {
-=======
-    public Menu_Inicial(Mapa m, Jogador util) {
->>>>>>> 675018563ef997614e36f281efcf2c80cc3c4210:ED/src/Jogo/Menu_Inicial.java
         leitura = m;
         initComponents();
         setVisible(true);
     }
 
-<<<<<<< HEAD:27/src/Jogo/Menu_Inicial.java
     @SuppressWarnings("unchecked")
-=======
-    @SuppressWarnings("unchecked")                         
->>>>>>> 675018563ef997614e36f281efcf2c80cc3c4210:ED/src/Jogo/Menu_Inicial.java
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -139,11 +131,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
 
         pack();
         this.setLocationRelativeTo(null);
-<<<<<<< HEAD:27/src/Jogo/Menu_Inicial.java
     }
-=======
-    }                    
->>>>>>> 675018563ef997614e36f281efcf2c80cc3c4210:ED/src/Jogo/Menu_Inicial.java
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "Hope you enjoyed!!!");
@@ -179,20 +167,12 @@ public class Menu_Inicial extends javax.swing.JFrame {
         mJ.setVisible(true);
         dispose();
     }
-<<<<<<< HEAD:27/src/Jogo/Menu_Inicial.java
 
-=======
-                  
->>>>>>> 675018563ef997614e36f281efcf2c80cc3c4210:ED/src/Jogo/Menu_Inicial.java
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD:27/src/Jogo/Menu_Inicial.java
     private javax.swing.JPanel jPanel1;
-=======
-    private javax.swing.JPanel jPanel1;   
->>>>>>> 675018563ef997614e36f281efcf2c80cc3c4210:ED/src/Jogo/Menu_Inicial.java
 
     /**
      *
