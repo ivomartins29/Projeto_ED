@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package Interfaces;
 
-import Exception.ElementNotFoundException;
+import Exceptions.ElementNotFoundException;
 import java.util.Iterator;
 
 /**

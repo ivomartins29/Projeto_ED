@@ -5,8 +5,8 @@
  */
 package Collection;
 
-import Exception.EmptyCollectionException;
-import Interface.QueueADT;
+import Exceptions.EmptyCollectionException;
+import Interfaces.QueueADT;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

@@ -5,10 +5,10 @@
  */
 package Collection;
 
-import Exception.ElementNotFoundException;
-import Exception.EmptyCollectionException;
-import Exception.EmptyException;
-import Interface.NetworkADT;
+import Exceptions.ElementNotFoundException;
+import Exceptions.EmptyCollectionException;
+import Exceptions.EmptyException;
+import Interfaces.NetworkADT;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;

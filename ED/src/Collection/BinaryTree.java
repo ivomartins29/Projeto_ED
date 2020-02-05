@@ -7,8 +7,8 @@ package Collection;
 
 
 
-import Exception.EmptyCollectionException;
-import Interface.BinaryTreeADT;
+import Exceptions.EmptyCollectionException;
+import Interfaces.BinaryTreeADT;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;

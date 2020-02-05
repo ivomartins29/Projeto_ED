@@ -5,9 +5,9 @@
  */
 package Collection;
 
-import Exception.ElementNotFoundException;
-import Exception.EmptyCollectionException;
-import Interface.GraphADT;
+import Exceptions.ElementNotFoundException;
+import Exceptions.EmptyCollectionException;
+import Interfaces.GraphADT;
 import java.util.Iterator;
 
 /**

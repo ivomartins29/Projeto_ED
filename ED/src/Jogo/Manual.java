@@ -2,7 +2,7 @@ package Jogo;
 
 import Mapa.ArrayOrderedUti;
 import Collection.ArrayUnorderedList;
-import Exception.ElementNotFoundException;
+import Exceptions.ElementNotFoundException;
 import Mapa.Aposentos;
 import Mapa.Jogador;
 import Mapa.Mapa;

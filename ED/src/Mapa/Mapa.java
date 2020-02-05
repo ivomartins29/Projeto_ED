@@ -2,7 +2,7 @@ package Mapa;
 
 import Collection.ArrayUnorderedList;
 import Collection.Network;
-import Exception.ElementNotFoundException;
+import Exceptions.ElementNotFoundException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

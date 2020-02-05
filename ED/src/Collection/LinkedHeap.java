@@ -5,8 +5,8 @@
  */
 package Collection;
 
-import Exception.EmptyException;
-import Interface.HeapADT;
+import Exceptions.EmptyException;
+import Interfaces.HeapADT;
 
 /**
  * 

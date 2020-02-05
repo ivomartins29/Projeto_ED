@@ -5,9 +5,9 @@
  */
 package Collection;
 
-import Exception.ElementNotFoundException;
-import Exception.EmptyCollectionException;
-import Interface.ListADT;
+import Exceptions.ElementNotFoundException;
+import Exceptions.EmptyCollectionException;
+import Interfaces.ListADT;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;

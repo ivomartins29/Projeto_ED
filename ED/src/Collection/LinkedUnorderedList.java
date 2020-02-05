@@ -5,8 +5,8 @@
  */
 package Collection;
 
-import Exception.ElementNotFoundException;
-import Interface.UnorderedListADT;
+import Exceptions.ElementNotFoundException;
+import Interfaces.UnorderedListADT;
 
 /**
  *

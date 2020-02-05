@@ -1,6 +1,6 @@
 package Jogo;
 
-import Exception.ElementNotFoundException;
+import Exceptions.ElementNotFoundException;
 import Mapa.Aposentos;
 import Mapa.Jogador;
 import Mapa.Mapa;

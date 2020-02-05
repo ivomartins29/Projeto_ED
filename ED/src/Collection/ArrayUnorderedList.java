@@ -1,8 +1,8 @@
 package Collection;
 
-import Exception.ElementNotFoundException;
+import Exceptions.ElementNotFoundException;
 
-import Interface.UnorderedListADT;
+import Interfaces.UnorderedListADT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

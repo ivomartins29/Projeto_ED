@@ -6,8 +6,8 @@
 package Collection;
 
 import java.util.Iterator;
-import Exception.EmptyCollectionException;
-import Interface.ListADT;
+import Exceptions.EmptyCollectionException;
+import Interfaces.ListADT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
