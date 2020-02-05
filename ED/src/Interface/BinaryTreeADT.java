@@ -14,7 +14,7 @@ import java.util.Iterator;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface BinaryTreeADT<T extends Object> {
 
@@ -22,7 +22,6 @@ public interface BinaryTreeADT<T extends Object> {
      * Returns a reference to the root element
      *
      * @return a reference to the root
-     * @throws Exception.EmptyCollectionException
      */
     public T getRoot() throws EmptyCollectionException;
 
@@ -55,7 +54,6 @@ public interface BinaryTreeADT<T extends Object> {
      *
      * @param targetElement the element being sought in the tree
      * @return a reference to the specified element
-     * @throws Exception.ElementNotFoundException
      */
     public T find(T targetElement) throws ElementNotFoundException;
 
@@ -95,7 +93,6 @@ public interface BinaryTreeADT<T extends Object> {
      * Performs a levelorder traversal on the binary tree, using a queue.
      *
      * @return an iterator over the elements of this binary tree
-     * @throws Exceptions.EmptyCollectionException
      */
     public Iterator<T> iteratorLevelOrder()throws EmptyCollectionException;
 }

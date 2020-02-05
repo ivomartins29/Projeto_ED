@@ -10,7 +10,7 @@ import Exception.ElementNotFoundException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface UnorderedListADT<T extends Object> extends ListADT<T> {
 
@@ -34,7 +34,6 @@ public interface UnorderedListADT<T extends Object> extends ListADT<T> {
      * @param element the element to be added to the list
      * @param target the reference element, which the other element is added
      * after
-     * @throws Exception.ElementNotFoundException
      */
     public void addAfter(T element, T target) throws ElementNotFoundException;
 }

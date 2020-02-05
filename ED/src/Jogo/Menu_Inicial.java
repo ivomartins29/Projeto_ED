@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
+ * Classe da interface gráfica do menu inicial.
  *
  * @author 8150121 e 8150133
  */
@@ -18,9 +19,9 @@ public class Menu_Inicial extends javax.swing.JFrame {
     private Jogador util;
 
     /**
+     * Método construtor da classe Menu_Inicial.
      *
-     * @param m
-     * @param util
+     * @param m mapa fornecido
      */
     public Menu_Inicial(Mapa m) {
         leitura = m;
@@ -28,6 +29,9 @@ public class Menu_Inicial extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     * Método que cria a interface gráfica da classe Menu_Inicial.
+     */
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
@@ -133,13 +137,23 @@ public class Menu_Inicial extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Método que fecha a interface gráfica.
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "Hope you enjoyed!!!");
         dispose();
     }
 
+    /**
+     * Método que pede o nome do ficheiro que contém mapa ao utilizador.
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        String s = (String) JOptionPane.showInputDialog("Digite o nome do ficherio que contém o mapa:\n(EXAMPLE: mapa.json)");
+        String s = JOptionPane.showInputDialog("Digite o nome do ficherio que contém o mapa:\n(EXAMPLE: mapa.json)");
         try {
             leitura = new Mapa(s);
         } catch (ElementNotFoundException ex) {
@@ -147,15 +161,21 @@ public class Menu_Inicial extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método que abre uma nova interface gráfica ("Menu_Jogo") e 
+     * pede o nome de utilizador ao jogador
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         util = new Jogador();
-        String nome = (String) JOptionPane.showInputDialog("Digite o seu nome de usuário:");
+        String nome = JOptionPane.showInputDialog("Digite o seu nome de usuário:");
         if (nome == null) {
             util.setNome(" ");
         } else {
             util.setNome(nome);
         }
-        
+
         if (leitura == null) {
             try {
                 leitura = new Mapa(DEFAULT_MAP);
@@ -175,16 +195,18 @@ public class Menu_Inicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
 
     /**
-     *
-     * @return
+     * Get do Mapa leitura.
+     * 
+     * @return leitura
      */
     public Mapa getLeitura() {
         return leitura;
     }
 
     /**
-     *
-     * @param leitura
+     * Set do Mapa Leitura
+     * 
+     * @param leitura novo mapa
      */
     public void setLeitura(Mapa leitura) {
         this.leitura = leitura;

@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface ListADT<T extends Object> extends Iterable<T> {
 
@@ -20,7 +20,6 @@ public interface ListADT<T extends Object> extends Iterable<T> {
      * Removes and returns the first element from this list.
      *
      * @return the first element from this list
-     * @throws Exception.EmptyCollectionException
      */
     public T removeFirst() throws EmptyCollectionException;
 
@@ -28,7 +27,6 @@ public interface ListADT<T extends Object> extends Iterable<T> {
      * Removes and returns the last element from this list.
      *
      * @return the last element from this list
-     * @throws Exception.EmptyCollectionException
      */
     public T removeLast() throws EmptyCollectionException;
 
@@ -37,7 +35,6 @@ public interface ListADT<T extends Object> extends Iterable<T> {
      *
      * @param element the element to be removed from the list
      * @return
-     * @throws Exception.ElementNotFoundException
      */
     public T remove(T element) throws ElementNotFoundException;
 
@@ -45,7 +42,6 @@ public interface ListADT<T extends Object> extends Iterable<T> {
      * Returns a reference to the first element in this list.
      *
      * @return a reference to the first element in this list
-     * @throws Exception.EmptyCollectionException
      */
     public T first() throws EmptyCollectionException;
 
@@ -53,7 +49,6 @@ public interface ListADT<T extends Object> extends Iterable<T> {
      * Returns a reference to the last element in this list.
      *
      * @return a reference to the last element in this list
-     * @throws Exception.EmptyCollectionException
      */
     public T last() throws EmptyCollectionException;
 

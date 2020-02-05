@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class LinkedList<T> implements ListADT<T> {
 
@@ -36,7 +36,6 @@ public class LinkedList<T> implements ListADT<T> {
      * Remove e retorna o primeiro elemento da lista
      *
      * @return o primeiro elemento da lista
-     * @throws EmptyCollectionException quando a lista está vazia
      */
     @Override
     public T removeFirst() throws EmptyCollectionException {
@@ -59,7 +58,6 @@ public class LinkedList<T> implements ListADT<T> {
      * Remove e retorna o utlimo elemento da lista
      *
      * @return o utlimo elemento da lista
-     * @throws EmptyCollectionException quando a lista está vazia
      */
     @Override
     public T removeLast() throws EmptyCollectionException {
@@ -93,7 +91,6 @@ public class LinkedList<T> implements ListADT<T> {
      *
      * @param t o elemento a ser removido da lista
      * @return o elemento removido da lista
-     * @throws ElementNotFoundException quando a lista esta vazia
      */
     @Override
     public T remove(T t) throws ElementNotFoundException {
@@ -215,7 +212,6 @@ public class LinkedList<T> implements ListADT<T> {
     }
 
     /**
-     * Retorna o numero de elementos da lista
      *
      * @return o numero de elementos da lista
      */
@@ -225,7 +221,6 @@ public class LinkedList<T> implements ListADT<T> {
     }
 
     /**
-     * Retorna uma representação em string da lista
      *
      * @return uma representação em string da lista
      */
@@ -243,7 +238,6 @@ public class LinkedList<T> implements ListADT<T> {
     }
 
     /**
-     * Retorna um iterator para os elementos da lista
      *
      * @return um iterator para os elementos da lista
      */
@@ -256,11 +250,10 @@ public class LinkedList<T> implements ListADT<T> {
     /**
      * Classe auxiliar do iterator (inner class)
      *
-     * @param <T>
+     * @param <T> tipo genérico
      */
     public class LinkedListIterador<T> implements Iterator<T> {
 
-        private final int count;
         private LinearNode<T> current;
 
         public LinkedListIterador(LinearNode<T> collection, int size) {

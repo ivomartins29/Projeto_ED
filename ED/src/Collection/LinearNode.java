@@ -8,7 +8,7 @@ package Collection;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class LinearNode<T> {
 
@@ -34,7 +34,6 @@ public class LinearNode<T> {
     }
 
     /**
-     * retorna o próximo LinearNode
      *
      * @return o próximo LinearNode
      */

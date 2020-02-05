@@ -1,6 +1,6 @@
 package Jogo;
 
-import Collection.ArrayOrderedUti;
+import Mapa.ArrayOrderedUti;
 import Collection.ArrayUnorderedList;
 import Exception.ElementNotFoundException;
 import Mapa.Aposentos;
@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * Classe da interface gráfica do modo de jogo manual.
  *
  * @author 8150121 e 8150133
  */
@@ -49,10 +50,10 @@ public class Manual extends JFrame {
     double tempoFinal;
 
     /**
+     * Método construtor da classe Manual.
      *
-     * @param m
-     * @param util
-     * @throws FileNotFoundException
+     * @param m mapa fornecido
+     * @param util novo jogador
      */
     public Manual(Mapa m, Jogador util) throws FileNotFoundException {
 
@@ -60,7 +61,7 @@ public class Manual extends JFrame {
         this.util = util;
         String temp = null;
         do {
-            temp = (String) JOptionPane.showInputDialog("Escolha a dificuldade\n"
+            temp = JOptionPane.showInputDialog("Escolha a dificuldade\n"
                     + "1: Básico\n2: Normal\n3: Dificíl");
         } while (!temp.equals("1") && !temp.equals("2") && !temp.equals("3"));
         m.getNetwork().multiplicar_adjmatrizweight(Integer.parseInt(temp));
@@ -68,6 +69,9 @@ public class Manual extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Método que cria a interface gráfica da classe Manual.
+     */
     @SuppressWarnings("unchecked")
     private void initComponents() {
         divisao = isEntry(mapa);
@@ -196,7 +200,7 @@ public class Manual extends JFrame {
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         divisoes = null;
-        list = mapa.getNetwork().getNeightbors(divisao);
+        list = mapa.getNetwork().getNeighbors(divisao);
         itr = list.iterator();
         lig = null;
         lig = itr.next();
@@ -211,6 +215,12 @@ public class Manual extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Método que atualiza os dados do jogo no JFrame caso as condições sejam
+     * válidas.
+     *
+     * @param evt evento realizado quando clicado no botão
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         jogadores = new ArrayOrderedUti<>();
         try {
@@ -232,16 +242,12 @@ public class Manual extends JFrame {
                 divisao = (Aposentos) mapa.getNetwork().getVertices()[mapa.getNetwork().getVertexIndex(lig)];
 
                 divisoes = "";
-                list = mapa.getNetwork().getNeightbors(divisao);
+                list = mapa.getNetwork().getNeighbors(divisao);
                 itr = list.iterator();
                 lig = null;
                 while (itr.hasNext()) {
                     lig = itr.next();
-                    if (lig.getFantasma() > 0) {
-                        divisoes = divisoes + " - " + lig.getNome() + " (ghost)";
-                    } else {
                         divisoes = divisoes + " - " + lig.getNome();
-                    }
                 }
                 jTextField1.setText("");
                 jLabel4.setText(divisoes);
@@ -258,10 +264,10 @@ public class Manual extends JFrame {
             util.setTimeDuration(((tempoFinal - tempoInicial) / i));
 
             JOptionPane.showMessageDialog(null, "MORREU!");
-            
+
             jogadores.add(util);
             try {
-                guardarCSV();
+                guardarClassificacaoJogador();
             } catch (IOException ex) {
                 Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -275,18 +281,19 @@ public class Manual extends JFrame {
     }
 
     /**
-     *
+     * Método que termina a interface gráfica Manual e abre Menu_Inicial,
+     * guardando os dados do jogador.
      */
     public void exterior_reached() {
         double tempoFinal = System.currentTimeMillis();
         double i = 1000.0;
         util.setTimeDuration(((tempoFinal - tempoInicial) / i));
 
-        JOptionPane.showMessageDialog(null, "Parabéns você concluiu o mapa " + util.getMapa() + " com " + util.getPontos() + " Pontos !!!\n"
+        JOptionPane.showMessageDialog(null, "Parabéns " + util.getNome() + ", concluiste o mapa '" + util.getMapa() + "' com " + util.getPontos() + " Pontos !!!\n"
                 + "Acabou o mapa em: " + util.getTimeDuration() + " segundos");
         jogadores.add(util);
         try {
-            guardarCSV();
+            guardarClassificacaoJogador();
         } catch (IOException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,9 +307,11 @@ public class Manual extends JFrame {
     }
 
     /**
+     * Método que pesquisa no mapa fornecido o aposento em que será iniciado o
+     * jogo.
      *
-     * @param m
-     * @return
+     * @param m mapa que irá ser pesquisado
+     * @return o aposento que tem como nome "entrada"
      */
     public Aposentos isEntry(Mapa m) {
         Aposentos ap = null;
@@ -316,10 +325,10 @@ public class Manual extends JFrame {
     }
 
     /**
+     * Método que guarda num ficheiro CSV o dados do jogador.
      *
-     * @throws IOException
      */
-    public void guardarCSV() throws IOException {
+    public void guardarClassificacaoJogador() throws IOException {
         FileWriter x = new FileWriter("Classificacoes.csv");
         x.write("Nome, Mapa, Pontos, Duracao \n");
 
@@ -340,8 +349,9 @@ public class Manual extends JFrame {
     }
 
     /**
+     * Método que lé os daods do ficheiro "Classificacoes.csv", e conforme vai
+     * lendo adiciona ao ArrayOrderedUti.
      *
-     * @throws FileNotFoundException
      */
     public void lerFicheiro() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("Classificacoes.csv"));
@@ -352,8 +362,8 @@ public class Manual extends JFrame {
             Jogador uti2 = new Jogador();
             uti2.setNome(variavel[0]);
             uti2.setMapa(variavel[1]);
-            uti2.setPontos((long) (Integer.parseInt(variavel[2])));
-            uti2.setTimeDuration((double) (Integer.parseInt(variavel[2])));
+            uti2.setPontos((Integer.parseInt(variavel[2])));
+            uti2.setTimeDuration((Integer.parseInt(variavel[2])));
             jogadores.add(uti2);
         }
     }

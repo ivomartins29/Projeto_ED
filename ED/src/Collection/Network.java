@@ -16,11 +16,11 @@ import java.util.logging.Logger;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
-    private double[][] adjMatrixConnectionCost; //Matriz de Adjacência com o custo da ligação.
+    private double[][] adjMatrixWeight; //Matriz de Adjacência com o peso da ligação.
 
     double DEFAULT_WEIGHT = 0.0;
 
@@ -29,23 +29,27 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      */
     public Network() {
         super();
-        this.adjMatrixConnectionCost = new double[super.DEFAULT_SIZE][super.DEFAULT_SIZE];
+        this.adjMatrixWeight = new double[super.DEFAULT_SIZE][super.DEFAULT_SIZE];
 
         for (int i = 0; i < super.DEFAULT_SIZE; i++) {
             for (int u = 0; u < super.DEFAULT_SIZE; u++) {
-                this.adjMatrixConnectionCost[i][u] = 0.0;
+                this.adjMatrixWeight[i][u] = 0.0;
             }
         }
     }
 
+    /**
+     * 
+     * @param numVertices numero de vertices
+     */
     public Network(int numVertices) {
         super(numVertices);
 
-        this.adjMatrixConnectionCost = new double[numVertices][numVertices];
+        this.adjMatrixWeight = new double[numVertices][numVertices];
 
         for (int i = 0; i < numVertices; i++) {
             for (int u = 0; u < numVertices; u++) {
-                this.adjMatrixConnectionCost[i][u] = Double.POSITIVE_INFINITY;
+                this.adjMatrixWeight[i][u] = Double.POSITIVE_INFINITY;
             }
         }
     }
@@ -56,7 +60,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      * @param vertix1 1 Vértice que se pretende ligar
      * @param vertix2 2 Vértice que se pretende ligar
      * @param weight
-     * @throws ElementNotFoundException
      */
     @Override
     public void addEdge(T vertix1, T vertix2, double weight) throws ElementNotFoundException {
@@ -64,7 +67,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         int index2 = super.getVertexIndex(vertix2);
 
         super.addEdge(vertix1, vertix2);
-        this.adjMatrixConnectionCost[index1][index2] = weight;
+        this.adjMatrixWeight[index1][index2] = weight;
     }
 
     /**
@@ -72,7 +75,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      *
      * @param vertix1 1 Vértice que se pretende ligar
      * @param vertix2 2 Vértice que se pretende ligar
-     * @throws ElementNotFoundException
      */
     @Override
     public void removeEdge(T vertix1, T vertix2) throws ElementNotFoundException {
@@ -80,18 +82,18 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         int index2 = super.getVertexIndex(vertix2);
 
         super.removeEdge(vertix1, vertix2);
-        this.adjMatrixConnectionCost[index1][index2] = 0.0;
+        this.adjMatrixWeight[index1][index2] = 0.0;
     }
 
     /**
      *
-     * Iterador que calcula o caminho mais curto em função do custo de ligação
+     * Iterador que calcula o caminho mais curto em função do peso
      *
      * @param startVertex vértice de partida
      * @param targetVertex vértice de destino
-     * @return iterador com o percurso mais curto em distancia entre 2 vertices
+     * @return iterador com o percurso mais curto em distancia e em peso entre 2 vertices
      */
-    public Iterator iteratorShortestPathConnectionCost(T startVertex, T targetVertex) throws EmptyCollectionException, EmptyException {
+    public Iterator iteratorShortestPathWeight(T startVertex, T targetVertex) throws EmptyCollectionException, EmptyException {
         int startIndex = getVertexIndex(startVertex);
         int targetIndex = getVertexIndex(targetVertex);
         int index;
@@ -122,7 +124,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         //atualiza o pathWeight de cada vertice
         for (int i = 0; i < super.count; i++) {
             if (!visited[i]) {
-                pathWeight[i] = pathWeight[startIndex] + adjMatrixConnectionCost[startIndex][i];
+                pathWeight[i] = pathWeight[startIndex] + adjMatrixWeight[startIndex][i];
                 predecessor[i] = startIndex;
                 traversalMinHeap.addElement(pathWeight[i]);
             }
@@ -142,8 +144,8 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             //atualiza o pathWeight de cada vertice
             for (int i = 0; i < super.count; i++) {
                 if (!visited[i]) {
-                    if ((adjMatrixConnectionCost[index][i] < Double.POSITIVE_INFINITY) && (pathWeight[index] + adjMatrixConnectionCost[index][i]) < pathWeight[i]) {
-                        pathWeight[i] = pathWeight[index] + adjMatrixConnectionCost[index][i];
+                    if ((adjMatrixWeight[index][i] < Double.POSITIVE_INFINITY) && (pathWeight[index] + adjMatrixWeight[index][i]) < pathWeight[i]) {
+                        pathWeight[i] = pathWeight[index] + adjMatrixWeight[index][i];
                         predecessor[i] = index;
                     }
                     traversalMinHeap.addElement(pathWeight[i]);
@@ -164,7 +166,13 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
-    
+    /**
+     * 
+     * @param visited array dos vertices visitados
+     * @param pathWeight array com o peso do caminha
+     * @param weight peso a procurar
+     * @return a posição do vartice em que o pathWeight é igual a weight
+     */
     private int getIndexOfAdjVertexWithWeightOf(boolean[] visited, double[] pathWeight, double weight) {
         for (int i = 0; i < super.count; i++) {
             if ((pathWeight[i] == weight) && !visited[i]) {
@@ -179,6 +187,9 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     /**
      * Iterador que pesquisa em largura todos os vértices, começando no
      * startVertex Retorna um iterador com todos os vértices ordenados
+     * 
+     * @param startVertex vértice inicial
+     * @return um iterador com todos os vértices ordenados
      */
     @Override
     public Iterator iteratorBFS(T startVertex) {
@@ -207,7 +218,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             resultList.addToRear(vertices[x]);
 
             for (int i = 0; i < super.count; i++) {
-                if ((adjMatrixConnectionCost[x][i] < 1.0) && !visited[i]) {
+                if ((adjMatrixWeight[x][i] < 1.0) && !visited[i]) {
                     traversalQueue.enqueue(i);
                     visited[i] = true;
                 }
@@ -218,13 +229,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     }
 
     /**
-     * Peso do caminho mais curto (Custo de Ligação)
+     * Peso do caminho mais curto (Peso de Ligação)
      *
      * @param startVertex vertice de partida
      * @param targetVertex vertice de chegada
-     * @return
-     * @throws ElementNotFoundException caso algum dos elementos não seja
-     * encontrado
+     * @return tamanho do caminho mais curto tendo em conta o peso
      */
     @Override
     public double shortestPathWeight(T startVertex, T targetVertex) throws ElementNotFoundException {
@@ -241,7 +250,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         Iterator it = null;
 
         try {
-            it = this.iteratorShortestPathConnectionCost(startVertex, targetVertex);
+            it = this.iteratorShortestPathWeight(startVertex, targetVertex);
 
         } catch (EmptyCollectionException ex) {
             Logger.getLogger(Network.class
@@ -262,7 +271,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         while (it.hasNext()) {
             T temp = (T) it.next();
             aux2 = this.getVertexIndex(temp);
-            pathWeight += this.adjMatrixConnectionCost[aux1][aux2];
+            pathWeight += this.adjMatrixWeight[aux1][aux2];
             aux1 = aux2;
         }
         return pathWeight;
@@ -292,12 +301,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
             for (int i = index; i < count; i++) {
                 for (int j = 0; j <= count; j++) {
-                    adjMatrixConnectionCost[i][j] = 0.0;
+                    adjMatrixWeight[i][j] = 0.0;
                 }
             }
             for (int i = index; i < count; i++) {
                 for (int j = 0; j < count; j++) {
-                    adjMatrixConnectionCost[j][i] = 0.0;
+                    adjMatrixWeight[j][i] = 0.0;
                 }
             }
         } else {
@@ -309,7 +318,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     /**
      *
-     * Método responsável por obter o custo duma matriz adjacente
+     * Método responsável por obter o peso duma matriz adjacente
      *
      * @param vertex1 vértice 1
      * @param vertex2 vértice 2
@@ -318,12 +327,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     public double getEdgeWeight(T vertex1, T vertex2) {
         int index1 = super.getVertexIndex(vertex1);
         int index2 = super.getVertexIndex(vertex2);
-        return this.adjMatrixConnectionCost[index1][index2];
+        return this.adjMatrixWeight[index1][index2];
     }
 
     /**
      *
-     * Método responsável por estabelecer o custo duma matriz adjacente
+     * Método responsável por estabelecer o peso duma matriz adjacente
      *
      * @param vertex1 vértice 1
      * @param vertex2 vértice 2
@@ -337,28 +346,40 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             throw new IllegalArgumentException("newWeight tem que ser > 0");
         }
 
-        this.adjMatrixConnectionCost[index1][index2] = newWeight;
+        this.adjMatrixWeight[index1][index2] = newWeight;
     }
 
+    /**
+     * 
+     * @return a matriz dos pesos
+     */
     public double[][] getAdjMatrixConnectionCost() {
-        return adjMatrixConnectionCost;
+        return adjMatrixWeight;
     }
 
+    /**
+     * Este método mutiplica todos os valores da adjMatrixWeight pelo 
+     * valor fornecido
+     * 
+     * @param multiplicador valor pelo qual os pesos serão multiplicados
+     */
     public void multiplicar_adjmatrizweight(int multiplicador) {
-        for (int i = 0; i < adjMatrixConnectionCost.length; i++) {
-            for (int j = 0; j < adjMatrixConnectionCost.length; j++) {
-                adjMatrixConnectionCost[i][j] = adjMatrixConnectionCost[i][j] * multiplicador;
+        for (int i = 0; i < adjMatrixWeight.length; i++) {
+            for (int j = 0; j < adjMatrixWeight.length; j++) {
+                adjMatrixWeight[i][j] = adjMatrixWeight[i][j] * multiplicador;
             }
         }
     }
 
+    /**
+     * Imprime na consola a matriz Weight
+     */
     public void imprimirMatrizWeight() {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
-                System.out.printf("[" + adjMatrixConnectionCost[i][j] + "] ");
+                System.out.printf("[" + adjMatrixWeight[i][j] + "] ");
             }
             System.out.printf("\n");
         }
     }
-
 }

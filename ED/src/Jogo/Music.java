@@ -14,6 +14,7 @@ import javax.sound.sampled.FloatControl;
 import javax.swing.JOptionPane;
 
 /**
+ * Classe que permite a introdução de uma música
  *
  * @author 8150121 e 8150133
  */
@@ -23,17 +24,17 @@ public class Music {
     private Clip clip;
 
     /**
-     *
+     * Método construtor de Music
      */
     public Music() {
     }
 
     /**
+     * Método que lê o ficheiro com a música
      *
-     * @param filePath
-     * @throws IOException
+     * @param filePath nome do ficheiro que contém a música
      */
-    public void playMusic(String filePath )throws IOException {
+    public void readMusic(String filePath) throws IOException {
         try {
             File musicPath = new File(filePath);
             if (musicPath.exists()) {
@@ -48,6 +49,11 @@ public class Music {
         }
     }
 
+    /**
+     * Método que altera o volume da música
+     * 
+     * @param vol valor para o qual o volume vai ser alterado
+     */
     public void setVolume(final int vol) {
 
         int volume = vol;
@@ -72,6 +78,11 @@ public class Music {
         gain.setValue(-gainDb);
     }
 
+    /**
+     * Get de clip
+     * 
+     * @return o clip
+     */
     public Clip getClip() {
         return clip;
     }

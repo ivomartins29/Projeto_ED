@@ -11,7 +11,7 @@ import java.util.Iterator;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface GraphADT<T extends Object> {
 
@@ -26,7 +26,6 @@ public interface GraphADT<T extends Object> {
      * Removes a single vertex with the given value from this graph.
      *
      * @param vertex the vertex to be removed from this graph
-     * @throws Exception.ElementNotFoundException
      */
     public void removeVertex(T vertex) throws ElementNotFoundException;
 
@@ -35,7 +34,6 @@ public interface GraphADT<T extends Object> {
      *
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
-     * @throws Exception.ElementNotFoundException
      */
     public void addEdge(T vertex1, T vertex2) throws ElementNotFoundException;
 
@@ -44,7 +42,6 @@ public interface GraphADT<T extends Object> {
      *
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
-     * @throws Exception.ElementNotFoundException
      */
     public void removeEdge(T vertex1, T vertex2) throws ElementNotFoundException;
 

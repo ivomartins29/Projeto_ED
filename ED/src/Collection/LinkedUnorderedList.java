@@ -11,7 +11,7 @@ import Interface.UnorderedListADT;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedListADT<T> {
 
@@ -59,7 +59,6 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
      *
      * @param t o elemento a ser adiconado
      * @param t1 o elemento t (em cima) vai ser adicionado depois do elemento t1
-     * @throws ElementNotFoundException se a LinkedUnorderedList estiver vazia
      */
     @Override
     public void addAfter(T t, T t1) throws ElementNotFoundException {
@@ -92,5 +91,4 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         }
 
     }
-
 }

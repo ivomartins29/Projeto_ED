@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 
 /**
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class ArrayIterator<T> implements Iterator<T> {
 
@@ -25,7 +25,6 @@ public class ArrayIterator<T> implements Iterator<T> {
     }
 
     /**
-     * Retorna true se existe mais que um elemento do array para retornar
      *
      * @return true se existe mais que um elemento do array para retornar
      */

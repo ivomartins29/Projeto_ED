@@ -10,7 +10,7 @@ import Exception.ElementNotFoundException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface NetworkADT<T extends Object> extends GraphADT<T> {
 
@@ -20,7 +20,6 @@ public interface NetworkADT<T extends Object> extends GraphADT<T> {
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
      * @param weight the weight
-     * @throws Exception.ElementNotFoundException
      */
     public void addEdge(T vertex1, T vertex2, double weight) throws ElementNotFoundException;
 
@@ -30,8 +29,6 @@ public interface NetworkADT<T extends Object> extends GraphADT<T> {
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
      * @return the weight of the shortest path in this network
-     * @throws Exception.ElementNotFoundException
      */
     public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException;
-
 }

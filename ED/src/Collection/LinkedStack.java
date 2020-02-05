@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
 
@@ -46,7 +46,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
      * Remove e retorna o elemento que esta no topo da LinkedStack
      *
      * @return elemento que esta no topo da LinkedStack
-     * @throws EmptyCollectionException se a LinkedStack estiver vazia
      */
     @Override
     public T pop() throws EmptyCollectionException {
@@ -62,8 +61,7 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
     /**
      * Retorna sem remover o elemento que esta no topo da LinkedStack
      *
-     * @returno elemento que esta no topo da LinkedStack
-     * @throws EmptyCollectionException se a LinkedStack estiver vazia
+     * @return elemento que esta no topo da LinkedStack
      */
     @Override
     public T peek() throws EmptyCollectionException {
@@ -112,7 +110,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
     }
 
     /**
-     * Retorna um iterator para os elementos da LinkedStack
      *
      * @return um iterator para os elementos da LinkedStack
      */
@@ -129,9 +126,6 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
 
         private LinearNode<T> current = top;
 
-        /*
-        
-         */
         @Override
         public boolean hasNext() {
             return current != null;
@@ -148,5 +142,4 @@ public class LinkedStack<T> implements StackADT<T>, Iterable<T> {
             return item;
         }
     }
-
 }

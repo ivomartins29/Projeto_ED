@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class ArrayList<T> implements ListADT<T> {
 
@@ -165,6 +165,9 @@ public class ArrayList<T> implements ListADT<T> {
         return new ArrayIterator<>(this.list, this.rear);
     }
 
+    /**
+     * Expande a capacidade do array list
+     */
     protected void expandCapacity() {
         T[] larger = (T[]) (new Object[this.list.length * 2]);
 

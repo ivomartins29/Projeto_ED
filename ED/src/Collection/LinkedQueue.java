@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
 
@@ -63,7 +63,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
      * Metodo responsavel adicionar elemento à fila
      *
      * @return elemento removido
-     * @throws EmptyCollectionException caso a fila esteja vazia
      */
     @Override
     public T dequeue() throws EmptyCollectionException {
@@ -87,7 +86,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
      * Metodo responsavel devolver primeiro elemento da fila
      *
      * @return primeiro elemento da lista
-     * @throws EmptyCollectionException caso a fila esteja vazia
      */
     @Override
     public T first() throws EmptyCollectionException {
@@ -143,7 +141,6 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
     }
 
     /**
-     * Retorna um iterator para os elementos da LinkedQueue
      *
      * @return um iterator para os elementos da LinkedQueue
      */
@@ -176,5 +173,4 @@ public class LinkedQueue<T> implements QueueADT<T>, Iterable<T> {
             return item;
         }
     }
-
 }

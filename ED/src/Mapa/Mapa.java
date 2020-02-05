@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class Mapa<T> {
 
@@ -33,7 +33,6 @@ public class Mapa<T> {
     /**
      *
      * @param Ficheiro_Json
-     * @throws ElementNotFoundException
      */
     public Mapa(String Ficheiro_Json) throws ElementNotFoundException {
         nome_ficheiro = Ficheiro_Json;
@@ -114,7 +113,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return nome do ficheiro
      */
     public String getNome_ficheiro() {
         return nome_ficheiro;
@@ -122,7 +121,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param nome_ficheiro
+     * @param nome_ficheiro recebe o nome do ficheiro
      */
     public void setNome_ficheiro(String nome_ficheiro) {
         this.nome_ficheiro = nome_ficheiro;
@@ -130,7 +129,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return tamanho do mapa
      */
     public int getTAM_MAPA() {
         return TAM_MAPA;
@@ -138,7 +137,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param TAM_MAPA
+     * @param TAM_MAPA recebe o tamanho do mapa
      */
     public void setTAM_MAPA(int TAM_MAPA) {
         this.TAM_MAPA = TAM_MAPA;
@@ -146,7 +145,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return o nome do mapa
      */
     public String getNome() {
         return nome;
@@ -154,7 +153,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param nome
+     * @param nome recebe o nome do mapa
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -162,7 +161,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return os pontos
      */
     public long getPontos() {
         return pontos;
@@ -170,7 +169,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param pontos
+     * @param pontos recebe os pontos
      */
     public void setPontos(long pontos) {
         this.pontos = pontos;
@@ -178,7 +177,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return um JSONArray de mapa
      */
     public JSONArray getMapa() {
         return mapa;
@@ -186,7 +185,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param mapa
+     * @param mapa recebe um JSONArray de mapa
      */
     public void setMapa(JSONArray mapa) {
         this.mapa = mapa;
@@ -194,7 +193,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return Network de aposentos
      */
     public Network<Aposentos> getNetwork() {
         return network;
@@ -202,7 +201,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param network
+     * @param network recebe um Network de aposentos
      */
     public void setNetwork(Network<Aposentos> network) {
         this.network = network;
@@ -210,7 +209,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return um ArrayUnorderedList de aposentos
      */
     public ArrayUnorderedList getAposentos() {
         return aposentos;
@@ -218,7 +217,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param aposentos
+     * @param aposentos recebe um ArrayUnorderedList de aposentos
      */
     public void setAposentos(ArrayUnorderedList aposentos) {
         this.aposentos = aposentos;
@@ -226,7 +225,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return aposento 2
      */
     public Aposentos getAposento() {
         return aposento;
@@ -234,7 +233,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param aposento
+     * @param aposento recebe um aposento
      */
     public void setAposento(Aposentos aposento) {
         this.aposento = aposento;
@@ -242,7 +241,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @return
+     * @return  aposento2
      */
     public Aposentos getAposento2() {
         return aposento2;
@@ -250,7 +249,7 @@ public class Mapa<T> {
 
     /**
      *
-     * @param aposento2
+     * @param aposento2 recebe um aposento
      */
     public void setAposento2(Aposentos aposento2) {
         this.aposento2 = aposento2;

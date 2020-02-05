@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class ArrayOrderedList<T> extends ArrayList<T> {
 

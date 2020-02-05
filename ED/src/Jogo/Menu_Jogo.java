@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe da interface gráfica do menu de modo de jogo.
  *
  * @author 8150121 e 8150133
  */
@@ -17,9 +18,10 @@ public class Menu_Jogo extends javax.swing.JFrame {
     private Jogador util;
 
     /**
+     * Método construtor da classe Menu_Jogo.
      *
-     * @param m
-     * @param util
+     * @param m mapa fornecido
+     * @param util novo jogador
      */
     public Menu_Jogo(Mapa m, Jogador util) {
         this.mapa = m;
@@ -28,7 +30,10 @@ public class Menu_Jogo extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")                       
+    /**
+     * Método que cria a interface gráfica da classe Menu_Jogo.
+     */
+    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -136,7 +141,13 @@ public class Menu_Jogo extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }
-    
+
+    /**
+     * Método que fecha a interface gráfica e abre a interface gráfica
+     * Menu_Inicial
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
@@ -146,6 +157,12 @@ public class Menu_Jogo extends javax.swing.JFrame {
         dispose();
     }
 
+    /**
+     * Método que fecha a interface gráfica e abre a interface gráfica
+     * Simulação
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Simulacao simulacao = new Simulacao(new Mapa(mapa.getNome_ficheiro()), util);
@@ -155,6 +172,12 @@ public class Menu_Jogo extends javax.swing.JFrame {
         dispose();
     }
 
+    /**
+     * Método que fecha a interface gráfica e abre a interface gráfica
+     * Manuals
+     *
+     * @param evt evento realizado quando o botão é pressionado
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException {
         try {
             Manual manual = new Manual(new Mapa(mapa.getNome_ficheiro()), util);
@@ -163,10 +186,10 @@ public class Menu_Jogo extends javax.swing.JFrame {
         }
         dispose();
     }
-                    
+
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;                   
+    private javax.swing.JPanel jPanel1;
 }
