@@ -247,7 +247,7 @@ public class Manual extends JFrame {
                 lig = null;
                 while (itr.hasNext()) {
                     lig = itr.next();
-                        divisoes = divisoes + " - " + lig.getNome();
+                    divisoes = divisoes + " - " + lig.getNome();
                 }
                 jTextField1.setText("");
                 jLabel4.setText(divisoes);
@@ -257,8 +257,8 @@ public class Manual extends JFrame {
                 }
             }
         }
-
         if (util.getPontos() <= 0) {
+
             double tempoFinal = System.currentTimeMillis();
             double i = 1000.0;
             util.setTimeDuration(((tempoFinal - tempoInicial) / i));
@@ -272,7 +272,9 @@ public class Manual extends JFrame {
                 Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
+                Mapa m = new Mapa(mapa.getNome_ficheiro());
+                util.setPontos(m.getPontos());
+                Menu_Jogo mJ = new Menu_Jogo(m, util);
             } catch (ElementNotFoundException ex) {
                 Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -297,12 +299,14 @@ public class Manual extends JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         try {
-            Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
+            Mapa m = new Mapa(mapa.getNome_ficheiro());
+            util.setPontos(m.getPontos());
+            Menu_Jogo mJ = new Menu_Jogo(m, util);
         } catch (ElementNotFoundException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         dispose();
     }
 

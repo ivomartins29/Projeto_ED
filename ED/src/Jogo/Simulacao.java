@@ -198,10 +198,12 @@ public class Simulacao extends JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            Menu_Inicial menu_Inicial = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
+         try {
+            Mapa m = new Mapa(mapa.getNome_ficheiro());
+            util.setPontos(m.getPontos());
+            Menu_Jogo mJ = new Menu_Jogo(m,util);
         } catch (ElementNotFoundException ex) {
-            Logger.getLogger(Simulacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
     }
