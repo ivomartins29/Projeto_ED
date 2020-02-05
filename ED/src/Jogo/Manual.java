@@ -1,17 +1,25 @@
 package Jogo;
 
+<<<<<<< HEAD
 import Collection.ArrayOrderedUti;
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 import Collection.ArrayUnorderedList;
 import Exception.ElementNotFoundException;
 import Mapa.Aposentos;
 import Mapa.Jogador;
 import Mapa.Mapa;
+<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
+=======
+import java.io.IOException;
+import java.util.Iterator;
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -21,10 +29,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+<<<<<<< HEAD
 /**
  *
  * @author 8150121 e 8150133
  */
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 public class Manual extends JFrame {
 
     private Mapa mapa;
@@ -43,11 +54,15 @@ public class Manual extends JFrame {
     private String divisoes;
     private ArrayUnorderedList list;
     private Iterator<Aposentos> itr;
+<<<<<<< HEAD
     private ArrayOrderedUti<Jogador> jogadores;
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private Aposentos lig;
     double tempoInicial;
     double tempoFinal;
 
+<<<<<<< HEAD
     /**
      *
      * @param m
@@ -56,6 +71,9 @@ public class Manual extends JFrame {
      */
     public Manual(Mapa m, Jogador util) throws FileNotFoundException {
         
+=======
+    public Manual(Mapa m, Jogador util) {
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
         mapa = m;
         this.util = util;
         String temp = null;
@@ -68,7 +86,12 @@ public class Manual extends JFrame {
         setVisible(true);
     }
 
+<<<<<<< HEAD
     @SuppressWarnings("unchecked")                        
+=======
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void initComponents() {
         divisao = isEntry(mapa);
         util.setPontos(mapa.getPontos());
@@ -209,6 +232,7 @@ public class Manual extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+<<<<<<< HEAD
     }                      
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +242,12 @@ public class Manual extends JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+    }// </editor-fold>                        
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
         resposta = jTextField1.getText();
         Iterator<Aposentos> itr2 = list.iterator();
         while (itr2.hasNext()) {
@@ -256,6 +286,7 @@ public class Manual extends JFrame {
             double tempoFinal = System.currentTimeMillis();
             double i = 1000.0;
             util.setTimeDuration(((tempoFinal - tempoInicial) / i));
+<<<<<<< HEAD
             jogadores.add(util);
             try {
                 guardarCSV();
@@ -263,6 +294,14 @@ public class Manual extends JFrame {
                 Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+=======
+            try {
+                util.guardarUtilizadores();
+            } catch (IOException ex) {
+                Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
             JOptionPane.showMessageDialog(null, "MORREU!");
             try {
                 Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()), util);
@@ -273,21 +312,33 @@ public class Manual extends JFrame {
         }
     }
 
+<<<<<<< HEAD
     /**
      *
      */
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public void exterior_reached() {
         double tempoFinal = System.currentTimeMillis();
         double i = 1000.0;
         util.setTimeDuration(((tempoFinal - tempoInicial) / i));
+<<<<<<< HEAD
         jogadores.add(util);
         try {
             guardarCSV();
+=======
+        try {
+            util.guardarUtilizadores();
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
         } catch (IOException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+<<<<<<< HEAD
         JOptionPane.showMessageDialog(null, "Parabéns você concluiu o mapa " + util.getMapa()+  " com " + util.getPontos() + " Pontos !!!\n"
+=======
+        JOptionPane.showMessageDialog(null, "Parabéns você concluiu este mapa com " + util.getPontos() + " Pontos !!!\n"
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
                 + "Acabou o mapa em: " + util.getTimeDuration() + " segundos");
 
         try {
@@ -298,11 +349,14 @@ public class Manual extends JFrame {
         dispose();
     }
 
+<<<<<<< HEAD
     /**
      *
      * @param m
      * @return
      */
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Aposentos isEntry(Mapa m) {
         Aposentos ap = null;
         for (int i = 0; i < m.getNetwork().getCount(); i++) {
@@ -313,6 +367,7 @@ public class Manual extends JFrame {
         }
         return ap;
     }
+<<<<<<< HEAD
 
     /**
      *
@@ -356,4 +411,6 @@ public class Manual extends JFrame {
             jogadores.add(uti2);
         }
     }
+=======
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 }

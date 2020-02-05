@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
+<<<<<<< HEAD
  * @author 8150121 e 8150133
  */
 public class Music {
@@ -29,6 +30,15 @@ public class Music {
      * @param filePath
      * @throws IOException
      */
+=======
+ * @author Ivo Martins
+ */
+public class Music {
+
+    public Music() {
+    }
+
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public static void playMusic(String filePath) throws IOException {
         try {
             File musicPath = new File(filePath);

@@ -10,11 +10,15 @@ import Interface.HeapADT;
 
 
 
+<<<<<<< HEAD
 /**
  * 
  * @author 8150121 e 8150133
  * @param <T> 
  */
+=======
+
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 
 public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
 

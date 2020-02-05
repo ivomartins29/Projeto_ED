@@ -1,0 +1,15 @@
+Jogador: ivo
+Mapa jogado: null
+Pontos: 70
+Acabou o mapa em: 22.22 segundos
+
+Jogador: ivo
+Mapa jogado: sexta-feira 13
+Pontos: 70
+Acabou o mapa em: 23.409 segundos
+
+Jogador: ivo
+Mapa jogado: sexta-feira 13
+Pontos: 0
+Acabou o mapa em: 9.292 segundos
+

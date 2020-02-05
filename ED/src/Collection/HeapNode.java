@@ -7,7 +7,11 @@ package Collection;
 
 /**
  *
+<<<<<<< HEAD
  * @author 8150121 e 8150133
+=======
+ * @author Sandra Fonseca
+>>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
  * @param <T>
  */
 public class HeapNode<T> extends BinaryTreeNode<T> {
