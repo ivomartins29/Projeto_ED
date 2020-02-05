@@ -17,7 +17,7 @@ public class Main {
         Music music = new Music();
         music.readMusic("Megalovania.wav");
         music.getClip().stop();
-        music.setVolume(10);
+        music.setVolume(15);
         Mapa map = new Mapa("mapa.json");
 
         Menu_Inicial menu_Inicial = new Menu_Inicial(map);
