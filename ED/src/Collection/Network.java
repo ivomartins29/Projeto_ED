@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class Network<T> extends Graph<T> implements NetworkADT<T> {
@@ -25,7 +25,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     double DEFAULT_WEIGHT = 0.0;
 
     /**
-     *
+     * Construtor da Network
      */
     public Network() {
         super();
@@ -38,10 +38,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
-    /**
-     *
-     * @param numVertices
-     */
     public Network(int numVertices) {
         super(numVertices);
 
@@ -54,6 +50,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
+    /**
+     * Permite definir uma ligação entre dois vertices
+     *
+     * @param vertix1 1 Vértice que se pretende ligar
+     * @param vertix2 2 Vértice que se pretende ligar
+     * @param weight
+     * @throws ElementNotFoundException
+     */
     @Override
     public void addEdge(T vertix1, T vertix2, double weight) throws ElementNotFoundException {
         int index1 = super.getVertexIndex(vertix1);
@@ -63,6 +67,13 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         this.adjMatrixConnectionCost[index1][index2] = weight;
     }
 
+    /**
+     * Permite remover uma ligação entre dois vertices
+     *
+     * @param vertix1 1 Vértice que se pretende ligar
+     * @param vertix2 2 Vértice que se pretende ligar
+     * @throws ElementNotFoundException
+     */
     @Override
     public void removeEdge(T vertix1, T vertix2) throws ElementNotFoundException {
         int index1 = super.getVertexIndex(vertix1);
@@ -74,11 +85,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     /**
      *
-     * @param startVertex
-     * @param targetVertex
-     * @return
-     * @throws EmptyCollectionException
-     * @throws EmptyException
+     * Iterador que calcula o caminho mais curto em função do custo de ligação
+     *
+     * @param startVertex vértice de partida
+     * @param targetVertex vértice de destino
+     * @return iterador com o percurso mais curto em distancia entre 2 vertices
      */
     public Iterator iteratorShortestPathConnectionCost(T startVertex, T targetVertex) throws EmptyCollectionException, EmptyException {
         int startIndex = getVertexIndex(startVertex);
@@ -153,6 +164,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
+    
     private int getIndexOfAdjVertexWithWeightOf(boolean[] visited, double[] pathWeight, double weight) {
         for (int i = 0; i < super.count; i++) {
             if ((pathWeight[i] == weight) && !visited[i]) {
@@ -164,6 +176,10 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return -1;
     }
 
+    /**
+     * Iterador que pesquisa em largura todos os vértices, começando no
+     * startVertex Retorna um iterador com todos os vértices ordenados
+     */
     @Override
     public Iterator iteratorBFS(T startVertex) {
         Integer x = -1;
@@ -201,6 +217,15 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Peso do caminho mais curto (Custo de Ligação)
+     *
+     * @param startVertex vertice de partida
+     * @param targetVertex vertice de chegada
+     * @return
+     * @throws ElementNotFoundException caso algum dos elementos não seja
+     * encontrado
+     */
     @Override
     public double shortestPathWeight(T startVertex, T targetVertex) throws ElementNotFoundException {
         double pathWeight = 0.00f;
@@ -243,11 +268,22 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return pathWeight;
     }
 
+    /**
+     *
+     * Método responsável pela adição de um vértice
+     *
+     * @param t vértice a ser adicionado
+     */
     @Override
     public void addVertex(T t) {
         super.addVertex(t);
     }
 
+    /**
+     * Método responsável pela remoção de um vértice
+     *
+     * @param t vértice a ser removido
+     */
     @Override
     public void removeVertex(T t) throws ElementNotFoundException {
         int index = this.getVertexIndex(t);
@@ -273,9 +309,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     /**
      *
-     * @param vertex1
-     * @param vertex2
-     * @return
+     * Método responsável por obter o custo duma matriz adjacente
+     *
+     * @param vertex1 vértice 1
+     * @param vertex2 vértice 2
+     * @return peso do vértice 1 ao vértice 2
      */
     public double getEdgeWeight(T vertex1, T vertex2) {
         int index1 = super.getVertexIndex(vertex1);
@@ -285,9 +323,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     /**
      *
-     * @param vertex1
-     * @param vertex2
-     * @param newWeight
+     * Método responsável por estabelecer o custo duma matriz adjacente
+     *
+     * @param vertex1 vértice 1
+     * @param vertex2 vértice 2
+     * @param newWeight custo do vértice 1 ao vértice 2
      */
     public void setEdgeWeight(T vertex1, T vertex2, double newWeight) {
         int index1 = super.getVertexIndex(vertex1);
@@ -300,18 +340,10 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         this.adjMatrixConnectionCost[index1][index2] = newWeight;
     }
 
-    /**
-     *
-     * @return
-     */
     public double[][] getAdjMatrixConnectionCost() {
         return adjMatrixConnectionCost;
     }
 
-    /**
-     *
-     * @param multiplicador
-     */
     public void multiplicar_adjmatrizweight(int multiplicador) {
         for (int i = 0; i < adjMatrixConnectionCost.length; i++) {
             for (int j = 0; j < adjMatrixConnectionCost.length; j++) {
@@ -320,9 +352,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
-    /**
-     *
-     */
     public void imprimirMatrizWeight() {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
@@ -331,4 +360,5 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             System.out.printf("\n");
         }
     }
+
 }

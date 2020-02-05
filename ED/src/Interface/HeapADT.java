@@ -7,10 +7,12 @@ package Interface;
 
 import Exception.EmptyException;
 
+
+
 /**
- *
- * @author 8180546 && 8180159
- * @param <T>
+ * 
+ * @author 8150121 e 8150133
+ * @param <T> 
  */
 public interface HeapADT<T> extends BinaryTreeADT<T> {
 

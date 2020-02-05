@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public interface GraphADT<T extends Object> {
@@ -96,10 +96,6 @@ public interface GraphADT<T extends Object> {
      */
     public int size();
 
-    /**
-     *
-     * @return
-     */
     public T[] getVertices();
 
     /**

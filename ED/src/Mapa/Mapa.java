@@ -15,7 +15,7 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class Mapa<T> {
@@ -41,7 +41,10 @@ public class Mapa<T> {
         JSONParser parser = new JSONParser();
 
         try {
-            jsonObject = (JSONObject) parser.parse(new FileReader(Ficheiro_Json));
+            jsonObject = (JSONObject) parser.parse(new FileReader(
+                    Ficheiro_Json));
+
+            //falta por condição para verificar se o ficheiro está vazio
             mapa = new JSONArray();
             int i = 0;
 

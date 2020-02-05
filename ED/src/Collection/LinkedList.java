@@ -15,34 +15,29 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class LinkedList<T> implements ListADT<T> {
 
-    /**
-     *
-     */
     protected LinearNode<T> head;
-
-    /**
-     *
-     */
     protected LinearNode<T> tail;
-
-    /**
-     *
-     */
     protected int count;
 
     /**
-     *
+     * Cria uma nova LinkedList
      */
     public LinkedList() {
         this.head = this.tail = null;
         this.count = 0;
     }
 
+    /**
+     * Remove e retorna o primeiro elemento da lista
+     *
+     * @return o primeiro elemento da lista
+     * @throws EmptyCollectionException quando a lista está vazia
+     */
     @Override
     public T removeFirst() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -60,6 +55,12 @@ public class LinkedList<T> implements ListADT<T> {
         return result.getElement();
     }
 
+    /**
+     * Remove e retorna o utlimo elemento da lista
+     *
+     * @return o utlimo elemento da lista
+     * @throws EmptyCollectionException quando a lista está vazia
+     */
     @Override
     public T removeLast() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -87,6 +88,13 @@ public class LinkedList<T> implements ListADT<T> {
         return result.getElement();
     }
 
+    /**
+     * Remove e retorna um elemento especifico da lista
+     *
+     * @param t o elemento a ser removido da lista
+     * @return o elemento removido da lista
+     * @throws ElementNotFoundException quando a lista esta vazia
+     */
     @Override
     public T remove(T t) throws ElementNotFoundException {
 
@@ -135,6 +143,12 @@ public class LinkedList<T> implements ListADT<T> {
         return current.getElement();
     }
 
+    /**
+     * Retorna uma referencia para o primeiro elemento da lista
+     *
+     * @return uma referencia para o primeiro elemento da lista
+     * @throws EmptyCollectionException quando a lista esta vazia
+     */
     @Override
     public T first() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -144,6 +158,12 @@ public class LinkedList<T> implements ListADT<T> {
         return this.head.getElement();
     }
 
+    /**
+     * Retorna uma referencia para o ultimo elemento da lista
+     *
+     * @return uma referencia para o ultimo elemento da lista
+     * @throws EmptyCollectionException quando a lista esta vazia
+     */
     @Override
     public T last() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -153,6 +173,12 @@ public class LinkedList<T> implements ListADT<T> {
         return this.tail.getElement();
     }
 
+    /**
+     * Permite descobrir se um elemento especifico existe na lista
+     *
+     * @param t elemento a quem vai ser verificada a sua existencia na lista
+     * @return true se o elemento existir na lista, false caso contrário
+     */
     @Override
     public boolean contains(T t) {
         if (isEmpty()) {
@@ -178,16 +204,31 @@ public class LinkedList<T> implements ListADT<T> {
         return found;
     }
 
+    /**
+     * Permite descobrir se a lista contém algum elemento
+     *
+     * @return true se a tiver elementos, false caso contrario
+     */
     @Override
     public boolean isEmpty() {
         return this.count == 0;
     }
 
+    /**
+     * Retorna o numero de elementos da lista
+     *
+     * @return o numero de elementos da lista
+     */
     @Override
     public int size() {
         return count;
     }
 
+    /**
+     * Retorna uma representação em string da lista
+     *
+     * @return uma representação em string da lista
+     */
     @Override
     public String toString() {
         LinearNode<T> current = head;
@@ -201,6 +242,11 @@ public class LinkedList<T> implements ListADT<T> {
         return result;
     }
 
+    /**
+     * Retorna um iterator para os elementos da lista
+     *
+     * @return um iterator para os elementos da lista
+     */
     @Override
     public Iterator<T> iterator() {
         LinkedListIterador<T> it = new LinkedListIterador<>(head, count);
@@ -208,18 +254,15 @@ public class LinkedList<T> implements ListADT<T> {
     }
 
     /**
+     * Classe auxiliar do iterator (inner class)
      *
      * @param <T>
      */
     public class LinkedListIterador<T> implements Iterator<T> {
 
+        private final int count;
         private LinearNode<T> current;
 
-        /**
-         *
-         * @param collection
-         * @param size
-         */
         public LinkedListIterador(LinearNode<T> collection, int size) {
             current = collection;
             count = size;

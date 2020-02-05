@@ -9,7 +9,7 @@ import Exception.EmptyCollectionException;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public interface StackADT<T extends Object> {

@@ -5,17 +5,13 @@
  */
 package Mapa;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  */
 public class Jogador {
-    
-     private String nome;
+
+    private String nome;
     private long pontos;
     private String mapa;
     private double timeDuration;
@@ -93,23 +89,4 @@ public class Jogador {
     public void setTimeDuration(double timeDuration) {
         this.timeDuration = timeDuration;
     }
-    
-    /**
-     *
-     * @throws IOException
-     */
-    public void guardarUtilizadores() throws IOException {
-        FileWriter x = new FileWriter("Classificações.txt", true);
-        try {
-            x.write("Jogador: " + this.nome + "\nMapa jogado: " + this.mapa + "\nPontos: " + this.pontos + "\nAcabou o mapa em: " + this.timeDuration + " segundos" + "\n\n");
-        } catch (FileNotFoundException var4) {
-            var4.printStackTrace();
-        } catch (IOException var5) {
-            var5.printStackTrace();
-        }
-        x.close();
-    }
-    
-    
-    
 }

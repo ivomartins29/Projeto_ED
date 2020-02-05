@@ -4,7 +4,7 @@ import org.json.simple.JSONArray;
 
 /**
  *
- * @author 8180546 && 8180159
+ * @author 8150121 e 8150133
  * @param <T>
  */
 public class Aposentos<T> {
@@ -77,6 +77,9 @@ public class Aposentos<T> {
      * @return
      */
     public boolean hasExit() {
-        return this.getLigacoes().contains("exterior");
+        if (this.getLigacoes().contains("exterior")) {
+            return true;
+        }
+        return false;
     }
 }
