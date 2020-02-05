@@ -55,7 +55,7 @@ public class Manual extends JFrame {
      * @throws FileNotFoundException
      */
     public Manual(Mapa m, Jogador util) throws FileNotFoundException {
-        
+
         mapa = m;
         this.util = util;
         String temp = null;
@@ -68,7 +68,7 @@ public class Manual extends JFrame {
         setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")                        
+    @SuppressWarnings("unchecked")
     private void initComponents() {
         divisao = isEntry(mapa);
         util.setPontos(mapa.getPontos());
@@ -104,7 +104,7 @@ public class Manual extends JFrame {
 
         jLabel3.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Divisão: " + divisao.getNome());
+        jLabel3.setText("Divisão Atual: " + divisao.getNome());
 
         jTextField1.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
@@ -120,7 +120,7 @@ public class Manual extends JFrame {
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Digite o nome da próxma divisão:");
+        jLabel5.setText("Digite o nome da próxima divisão:");
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,7 +209,7 @@ public class Manual extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }                      
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         jogadores = new ArrayOrderedUti<>();
@@ -256,14 +256,15 @@ public class Manual extends JFrame {
             double tempoFinal = System.currentTimeMillis();
             double i = 1000.0;
             util.setTimeDuration(((tempoFinal - tempoInicial) / i));
+
+            JOptionPane.showMessageDialog(null, "MORREU!");
+            
             jogadores.add(util);
             try {
                 guardarCSV();
             } catch (IOException ex) {
                 Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            JOptionPane.showMessageDialog(null, "MORREU!");
             try {
                 Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
             } catch (ElementNotFoundException ex) {
@@ -280,15 +281,15 @@ public class Manual extends JFrame {
         double tempoFinal = System.currentTimeMillis();
         double i = 1000.0;
         util.setTimeDuration(((tempoFinal - tempoInicial) / i));
+
+        JOptionPane.showMessageDialog(null, "Parabéns você concluiu o mapa " + util.getMapa() + " com " + util.getPontos() + " Pontos !!!\n"
+                + "Acabou o mapa em: " + util.getTimeDuration() + " segundos");
         jogadores.add(util);
         try {
             guardarCSV();
         } catch (IOException ex) {
             Logger.getLogger(Manual.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        JOptionPane.showMessageDialog(null, "Parabéns você concluiu o mapa " + util.getMapa()+  " com " + util.getPontos() + " Pontos !!!\n"
-                + "Acabou o mapa em: " + util.getTimeDuration() + " segundos");
 
         try {
             Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
