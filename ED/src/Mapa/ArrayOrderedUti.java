@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Collection;
+package Mapa;
 
-import Mapa.Jogador;
-
-
+import Collection.ArrayOrderedList;
 
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
-public class ArrayOrderedUti<T> extends ArrayOrderedList<T>{
+public class ArrayOrderedUti<T> extends ArrayOrderedList<T> {
 
     /**
      *
@@ -35,7 +33,7 @@ public class ArrayOrderedUti<T> extends ArrayOrderedList<T>{
 
             int i = 0;
 
-            while (i < size() && var.compareTo(((Jogador)this.array[i]).getPontos()) < 0) {
+            while (i < size() && var.compareTo(((Jogador) this.array[i]).getPontos()) < 0) {
                 i++;
             }
 

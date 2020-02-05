@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Mapa;
 
 /**
+ * Classe que contém os dados do jogador
  *
  * @author 8150121 e 8150133
  */
@@ -17,7 +13,7 @@ public class Jogador {
     private double timeDuration;
 
     /**
-     *
+     * Método construtor da classe Jogador
      */
     public Jogador() {
         this.nome = null;
@@ -27,64 +23,72 @@ public class Jogador {
     }
 
     /**
+     * Get da variável nome
      *
-     * @return
+     * @return a string nome
      */
     public String getNome() {
         return nome;
     }
 
     /**
+     * Set da variável nome
      *
-     * @param nome
+     * @param nome nova string nome
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
+     * Get da variável pontos
      *
-     * @return
+     * @return o valor de pontos
      */
     public long getPontos() {
         return pontos;
     }
 
     /**
+     * Set da variável pontos
      *
-     * @param pontos
+     * @param pontos novo valor para pontos
      */
     public void setPontos(long pontos) {
         this.pontos = pontos;
     }
 
     /**
+     * Get da variável mapa
      *
-     * @return
+     * @return string mapa
      */
     public String getMapa() {
         return mapa;
     }
 
     /**
+     * Set da variável mapa
      *
-     * @param mapa
+     * @param mapa novo mapa
      */
     public void setMapa(String mapa) {
         this.mapa = mapa;
     }
 
     /**
+     * Get da variável timeDuration
      *
-     * @return
+     * @return valor de timeDuration
      */
     public double getTimeDuration() {
         return timeDuration;
     }
 
     /**
+     * Set da variável timeDuration
      *
-     * @param timeDuration
+     * @param timeDuration novo valor para timeDurations
      */
     public void setTimeDuration(double timeDuration) {
         this.timeDuration = timeDuration;

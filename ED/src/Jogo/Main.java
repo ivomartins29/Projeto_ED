@@ -1,8 +1,6 @@
 package Jogo;
 
-import Mapa.Jogador;
 import Mapa.Mapa;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,12 +9,13 @@ import javax.swing.JOptionPane;
 public class Main {
 
     /**
+     * Método que inicia o programa
+     *
      * @param args the command line arguments
-     * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
         Music music = new Music();
-        music.playMusic("Megalovania.wav");
+        music.readMusic("Megalovania.wav");
         music.getClip().stop();
         music.setVolume(10);
         Mapa map = new Mapa("mapa.json");

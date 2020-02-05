@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ED">
+  <ClassDiagramComponents>
+    <Class name="ArrayList" package="Collection" visibility="public" xPosition="1239.0" yPosition="363.0">
+      <Fields>
+        <Field name="DEFAULT_CAPACITY" type="int" visibility="protected" isFinal="true"/>
+        <Field name="NOT_FOUND" type="int" visibility="private" isFinal="true"/>
+        <Field name="rear" type="int" visibility="protected"/>
+        <Field name="list" type="T[]" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="initialCapacity"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="removeFirst" returnType="T" visibility="public"/>
+        <Method name="removeLast" returnType="T" visibility="public"/>
+        <Method name="remove" returnType="T" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="last" returnType="T" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="find" returnType="int" visibility="private">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="expandCapacity" returnType="void" visibility="protected"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayOrderedList" package="Collection" visibility="public" xPosition="1040.0" yPosition="350.0">
+      <Fields>
+        <Field name="count" type="int" visibility="protected"/>
+        <Field name="array" type="T[]" visibility="protected"/>
+        <Field name="TAM_MAX" type="int" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="size"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="expandCapacity" returnType="void" visibility="protected" isSynchronized="true"/>
+        <Method name="add" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="printAll" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="removeFirst" returnType="T" visibility="public"/>
+        <Method name="removeLast" returnType="T" visibility="public"/>
+        <Method name="remove" returnType="T" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="last" returnType="T" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="find" returnType="int" visibility="private" isSynchronized="true">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="findObject" returnType="T" visibility="public" isSynchronized="true">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="clear" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="get" returnType="T" visibility="public" isSynchronized="true">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public" isSynchronized="true"/>
+        <Method name="size" returnType="int" visibility="public" isSynchronized="true"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public" isSynchronized="true"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayUnorderedList" package="Collection" visibility="public" xPosition="1465.0" yPosition="363.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="initialCapacity"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addToFront" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="addToRear" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="addAfter" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+          <Argument type="T" name="t1"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BinaryTree" package="Collection" visibility="public" xPosition="2036.0" yPosition="543.0">
+      <Fields>
+        <Field name="count" type="int" visibility="protected"/>
+        <Field name="root" type="BinaryTreeNode&lt;T&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRoot" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="find" returnType="T" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="findAgain" returnType="BinaryTreeNode&lt;T&gt;" visibility="private">
+          <Argument type="T" name="target"/>
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="next"/>
+        </Method>
+        <Method name="iteratorInOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="inorder" returnType="void" visibility="protected">
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="node"/>
+          <Argument type="ArrayUnorderedList&lt;T&gt;" name="tempList"/>
+        </Method>
+        <Method name="iteratorPreOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="preOrder" returnType="void" visibility="protected">
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="node"/>
+          <Argument type="ArrayUnorderedList&lt;T&gt;" name="tempList"/>
+        </Method>
+        <Method name="iteratorPostOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="postOrder" returnType="void" visibility="protected">
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="node"/>
+          <Argument type="ArrayUnorderedList&lt;T&gt;" name="tempList"/>
+        </Method>
+        <Method name="iteratorLevelOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BinaryTreeNode" package="Collection" visibility="public" xPosition="1723.0" yPosition="826.0">
+      <Fields>
+        <Field name="element" type="T" visibility="protected"/>
+        <Field name="left" type="BinaryTreeNode&lt;T&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="numChildren" returnType="int" visibility="public"/>
+        <Method name="getElement" returnType="T" visibility="public"/>
+        <Method name="setElement" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="getLeft" returnType="BinaryTreeNode&lt;T&gt;" visibility="public"/>
+        <Method name="setLeft" returnType="void" visibility="public">
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="left"/>
+        </Method>
+        <Method name="getRight" returnType="BinaryTreeNode&lt;T&gt;" visibility="public"/>
+        <Method name="setRight" returnType="void" visibility="public">
+          <Argument type="BinaryTreeNode&lt;T&gt;" name="right"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Graph" package="Collection" visibility="public" xPosition="571.0" yPosition="2.0">
+      <Fields>
+        <Field name="DEFAULT_SIZE" type="int" visibility="protected" isFinal="true"/>
+        <Field name="vertices" type="T[]" visibility="protected"/>
+        <Field name="count" type="int" visibility="protected"/>
+        <Field name="adjMatrix" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="size"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addVertex" returnType="void" visibility="public">
+          <Argument type="T" name="Vertex"/>
+        </Method>
+        <Method name="removeVertex" returnType="void" visibility="public">
+          <Argument type="T" name="Vertex"/>
+        </Method>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="iteratorBFS" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+        </Method>
+        <Method name="iteratorDFS" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+        </Method>
+        <Method name="iteratorShortestPath" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="iteratorShortestPathIndices" returnType="Iterator&lt;Integer&gt;" visibility="protected">
+          <Argument type="int" name="startIndex"/>
+          <Argument type="int" name="targetIndex"/>
+        </Method>
+        <Method name="shortestPathLength" returnType="int" visibility="public">
+          <Argument type="int" name="startIndex"/>
+          <Argument type="int" name="targetIndex"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="isConnected" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="getVertices" returnType="T[]" visibility="public"/>
+        <Method name="getDefaultSize" returnType="int" visibility="public"/>
+        <Method name="expandCapacity" returnType="void" visibility="private"/>
+        <Method name="vertexExists" returnType="boolean" visibility="protected">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="getVertexIndex" returnType="int" visibility="public">
+          <Argument type="T" name="vertex"/>
+        </Method>
+        <Method name="indexIsValid" returnType="boolean" visibility="protected">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="areConnected" returnType="boolean" visibility="protected">
+          <Argument type="T" name="t"/>
+          <Argument type="T" name="t1"/>
+        </Method>
+        <Method name="areConnected" returnType="boolean" visibility="protected">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="getVertexAt" returnType="T" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="setVertexAt" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="T" name="vertex"/>
+        </Method>
+        <Method name="getNeightbors" returnType="ArrayUnorderedList&lt;T&gt;" visibility="public">
+          <Argument type="T" name="vertex"/>
+        </Method>
+        <Method name="num_Neighbors" returnType="int" visibility="public">
+          <Argument type="int" name="pos"/>
+        </Method>
+        <Method name="getCount" returnType="int" visibility="public"/>
+        <Method name="imprimirAdjMatrix" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="HeapNode" package="Collection" visibility="public" xPosition="1729.0" yPosition="617.0">
+      <Fields>
+        <Field name="parent" type="HeapNode&lt;T&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getParent" returnType="HeapNode&lt;T&gt;" visibility="public"/>
+        <Method name="setParent" returnType="void" visibility="public">
+          <Argument type="HeapNode&lt;T&gt;" name="parent"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LinearNode" package="Collection" visibility="public" xPosition="471.0" yPosition="935.0">
+      <Fields>
+        <Field name="next" type="LinearNode&lt;T&gt;" visibility="private"/>
+        <Field name="element" type="T" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNext" returnType="LinearNode&lt;T&gt;" visibility="public"/>
+        <Method name="setNext" returnType="void" visibility="public">
+          <Argument type="LinearNode&lt;T&gt;" name="node"/>
+        </Method>
+        <Method name="getElement" returnType="T" visibility="public"/>
+        <Method name="getElement" returnType="void" visibility="public">
+          <Argument type="T" name="elemento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LinkedHeap" package="Collection" visibility="public" xPosition="2237.0" yPosition="38.0">
+      <Fields>
+        <Field name="lastNodeInserted" type="HeapNode&lt;T&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="T" name="element"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addElement" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="removeMin" returnType="T" visibility="public"/>
+        <Method name="findMin" returnType="T" visibility="public"/>
+        <Method name="getNextParentAdd" returnType="HeapNode&lt;T&gt;" visibility="private"/>
+        <Method name="heapifyAdd" returnType="void" visibility="private"/>
+        <Method name="getNewLastNode" returnType="HeapNode&lt;T&gt;" visibility="private"/>
+        <Method name="heapifyRemove" returnType="void" visibility="private"/>
+        <Method name="removeAllElements" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LinkedList" package="Collection" visibility="public" xPosition="1787.0" yPosition="34.0">
+      <Fields>
+        <Field name="head" type="LinearNode&lt;T&gt;" visibility="protected"/>
+        <Field name="tail" type="LinearNode&lt;T&gt;" visibility="protected"/>
+        <Field name="count" type="int" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="removeFirst" returnType="T" visibility="public"/>
+        <Method name="removeLast" returnType="T" visibility="public"/>
+        <Method name="remove" returnType="T" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="last" returnType="T" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LinkedQueue" package="Collection" visibility="public" xPosition="263.0" yPosition="884.0">
+      <Fields>
+        <Field name="first" type="LinearNode&lt;T&gt;" visibility="private"/>
+        <Field name="last" type="LinearNode&lt;T&gt;" visibility="private"/>
+        <Field name="count" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="private">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="enqueue" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="dequeue" returnType="T" visibility="public"/>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LinkedStack" package="Collection" visibility="public" xPosition="263.0" yPosition="1227.0">
+      <Fields>
+        <Field name="top" type="LinearNode&lt;T&gt;" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="push" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="pop" returnType="T" visibility="public"/>
+        <Method name="peek" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LinkedUnorderedList" package="Collection" visibility="public" xPosition="1744.0" yPosition="440.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="addToFront" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="addToRear" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="addAfter" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+          <Argument type="T" name="t1"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Network" package="Collection" visibility="public" xPosition="14.0" yPosition="466.0">
+      <Fields>
+        <Field name="adjMatrixWeight" type="double[][]" visibility="private"/>
+        <Field name="DEFAULT_WEIGHT" type="double" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="numVertices"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="T" name="vertix1"/>
+          <Argument type="T" name="vertix2"/>
+          <Argument type="double" name="weight"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public">
+          <Argument type="T" name="vertix1"/>
+          <Argument type="T" name="vertix2"/>
+        </Method>
+        <Method name="iteratorShortestPathWeight" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="getIndexOfAdjVertexWithWeightOf" returnType="int" visibility="private">
+          <Argument type="boolean[]" name="visited"/>
+          <Argument type="double[]" name="pathWeight"/>
+          <Argument type="double" name="weight"/>
+        </Method>
+        <Method name="iteratorBFS" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+        </Method>
+        <Method name="shortestPathWeight" returnType="double" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="addVertex" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="removeVertex" returnType="void" visibility="public">
+          <Argument type="T" name="t"/>
+        </Method>
+        <Method name="getEdgeWeight" returnType="double" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+        </Method>
+        <Method name="setEdgeWeight" returnType="void" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+          <Argument type="double" name="newWeight"/>
+        </Method>
+        <Method name="getAdjMatrixConnectionCost" returnType="double[][]" visibility="public"/>
+        <Method name="multiplicar_adjmatrizweight" returnType="void" visibility="public">
+          <Argument type="int" name="multiplicador"/>
+        </Method>
+        <Method name="imprimirMatrizWeight" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Jogo" visibility="public" xPosition="1040.0" yPosition="1046.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Manual" package="Jogo" visibility="public" xPosition="1302.0" yPosition="840.0">
+      <Fields>
+        <Field name="mapa" type="Mapa" visibility="private"/>
+        <Field name="jPanel1" type="JPanel" visibility="private"/>
+        <Field name="jLabel1" type="JLabel" visibility="private"/>
+        <Field name="jLabel2" type="JLabel" visibility="private"/>
+        <Field name="jLabel3" type="JLabel" visibility="private"/>
+        <Field name="jTextField1" type="JTextField" visibility="private"/>
+        <Field name="jLabel4" type="JLabel" visibility="private"/>
+        <Field name="jLabel5" type="JLabel" visibility="private"/>
+        <Field name="util" type="Jogador" visibility="private"/>
+        <Field name="divisao" type="Aposentos" visibility="private"/>
+        <Field name="jButton1" type="JButton" visibility="private"/>
+        <Field name="resposta" type="String" visibility="private"/>
+        <Field name="divisoes" type="String" visibility="private"/>
+        <Field name="list" type="ArrayUnorderedList" visibility="private"/>
+        <Field name="itr" type="Iterator&lt;Aposentos&gt;" visibility="private"/>
+        <Field name="jogadores" type="ArrayOrderedUti&lt;Jogador&gt;" visibility="private"/>
+        <Field name="lig" type="Aposentos" visibility="private"/>
+        <Field name="tempoInicial" type="double" visibility="package"/>
+        <Field name="tempoFinal" type="double" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Mapa" name="m"/>
+          <Argument type="Jogador" name="util"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="exterior_reached" returnType="void" visibility="public"/>
+        <Method name="isEntry" returnType="Aposentos" visibility="public">
+          <Argument type="Mapa" name="m"/>
+        </Method>
+        <Method name="guardarClassificacaoJogador" returnType="void" visibility="public"/>
+        <Method name="lerFicheiro" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Menu_Inicial" package="Jogo" visibility="public" xPosition="1850.0" yPosition="1132.0">
+      <Fields>
+        <Field name="DEFAULT_MAP" type="String" visibility="private" isFinal="true"/>
+        <Field name="leitura" type="Mapa" visibility="private"/>
+        <Field name="util" type="Jogador" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Mapa" name="m"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="jButton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="getLeitura" returnType="Mapa" visibility="public"/>
+        <Method name="setLeitura" returnType="void" visibility="public">
+          <Argument type="Mapa" name="leitura"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Menu_Jogo" package="Jogo" visibility="public" xPosition="1850.0" yPosition="1499.0">
+      <Fields>
+        <Field name="mapa" type="Mapa" visibility="private"/>
+        <Field name="util" type="Jogador" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Mapa" name="m"/>
+          <Argument type="Jogador" name="util"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="jButton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Music" package="Jogo" visibility="public" xPosition="1836.0" yPosition="1837.0">
+      <Fields>
+        <Field name="MAX_VOLUME" type="int" visibility="private" isFinal="true"/>
+        <Field name="clip" type="Clip" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="readMusic" returnType="void" visibility="public">
+          <Argument type="String" name="filePath"/>
+        </Method>
+        <Method name="setVolume" returnType="void" visibility="public">
+          <Argument type="int" name="vol"/>
+        </Method>
+        <Method name="getClip" returnType="Clip" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Simulacao" package="Jogo" visibility="public" xPosition="316.0" yPosition="1573.0">
+      <Fields>
+        <Field name="mapa" type="Mapa" visibility="private"/>
+        <Field name="jPanel1" type="JPanel" visibility="private"/>
+        <Field name="jLabel1" type="JLabel" visibility="private"/>
+        <Field name="jLabel2" type="JLabel" visibility="private"/>
+        <Field name="jLabel3" type="JLabel" visibility="private"/>
+        <Field name="jLabel4" type="JLabel" visibility="private"/>
+        <Field name="jLabel5" type="JLabel" visibility="private"/>
+        <Field name="util" type="Jogador" visibility="private"/>
+        <Field name="divisao" type="Aposentos" visibility="private"/>
+        <Field name="saida" type="Aposentos" visibility="private"/>
+        <Field name="jButton1" type="JButton" visibility="private"/>
+        <Field name="divisoes" type="String" visibility="private"/>
+        <Field name="itr" type="Iterator&lt;Aposentos&gt;" visibility="private"/>
+        <Field name="lig" type="Aposentos" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Mapa" name="m"/>
+          <Argument type="Jogador" name="util"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="isEntry" returnType="Aposentos" visibility="public">
+          <Argument type="Mapa" name="m"/>
+        </Method>
+        <Method name="isExterior" returnType="Aposentos" visibility="public">
+          <Argument type="Mapa" name="m"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Aposentos" package="Mapa" visibility="public" xPosition="726.0" yPosition="826.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="fantasma" type="long" visibility="private"/>
+        <Field name="ligacoes" type="JSONArray" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getFantasma" returnType="long" visibility="public"/>
+        <Method name="setFantasma" returnType="void" visibility="public">
+          <Argument type="long" name="fantasma"/>
+        </Method>
+        <Method name="getLigacoes" returnType="JSONArray" visibility="public"/>
+        <Method name="setLigacoes" returnType="void" visibility="public">
+          <Argument type="JSONArray" name="ligacoes"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ArrayOrderedUti" package="Mapa" visibility="public" xPosition="1040.0" yPosition="884.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="T" name="element"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Jogador" package="Mapa" visibility="public" xPosition="831.0" yPosition="1397.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="pontos" type="long" visibility="private"/>
+        <Field name="mapa" type="String" visibility="private"/>
+        <Field name="timeDuration" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getPontos" returnType="long" visibility="public"/>
+        <Method name="setPontos" returnType="void" visibility="public">
+          <Argument type="long" name="pontos"/>
+        </Method>
+        <Method name="getMapa" returnType="String" visibility="public"/>
+        <Method name="setMapa" returnType="void" visibility="public">
+          <Argument type="String" name="mapa"/>
+        </Method>
+        <Method name="getTimeDuration" returnType="double" visibility="public"/>
+        <Method name="setTimeDuration" returnType="void" visibility="public">
+          <Argument type="double" name="timeDuration"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Mapa" package="Mapa" visibility="public" xPosition="1328.0" yPosition="1488.0">
+      <Fields>
+        <Field name="nome_ficheiro" type="String" visibility="private"/>
+        <Field name="network" type="Network&lt;Aposentos&gt;" visibility="private"/>
+        <Field name="TAM_MAPA" type="int" visibility="private"/>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="pontos" type="long" visibility="private"/>
+        <Field name="mapa" type="JSONArray" visibility="private"/>
+        <Field name="aposentos" type="ArrayUnorderedList&lt;Aposentos&gt;" visibility="private"/>
+        <Field name="aposento" type="Aposentos" visibility="private"/>
+        <Field name="aposento2" type="Aposentos" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="Ficheiro_Json"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNome_ficheiro" returnType="String" visibility="public"/>
+        <Method name="setNome_ficheiro" returnType="void" visibility="public">
+          <Argument type="String" name="nome_ficheiro"/>
+        </Method>
+        <Method name="getTAM_MAPA" returnType="int" visibility="public"/>
+        <Method name="setTAM_MAPA" returnType="void" visibility="public">
+          <Argument type="int" name="TAM_MAPA"/>
+        </Method>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getPontos" returnType="long" visibility="public"/>
+        <Method name="setPontos" returnType="void" visibility="public">
+          <Argument type="long" name="pontos"/>
+        </Method>
+        <Method name="getMapa" returnType="JSONArray" visibility="public"/>
+        <Method name="setMapa" returnType="void" visibility="public">
+          <Argument type="JSONArray" name="mapa"/>
+        </Method>
+        <Method name="getNetwork" returnType="Network&lt;Aposentos&gt;" visibility="public"/>
+        <Method name="setNetwork" returnType="void" visibility="public">
+          <Argument type="Network&lt;Aposentos&gt;" name="network"/>
+        </Method>
+        <Method name="getAposentos" returnType="ArrayUnorderedList" visibility="public"/>
+        <Method name="setAposentos" returnType="void" visibility="public">
+          <Argument type="ArrayUnorderedList" name="aposentos"/>
+        </Method>
+        <Method name="getAposento" returnType="Aposentos" visibility="public"/>
+        <Method name="setAposento" returnType="void" visibility="public">
+          <Argument type="Aposentos" name="aposento"/>
+        </Method>
+        <Method name="getAposento2" returnType="Aposentos" visibility="public"/>
+        <Method name="setAposento2" returnType="void" visibility="public">
+          <Argument type="Aposentos" name="aposento2"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="BinaryTreeADT" package="Interface" visibility="public" xPosition="1968.0" yPosition="216.0">
+      <Methods>
+        <Method name="getRoot" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="T" name="targetElement"/>
+        </Method>
+        <Method name="find" returnType="T" visibility="public">
+          <Argument type="T" name="targetElement"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="iteratorInOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="iteratorPreOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="iteratorPostOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="iteratorLevelOrder" returnType="Iterator&lt;T&gt;" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="GraphADT" package="Interface" visibility="public" xPosition="14.0" yPosition="20.0">
+      <Methods>
+        <Method name="addVertex" returnType="void" visibility="public">
+          <Argument type="T" name="vertex"/>
+        </Method>
+        <Method name="removeVertex" returnType="void" visibility="public">
+          <Argument type="T" name="vertex"/>
+        </Method>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+        </Method>
+        <Method name="iteratorBFS" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+        </Method>
+        <Method name="iteratorDFS" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+        </Method>
+        <Method name="iteratorShortestPath" returnType="Iterator" visibility="public">
+          <Argument type="T" name="startVertex"/>
+          <Argument type="T" name="targetVertex"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="isConnected" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="getVertices" returnType="T[]" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="HeapADT" package="Interface" visibility="public" xPosition="1986.0" yPosition="34.0">
+      <Methods>
+        <Method name="addElement" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="removeMin" returnType="T" visibility="public"/>
+        <Method name="findMin" returnType="T" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="ListADT" package="Interface" visibility="public" xPosition="1239.0" yPosition="2.0">
+      <Methods>
+        <Method name="removeFirst" returnType="T" visibility="public"/>
+        <Method name="removeLast" returnType="T" visibility="public"/>
+        <Method name="remove" returnType="T" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="last" returnType="T" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="T" name="target"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;T&gt;" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="NetworkADT" package="Interface" visibility="public" xPosition="14.0" yPosition="330.0">
+      <Methods>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+          <Argument type="double" name="weight"/>
+        </Method>
+        <Method name="shortestPathWeight" returnType="double" visibility="public">
+          <Argument type="T" name="vertex1"/>
+          <Argument type="T" name="vertex2"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="OrderedListADT" package="Interface" visibility="public" xPosition="1040.0" yPosition="200.0">
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="QueueADT" package="Interface" visibility="public" xPosition="20.0" yPosition="913.0">
+      <Methods>
+        <Method name="enqueue" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="dequeue" returnType="T" visibility="public"/>
+        <Method name="first" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="StackADT" package="Interface" visibility="public" xPosition="14.0" yPosition="1132.0">
+      <Methods>
+        <Method name="push" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="pop" returnType="T" visibility="public"/>
+        <Method name="peek" returnType="T" visibility="public"/>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="UnorderedListADT" package="Interface" visibility="public" xPosition="1465.0" yPosition="179.0">
+      <Methods>
+        <Method name="addToFront" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="addToRear" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+        </Method>
+        <Method name="addAfter" returnType="void" visibility="public">
+          <Argument type="T" name="element"/>
+          <Argument type="T" name="target"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Mapa.ArrayOrderedUti" target="Collection.ArrayOrderedList"/>
+    <HasRelation name="network" source="Mapa.Mapa" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Collection.BinaryTree" target="Collection.BinaryTreeNode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.ArrayUnorderedList" target="Interface.UnorderedListADT"/>
+    <HasRelation name="itr" source="Jogo.Simulacao" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapa" source="Jogo.Simulacao" target="Mapa.Mapa" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapa"/>
+    <IsRelation name="is" source="Collection.LinkedUnorderedList" target="Collection.LinkedList"/>
+    <IsRelation name="is" source="Interface.OrderedListADT" target="Interface.ListADT"/>
+    <HasRelation name="divisao" source="Jogo.Simulacao" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.LinkedUnorderedList" target="Interface.UnorderedListADT"/>
+    <IsRelation name="is" source="Collection.HeapNode" target="Collection.BinaryTreeNode"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.Network" target="Interface.NetworkADT"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.LinkedQueue" target="Interface.QueueADT"/>
+    <UseRelation source="Jogo.Menu_Inicial" target="Mapa.Mapa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="aposentos" source="Mapa.Mapa" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayUnorderedList&lt;Aposentos&gt;"/>
+    <HasRelation name="mapa" source="Jogo.Menu_Jogo" target="Mapa.Mapa" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapa"/>
+    <HasRelation name="divisao" source="Jogo.Manual" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="util" source="Jogo.Menu_Jogo" target="Mapa.Jogador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Collection.Network" target="Collection.Graph"/>
+    <HasRelation name="itr" source="Jogo.Manual" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Collection.LinkedHeap" target="Collection.BinaryTree"/>
+    <UseRelation source="Collection.BinaryTreeNode" target="Collection.BinaryTreeNode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="aposento" source="Mapa.Mapa" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Interface.UnorderedListADT" target="Interface.ListADT"/>
+    <UseRelation source="Jogo.Simulacao" target="Mapa.Mapa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="util" source="Jogo.Manual" target="Mapa.Jogador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="jogadores" source="Jogo.Manual" target="Mapa.Jogador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Collection.LinkedHeap" target="Collection.HeapNode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Collection.ArrayUnorderedList" target="Collection.ArrayList"/>
+    <HasRelation name="util" source="Jogo.Simulacao" target="Mapa.Jogador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="lig" source="Jogo.Manual" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="leitura" source="Jogo.Menu_Inicial" target="Mapa.Mapa" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapa"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.LinkedStack" target="Interface.StackADT"/>
+    <HasRelation name="list" source="Jogo.Manual" target="Collection.ArrayUnorderedList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayUnorderedList"/>
+    <UseRelation source="Collection.LinearNode" target="Collection.LinearNode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="aposento2" source="Mapa.Mapa" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Mapa.Mapa" target="Collection.ArrayUnorderedList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.LinkedHeap" target="Interface.HeapADT"/>
+    <UseRelation source="Mapa.Mapa" target="Mapa.Aposentos" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Interface.HeapADT" target="Interface.BinaryTreeADT"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.Graph" target="Interface.GraphADT"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.LinkedList" target="Interface.ListADT"/>
+    <UseRelation source="Collection.Graph" target="Collection.ArrayUnorderedList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="lig" source="Jogo.Simulacao" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Jogo.Manual" target="Mapa.Mapa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Collection.ArrayOrderedList" target="Collection.ArrayList"/>
+    <HasRelation name="mapa" source="Jogo.Manual" target="Mapa.Mapa" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapa"/>
+    <HasRelation name="util" source="Jogo.Menu_Inicial" target="Mapa.Jogador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Interface.NetworkADT" target="Interface.GraphADT"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.BinaryTree" target="Interface.BinaryTreeADT"/>
+    <HasRelation name="saida" source="Jogo.Simulacao" target="Mapa.Aposentos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Collection.ArrayList" target="Interface.ListADT"/>
+    <UseRelation source="Collection.HeapNode" target="Collection.HeapNode" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

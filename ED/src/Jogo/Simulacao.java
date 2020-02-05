@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * Classe da interface gráfica do modo de jogo simulação.
  *
  * @author 8150121 e 8150133
  */
@@ -36,9 +37,10 @@ public class Simulacao extends JFrame {
     private Aposentos lig;
 
     /**
+     * Método construtor da classe Simulacao.
      *
-     * @param m
-     * @param util
+     * @param m mapa fornecido
+     * @param util novo jogador
      */
     public Simulacao(Mapa m, Jogador util) {
         mapa = m;
@@ -53,13 +55,15 @@ public class Simulacao extends JFrame {
         setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")                        
+    /**
+     * Método que cria a interface gráfica da classe Simulacao.
+     */
+    @SuppressWarnings("unchecked")
     private void initComponents() {
         divisao = isEntry(mapa);
-        saida = isExterior(mapa);
+        saida = isExit(mapa);
 
         util.setPontos(mapa.getPontos());
-        System.out.println(util.getPontos());
         setTitle(mapa.getNome());
 
         jPanel1 = new javax.swing.JPanel();
@@ -166,11 +170,11 @@ public class Simulacao extends JFrame {
 
         divisoes = "";
         divisao = isEntry(mapa);
-        saida = isExterior(mapa);
+        saida = isExit(mapa);
 
         jLabel2.setText("Pontos Finais: ");
         try {
-            itr = mapa.getNetwork().iteratorShortestPathConnectionCost(divisao, saida);
+            itr = mapa.getNetwork().iteratorShortestPathWeight(divisao, saida);
         } catch (Exception ex) {
             Logger.getLogger(Simulacao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -183,9 +187,7 @@ public class Simulacao extends JFrame {
             } else {
                 divisoes = divisoes + " - " + lig.getNome();
             }
-            System.out.println(divisao.getNome());
             util.setPontos(util.getPontos() - (long) mapa.getNetwork().getAdjMatrixConnectionCost()[mapa.getNetwork().getVertexIndex(divisao)][mapa.getNetwork().getVertexIndex(lig)]);
-            System.out.println(util.getPontos());
             divisao = (Aposentos) mapa.getNetwork().getVertices()[mapa.getNetwork().getVertexIndex(lig)];
         }
         jLabel2.setText("Pontos Finais: " + util.getPontos());
@@ -194,7 +196,7 @@ public class Simulacao extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Menu_Inicial menu_Inicial = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()));
@@ -205,9 +207,11 @@ public class Simulacao extends JFrame {
     }
 
     /**
+     * Método que pesquisa no mapa fornecido o aposento em que será iniciado o
+     * jogo.
      *
-     * @param m
-     * @return
+     * @param m mapa que irá ser pesquisado
+     * @return o aposento que tem como nome "entrada"
      */
     public Aposentos isEntry(Mapa m) {
         Aposentos ap = null;
@@ -221,11 +225,13 @@ public class Simulacao extends JFrame {
     }
 
     /**
+     * Método que pesquisa no mapa fornecido o aposento em que será finalizado o
+     * jogo.
      *
-     * @param m
-     * @return
+     * @param m mapa que irá ser pesquisado
+     * @return o aposento que tem como nome "exterior"
      */
-    public Aposentos isExterior(Mapa m) {
+    public Aposentos isExit(Mapa m) {
         Aposentos ap = null;
         for (int i = 0; i < m.getNetwork().getCount(); i++) {
             ap = (Aposentos) m.getNetwork().getVertices()[i];

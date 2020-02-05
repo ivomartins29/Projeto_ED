@@ -8,7 +8,7 @@ package Collection;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class BinaryTreeNode<T> {
 

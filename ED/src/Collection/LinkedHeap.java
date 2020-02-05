@@ -8,12 +8,10 @@ package Collection;
 import Exception.EmptyException;
 import Interface.HeapADT;
 
-
-
 /**
  * 
  * @author 8150121 e 8150133
- * @param <T> 
+ * @param <T> tipo genérico
  */
 
 public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
@@ -126,6 +124,10 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         return root.getElement();
     }
 
+    /**
+     * 
+     * @return um HeapNode
+     */
     private HeapNode<T> getNextParentAdd() {
 
         HeapNode<T> result = lastNodeInserted;
@@ -259,10 +261,12 @@ public class LinkedHeap<T> extends BinaryTree<T> implements HeapADT<T> {
         node.setElement(temp);
     }
 
+    /**
+     * remove todos os elementos
+     */
     public void removeAllElements() throws EmptyException {
         while (!isEmpty()) {
             removeMin();
         }
     }
-
 }

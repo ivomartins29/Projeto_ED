@@ -8,7 +8,7 @@ package Collection;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class HeapNode<T> extends BinaryTreeNode<T> {
 
@@ -24,12 +24,19 @@ public class HeapNode<T> extends BinaryTreeNode<T> {
         this.parent = null;
     }
 
+    /**
+     *
+     * @return o parent
+     */
     public HeapNode<T> getParent() {
         return parent;
     }
 
+    /**
+     *
+     * @param parent novo parent
+     */
     public void setParent(HeapNode<T> parent) {
         this.parent = parent;
     }
-
 }

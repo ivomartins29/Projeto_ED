@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T> {
 
@@ -98,5 +98,4 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         list[i] = t;
         rear++;
     }
-
 }

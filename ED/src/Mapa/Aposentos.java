@@ -3,9 +3,10 @@ package Mapa;
 import org.json.simple.JSONArray;
 
 /**
- *
+ * Classe que contém os dados relacionados a um aposento
+ * 
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class Aposentos<T> {
 
@@ -14,54 +15,60 @@ public class Aposentos<T> {
     private JSONArray ligacoes;
 
     /**
-     *
+     * Método construtor de Aposentos
      */
     public Aposentos() {
     }
 
     /**
-     *
-     * @return
+     * Get da variável nome
+     * 
+     * @return a string nome
      */
     public String getNome() {
         return nome;
     }
 
     /**
-     *
-     * @param nome
+     * Set da variável nome
+     * 
+     * @param nome novo nome
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
-     *
-     * @return
+     * Get da variável fantasma
+     * 
+     * @return o valor do fantasma
      */
     public long getFantasma() {
         return fantasma;
     }
 
     /**
-     *
-     * @param fantasma
+     * Set da variável fantasma
+     * 
+     * @param fantasma novo valor de fantasma
      */
     public void setFantasma(long fantasma) {
         this.fantasma = fantasma;
     }
 
     /**
-     *
-     * @return
+     * Get da variável ligacoes
+     * 
+     * @return o JSONArray das ligacoes
      */
     public JSONArray getLigacoes() {
         return ligacoes;
     }
 
     /**
-     *
-     * @param ligacoes
+     * Set da variável ligacoes
+     * 
+     * @param ligacoes novo JSONArray de ligacoes
      */
     public void setLigacoes(JSONArray ligacoes) {
         this.ligacoes = ligacoes;
@@ -70,16 +77,5 @@ public class Aposentos<T> {
     @Override
     public String toString() {
         return this.nome;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean hasExit() {
-        if (this.getLigacoes().contains("exterior")) {
-            return true;
-        }
-        return false;
     }
 }

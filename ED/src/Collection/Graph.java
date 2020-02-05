@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class Graph<T> implements GraphADT<T> {
 
@@ -83,7 +83,6 @@ public class Graph<T> implements GraphADT<T> {
      * Remove deste grafo um vértice com o valor dado
      *
      * @param Vertex vertice a ser removido deste grafo
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
      */
     @Override
     public void removeVertex(T Vertex) throws ElementNotFoundException {
@@ -117,7 +116,6 @@ public class Graph<T> implements GraphADT<T> {
      *
      * @param startVertex o primeiro vertice
      * @param targetVertex o segundo vertice
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
      */
     @Override
     public void addEdge(T startVertex, T targetVertex) throws ElementNotFoundException {
@@ -139,7 +137,6 @@ public class Graph<T> implements GraphADT<T> {
      *
      * @param startVertex o primeiro vertice
      * @param targetVertex o segundo vertice
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
      */
     @Override
     public void removeEdge(T startVertex, T targetVertex) throws ElementNotFoundException {
@@ -241,7 +238,6 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna um iterador que contém o caminho mais curto entre 2 vértices
      *
      * @return um iterador que contém o caminho mais curto entre os 2 vertices
      */
@@ -309,8 +305,9 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna um iterador que contém o caminho mais curto entre 2 índices
      *
+     * @param startIndex Posição do vertice de inicio do caminho
+     * @param targetIndex Posição do vertice de fim do caminho
      * @return um iterador que contém o caminho mais curto entre os 2 índices
      */
     protected Iterator<Integer> iteratorShortestPathIndices(int startIndex, int targetIndex) throws EmptyCollectionException {
@@ -348,7 +345,7 @@ public class Graph<T> implements GraphADT<T> {
             }
         }
 
-        if (index != targetIndex) {  // no path must have been found
+        if (index != targetIndex) {  // caminho não encontrado
             return resultList.iterator();
         }
 
@@ -367,9 +364,11 @@ public class Graph<T> implements GraphADT<T> {
         return resultList.iterator();
     }
 
-    /*
-    Método responsável por devolver  entre dois índices
-    Se o iterador não tiver próximo, o método retorna 0
+    /**
+     *
+     * @param startIndex Posição do vertice de inicio do caminho
+     * @param targetIndex Posição do vertice de fim do caminho
+     * @return o tamanho do caminho mais curto
      */
     public int shortestPathLength(int startIndex, int targetIndex) throws EmptyCollectionException {
         int result = 0;
@@ -396,9 +395,8 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna true se o grafo estiver vazio, senão retorna false
      *
-     * @return true se o grafo estiver vazio
+     * @return true se o grafo estiver vazio, senão retorna false
      */
     @Override
     public boolean isEmpty() {
@@ -406,9 +404,8 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna true se o gráfico for conectado, senão retorna false
      *
-     * @return true se o grafico for conectado
+     * @return true se o gráfico for conectado, senão retorna false
      */
     @Override
     public boolean isConnected() {
@@ -429,7 +426,6 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna o numero de vertices neste grafo
      *
      * @return o numero de vertices deste grafo
      */
@@ -439,7 +435,6 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Retorna um array com todos os vertices do grafo
      *
      * @return um array com todos os vertices do grafo
      */
@@ -492,8 +487,8 @@ public class Graph<T> implements GraphADT<T> {
 
     /**
      *
-     * @param vertex to find the index
-     * @return index of recived index
+     * @param vertex vertice a procurar
+     * @return Posição do vertice
      */
     public int getVertexIndex(T vertex) {
         int index = 0;
@@ -513,8 +508,8 @@ public class Graph<T> implements GraphADT<T> {
     /**
      * Permite verificar se determinado index é válido
      *
-     * @param index index a que ser quer verificar a veracidade
-     * @return true se o index for válido, false se for provado o contrário
+     * @param index index a verificar
+     * @return true se o index for válido, false se for inválido
      */
     protected boolean indexIsValid(int index) {
         return index >= 0 && index < this.vertices.length;
@@ -526,7 +521,6 @@ public class Graph<T> implements GraphADT<T> {
      * @param t primeiro vertice
      * @param t1 segundo vertice
      * @return true se os vertices estiverem ligados
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
      */
     protected boolean areConnected(T t, T t1) throws ElementNotFoundException {
         int x = getVertexIndex(t);
@@ -540,7 +534,6 @@ public class Graph<T> implements GraphADT<T> {
      * @param x indice do primeiro vertice
      * @param y indice do segundo vertice
      * @return true se estiverem ligados
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
      */
     protected boolean areConnected(int x, int y) throws ElementNotFoundException {
         if (x >= 0 && y >= 0 && x < this.count && y < this.count) {
@@ -556,8 +549,6 @@ public class Graph<T> implements GraphADT<T> {
      *
      * @param i indice do vertice pretendido
      * @return o vertice no indice i
-     * @throws ElementNotFoundException se não encontrar o elemento especificado
-     * @throws Exception.EmptyCollectionException se a coleção estiver vazia
      */
     public T getVertexAt(int i) throws ElementNotFoundException, EmptyCollectionException {
         if (isEmpty()) {
@@ -571,24 +562,40 @@ public class Graph<T> implements GraphADT<T> {
         return this.vertices[i];
     }
 
+    /**
+     * Este método altera o vertice na posição index pelo novo vertice
+     *
+     * @param index posição do vertice a ser alterado
+     * @param vertex novo vertice
+     */
     public void setVertexAt(int index, T vertex) {
         this.vertices[index] = vertex;
     }
 
-    public ArrayUnorderedList<T> getNeightbors(T vertex) {
+    /**
+     * Este método retorna um ArrayUnorderedList com os vertices que têm ligação
+     * com o vertice fornecido
+     *
+     * @param vertex vertice fornecido
+     * @return um ArrayUnorderedList de vertices
+     */
+    public ArrayUnorderedList<T> getNeighbors(T vertex) {
         int pos = getVertexIndex(vertex);
         int array_tam = num_Neighbors(pos);
         ArrayUnorderedList<T> array = new ArrayUnorderedList<>(array_tam);
-        int count1 = 0;
         for (int i = 0; i < count; i++) {
             if (adjMatrix[pos][i] == true) {
                 array.addToFront(vertices[i]);
-                count1++;
             }
         }
         return array;
     }
 
+    /**
+     *
+     * @param pos do vertice
+     * @return número de vértices
+     */
     public int num_Neighbors(int pos) {
         int count1 = 0;
         for (int i = 0; i < count; i++) {
@@ -599,11 +606,18 @@ public class Graph<T> implements GraphADT<T> {
         return count1;
     }
 
+    /**
+     *
+     * @return o numero de vertices do grafo
+     */
     public int getCount() {
         return count;
     }
 
-    public void imprimir() {
+    /**
+     * Imprime na consola a matriz de ligação
+     */
+    public void imprimirAdjMatrix() {
         for (int i = 0; i < vertices.length; i++) {
             for (int j = 0; j < vertices.length; j++) {
                 System.out.printf("[" + adjMatrix[i][j] + "] ");
@@ -611,5 +625,4 @@ public class Graph<T> implements GraphADT<T> {
             System.out.printf("\n");
         }
     }
-
 }

@@ -12,7 +12,7 @@ import Exception.EmptyException;
 /**
  * 
  * @author 8150121 e 8150133
- * @param <T> 
+ * @param <T> tipo genérico
  */
 public interface HeapADT<T> extends BinaryTreeADT<T> {
 
@@ -27,7 +27,6 @@ public interface HeapADT<T> extends BinaryTreeADT<T> {
      * Removes element with the lowest value from this heap.
      *
      * @return the element with the lowest value from this heap
-     * @throws Exception.EmptyException
      */
     public T removeMin() throws EmptyException;
 

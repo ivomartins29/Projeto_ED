@@ -10,7 +10,7 @@ import Exception.EmptyCollectionException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface QueueADT<T extends Object> {
 
@@ -25,7 +25,6 @@ public interface QueueADT<T extends Object> {
      * Removes and returns the element at the front of this queue.
      *
      * @return the element at the front of this queue
-     * @throws Exception.EmptyCollectionException
      */
     public T dequeue() throws EmptyCollectionException;
 
@@ -34,7 +33,6 @@ public interface QueueADT<T extends Object> {
      *
      *
      * @return the first element in this queue
-     * @throws Exception.EmptyCollectionException
      */
     public T first() throws EmptyCollectionException;
 

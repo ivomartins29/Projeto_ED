@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public class BinaryTree<T> implements BinaryTreeADT<T> {
 
@@ -249,5 +249,4 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
 
         return templist.iterator();
     }
-
 }

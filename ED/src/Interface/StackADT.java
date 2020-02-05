@@ -10,7 +10,7 @@ import Exception.EmptyCollectionException;
 /**
  *
  * @author 8150121 e 8150133
- * @param <T>
+ * @param <T> tipo genérico
  */
 public interface StackADT<T extends Object> {
 
@@ -25,7 +25,6 @@ public interface StackADT<T extends Object> {
      * Removes and returns the top element from this stack
      *
      * @return T element removed from the top of the stack
-     * @throws Exception.EmptyCollectionException
      */
     public T pop() throws EmptyCollectionException;
 
@@ -33,7 +32,6 @@ public interface StackADT<T extends Object> {
      * Returns without removing the top element of this stack
      *
      * @return T element on top of the stack
-     * @throws Exception.EmptyCollectionException
      */
     public T peek() throws EmptyCollectionException;
 
