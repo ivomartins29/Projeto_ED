@@ -9,11 +9,7 @@ import Exception.EmptyCollectionException;
 
 /**
  *
-<<<<<<< HEAD
  * @author 8150121 e 8150133
-=======
- * @author Hugo Ferreira
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
  * @param <T>
  */
 public interface QueueADT<T extends Object> {

@@ -3,7 +3,6 @@ package Jogo;
 import Exception.ElementNotFoundException;
 import Mapa.Jogador;
 import Mapa.Mapa;
-<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,24 +11,16 @@ import java.util.logging.Logger;
  *
  * @author 8150121 e 8150133
  */
-=======
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 public class Menu_Jogo extends javax.swing.JFrame {
 
     private Mapa mapa;
     private Jogador util;
 
-<<<<<<< HEAD
     /**
      *
      * @param m
      * @param util
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Menu_Jogo(Mapa m, Jogador util) {
         this.mapa = m;
         this.util = util;
@@ -37,12 +28,7 @@ public class Menu_Jogo extends javax.swing.JFrame {
         setVisible(true);
     }
 
-<<<<<<< HEAD
     @SuppressWarnings("unchecked")                       
-=======
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -66,15 +52,11 @@ public class Menu_Jogo extends javax.swing.JFrame {
         jButton1.setText("Manual");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<<<<<<< HEAD
                 try {
                     jButton1ActionPerformed(evt);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Menu_Jogo.class.getName()).log(Level.SEVERE, null, ex);
                 }
-=======
-                jButton1ActionPerformed(evt);
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
             }
         });
 
@@ -153,13 +135,8 @@ public class Menu_Jogo extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-<<<<<<< HEAD
     }
     
-=======
-    }// </editor-fold>                        
-
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Menu_Inicial mI = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()), util);
@@ -178,11 +155,7 @@ public class Menu_Jogo extends javax.swing.JFrame {
         dispose();
     }
 
-<<<<<<< HEAD
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException {
-=======
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
         try {
             Manual manual = new Manual(new Mapa(mapa.getNome_ficheiro()), util);
         } catch (ElementNotFoundException ex) {
@@ -190,20 +163,10 @@ public class Menu_Jogo extends javax.swing.JFrame {
         }
         dispose();
     }
-<<<<<<< HEAD
                     
-=======
-
-    // Variables declaration - do not modify                     
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD
     private javax.swing.JPanel jPanel1;                   
-=======
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration                   
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 }

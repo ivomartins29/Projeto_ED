@@ -13,13 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-<<<<<<< HEAD
 /**
  *
  * @author 8150121 e 8150133
  */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 public class Simulacao extends JFrame {
 
     private Mapa mapa;
@@ -38,14 +35,11 @@ public class Simulacao extends JFrame {
     private Iterator<Aposentos> itr;
     private Aposentos lig;
 
-<<<<<<< HEAD
     /**
      *
      * @param m
      * @param util
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Simulacao(Mapa m, Jogador util) {
         mapa = m;
         this.util = util;
@@ -59,12 +53,7 @@ public class Simulacao extends JFrame {
         setVisible(true);
     }
 
-<<<<<<< HEAD
     @SuppressWarnings("unchecked")                        
-=======
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void initComponents() {
         divisao = isEntry(mapa);
         saida = isExterior(mapa);
@@ -204,13 +193,8 @@ public class Simulacao extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-<<<<<<< HEAD
     }
     
-=======
-    }// </editor-fold>                        
-
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Menu_Inicial menu_Inicial = new Menu_Inicial(new Mapa(mapa.getNome_ficheiro()), util);
@@ -220,14 +204,11 @@ public class Simulacao extends JFrame {
         dispose();
     }
 
-<<<<<<< HEAD
     /**
      *
      * @param m
      * @return
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Aposentos isEntry(Mapa m) {
         Aposentos ap = null;
         for (int i = 0; i < m.getNetwork().getCount(); i++) {
@@ -239,14 +220,11 @@ public class Simulacao extends JFrame {
         return ap;
     }
 
-<<<<<<< HEAD
     /**
      *
      * @param m
      * @return
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Aposentos isExterior(Mapa m) {
         Aposentos ap = null;
         for (int i = 0; i < m.getNetwork().getCount(); i++) {

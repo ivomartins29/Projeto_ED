@@ -7,27 +7,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD
 /**
  *
  * @author 8150121 e 8150133
  */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 public class Menu_Inicial extends javax.swing.JFrame {
 
     private final String DEFAULT_MAP = "mapa.json";
     private Mapa leitura;
     private Jogador util;
 
-<<<<<<< HEAD
     /**
      *
      * @param m
      * @param util
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Menu_Inicial(Mapa m, Jogador util) {
         leitura = m;
         this.util = util;
@@ -35,12 +29,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
         setVisible(true);
     }
 
-<<<<<<< HEAD
     @SuppressWarnings("unchecked")                         
-=======
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -143,11 +132,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
 
         pack();
         this.setLocationRelativeTo(null);
-<<<<<<< HEAD
     }                    
-=======
-    }// </editor-fold>                        
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "Hope you enjoyed!!!");
@@ -175,39 +160,25 @@ public class Menu_Inicial extends javax.swing.JFrame {
         mJ.setVisible(true);
         dispose();
     }
-<<<<<<< HEAD
                   
-=======
-
-    // Variables declaration - do not modify                     
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD
     private javax.swing.JPanel jPanel1;   
 
     /**
      *
      * @return
      */
-=======
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration     
-
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public Mapa getLeitura() {
         return leitura;
     }
 
-<<<<<<< HEAD
     /**
      *
      * @param leitura
      */
-=======
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
     public void setLeitura(Mapa leitura) {
         this.leitura = leitura;
     }

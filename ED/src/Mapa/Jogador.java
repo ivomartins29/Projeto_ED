@@ -7,11 +7,7 @@ package Mapa;
 
 /**
  *
-<<<<<<< HEAD
  * @author 8150121 e 8150133
-=======
- * @author jogui
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
  */
 public class Jogador {
 
@@ -20,6 +16,9 @@ public class Jogador {
     private String mapa;
     private double timeDuration;
 
+    /**
+     *
+     */
     public Jogador() {
         this.nome = null;
         this.pontos = 0;
@@ -27,54 +26,67 @@ public class Jogador {
         this.timeDuration = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getPontos() {
         return pontos;
     }
 
+    /**
+     *
+     * @param pontos
+     */
     public void setPontos(long pontos) {
         this.pontos = pontos;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMapa() {
         return mapa;
     }
 
+    /**
+     *
+     * @param mapa
+     */
     public void setMapa(String mapa) {
         this.mapa = mapa;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTimeDuration() {
         return timeDuration;
     }
 
+    /**
+     *
+     * @param timeDuration
+     */
     public void setTimeDuration(double timeDuration) {
         this.timeDuration = timeDuration;
     }
-<<<<<<< HEAD
-=======
-    
-
-    public void guardarUtilizadores() throws IOException {
-        FileWriter x = new FileWriter("Classificações.txt", true);
-        try {
-            x.write("Jogador: " + this.nome + "\nMapa jogado: " + this.mapa + "\nPontos: " + this.pontos + "\nAcabou o mapa em: " + this.timeDuration + " segundos" + "\n\n");
-        } catch (FileNotFoundException var4) {
-            var4.printStackTrace();
-        } catch (IOException var5) {
-            var5.printStackTrace();
-        }
-        x.close();
-    }
-    
-    
-    
->>>>>>> 026de2582b704c9fc3ac69cc75b8d5b641e0a441
 }
